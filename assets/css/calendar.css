@@ -1,0 +1,18 @@
+/*defaul*/
+.flatpickr-day.flatpickr-disabled {
+    color: #6b6b6b !important;
+    opacity: 0.7 !important;
+    cursor: default !important;
+}
+
+/* Hari sebelum hari ini */
+.flatpickr-day.flatpickr-disabled.before-today {
+    color: #6b6b6b !important;
+    opacity: 0.7 !important;
+
+}
+
+/* Hari setelah hari ini */
+.flatpickr-day.flatpickr-disabled.after-today {
+    color: rgb(0, 0, 0) !important;
+}

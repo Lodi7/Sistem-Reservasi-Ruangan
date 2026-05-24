@@ -1,7 +1,7 @@
 <footer
-    class="bg-[#FFE9BD] py-10 px-6 md:px-10 lg:px-16 grid grid-cols-2 md:grid-cols-3 text-[#767676] text-sm items-center">
+    class="bg-[#FF925C] py-10 px-6 md:px-10 lg:px-16 grid grid-cols-1 md:grid-cols-2 text-white text-sm items-center mt-30">
 
-    <div class="space-y-2">
+    <div class="space-y-2 flex flex-col">
 
         <div class="flex items-center mb-3.5">
 
@@ -12,17 +12,13 @@
             </h2>
 
         </div>
+        <p class="text-sm">
+            LabHub @ 2026. All rights reserved.
+        </p>
+    </div>
 
-        <div class="flex items-center gap-2">
 
-            <i data-lucide="phone" class="w-4 h-4"></i>
-
-            <p>
-                +62 123-456-789
-            </p>
-
-        </div>
-
+    <div>
         <div class="flex items-center gap-2">
 
             <i data-lucide="mail" class="w-4 h-4"></i>
@@ -33,16 +29,16 @@
 
         </div>
 
+
+        <div class="flex items-center gap-2">
+
+            <i data-lucide="phone" class="w-4 h-4"></i>
+
+            <p>
+                +62 123-456-789
+            </p>
+
+        </div>
     </div>
-
-    <div class="flex justify-center">
-
-        <p class="text-center">
-            LabHub @ 2026. All rights reserved.
-        </p>
-
-    </div>
-
-    <div></div>
 
 </footer>

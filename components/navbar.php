@@ -1,0 +1,249 @@
+<nav class="bg-white border-b border-gray-400 fixed top-0 w-full h-18 z-50">
+
+    <div class="max-w-7xl lg:max-w-full px-6 lg:px-20 lg:py-2.25 py-3.5 flex items-center justify-between">
+
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+            <img src="assets/images/logo.png" class="h-10" alt="LabHub Logo">
+            <h1 class="text-xl font-bold">LabHub</h1>
+        </div>
+
+        <!-- Hamburger -->
+        <button id="menuButton" class="lg:hidden inline-flex items-center justify-center">
+
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+
+            </svg>
+
+        </button>
+
+        <!-- Menu -->
+        <ul id="mobileMenu" class="
+                hidden
+                lg:flex
+                flex-col
+                lg:flex-row
+                items-start
+                lg:items-center
+                gap-5
+                lg:gap-8
+
+                absolute
+                lg:static
+
+                top-18
+                left-0
+
+                w-full
+                lg:w-auto
+
+                bg-white
+                lg:bg-transparent
+
+                px-6
+                py-6
+                lg:p-0
+
+                border-b
+                lg:border-0
+                border-gray-300">
+
+            <li>
+                <a href="index.php?page=beranda" class="<?= $page === 'beranda'
+                    ? 'text-[#FF925C] font-medium'
+                    : 'hover:text-[#FF925C]' ?>">
+
+                    Beranda
+
+                </a>
+            </li>
+
+            <li>
+                <a href="index.php?page=tentang_kami" class="<?= $page === 'tentang_kami'
+                    ? 'text-[#FF925C] font-medium'
+                    : 'hover:text-[#FF925C]' ?>">
+
+                    Tentang Kami
+
+                </a>
+            </li>
+
+            <li>
+                <a href="index.php?page=informasi_lab" class="<?= $page === 'informasi_lab'
+                    ? 'text-[#FF925C] font-medium'
+                    : 'hover:text-[#FF925C]' ?>">
+
+                    Informasi Lab
+                </a>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="relative w-full lg:w-auto">
+
+                <button id="dropdownButton" class="flex items-center justify-between w-full lg:w-auto gap-2
+        <?= in_array($page, [
+            'ajukan_reservasi',
+            'jadwal_lab',
+            'riwayat_reservasi'
+        ])
+            ? 'text-[#FF925C] font-medium'
+            : 'hover:text-[#FF925C]' ?>">
+
+                    Reservasi
+
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+
+                    </svg>
+
+                </button>
+
+                <!-- Dropdown Menu -->
+                <div id="dropdownMenu" class="
+            hidden
+            lg:absolute
+            lg:top-10
+            lg:left-0
+
+            mt-3
+            lg:mt-0
+
+            bg-white
+            shadow-lg
+            border
+            rounded-xl
+
+            w-full
+            lg:w-52
+
+            p-2
+        ">
+
+                    <!-- AJUKAN RESERVASI -->
+                    <a href="index.php?page=ajukan_reservasi" class="
+                block
+                px-4
+                py-2
+                rounded-lg
+
+                <?= $page === 'ajukan_reservasi'
+                    ? 'bg-[#FF925C] text-white'
+                    : 'hover:bg-gray-100' ?>
+            ">
+
+                        Ajukan Reservasi
+
+                    </a>
+
+                    <!-- JADWAL LAB -->
+                    <a href="index.php?page=jadwal_lab" class="
+                block
+                px-4
+                py-2
+                rounded-lg
+
+                <?= $page === 'jadwal_lab'
+                    ? 'bg-[#FF925C] text-white'
+                    : 'hover:bg-gray-100' ?>
+            ">
+
+                        Jadwal Lab
+
+                    </a>
+
+                    <!-- RIWAYAT -->
+                    <a href="index.php?page=riwayat_reservasi" class="
+                block
+                px-4
+                py-2
+                rounded-lg
+
+                <?= $page === 'riwayat_reservasi'
+                    ? 'bg-[#FF925C] text-white'
+                    : 'hover:bg-gray-100' ?>
+            ">
+
+                        Riwayat Reservasi
+
+                    </a>
+
+                </div>
+
+            </li>
+
+            <!-- Mobile Button -->
+            <li class="w-full lg:hidden pt-2">
+
+                <?php if (isset($_SESSION['is_login'])): ?>
+
+                    <a href="index.php?page=profile" class="flex items-center justify-center">
+                        <img src="<?= !empty($user['foto_profile'])
+                            ? $user['foto_profile']
+                            : 'assets/images/profile-default.png'; ?>"
+                            class="w-12 h-12 rounded-full border border-gray-300 hover:opacity-80 transition">
+                    </a>
+
+                <?php else: ?>
+
+                    <div class="flex flex-col gap-3">
+
+                        <a href="index.php?page=login"
+                            class="bg-[#FF925C] text-base px-5 py-3 text-white rounded-3xl text-center hover:opacity-80 transition duration-300">
+
+                            Masuk
+
+                        </a>
+
+                        <a href="index.php?page=register"
+                            class="bg-white border border-[#FF925C] hover:bg-[#FF925C] hover:text-white transition duration-300 text-base px-5 py-3 text-black rounded-3xl text-center">
+
+                            Daftar
+
+                        </a>
+
+                    </div>
+
+                <?php endif; ?>
+
+            </li>
+
+        </ul>
+
+        <!-- Desktop Button -->
+        <div class="hidden lg:flex items-center gap-2.5 py-0.75">
+
+            <?php if (isset($_SESSION['is_login'])): ?>
+
+                <a href="index.php?page=profile" class="flex items-center justify-center">
+                    <img src="<?= !empty($user['foto_profile'])
+                        ? $user['foto_profile']
+                        : 'assets/images/profile-default.png'; ?>"
+                        class="w-12 h-12 rounded-full border border-gray-300 hover:opacity-80 transition">
+                </a>
+
+            <?php else: ?>
+
+                <a href="index.php?page=login"
+                    class="bg-[#FF925C] text-base px-5 py-3 text-white rounded-3xl text-center hover:opacity-80 transition duration-300">
+
+                    Masuk
+
+                </a>
+
+                <a href="index.php?page=register"
+                    class="bg-white border border-[#FF925C] hover:bg-[#FF925C] hover:text-white transition duration-300 text-base px-5 py-3 text-black rounded-3xl text-center">
+
+                    Daftar
+
+                </a>
+
+            <?php endif; ?>
+
+        </div>
+
+    </div>
+
+</nav>
