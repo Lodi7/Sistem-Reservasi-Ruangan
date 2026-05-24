@@ -21,7 +21,7 @@ dropdownButton.addEventListener('click', () => {
 
 // CLOSE DROPDOWN WHEN CLICK OUTSIDE
 document.addEventListener('click', (e) => {
-
+    
     if (
         !dropdownButton.contains(e.target) &&
         !dropdownMenu.contains(e.target)

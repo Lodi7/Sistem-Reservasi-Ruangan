@@ -88,7 +88,6 @@ $labs = [
         'fasilitas' => 'Wi-Fi, Computer, AC, Proyektor'
     ]
 ];
-include __DIR__ . '/../components/navbar.php';
 ?>
 
 <section id="informasi-lab" class="mt-30 px-5 sm:px-15 md:px-25">

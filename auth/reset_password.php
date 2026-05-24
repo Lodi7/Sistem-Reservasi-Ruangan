@@ -123,7 +123,7 @@ if (isset($_POST['reset'])) {
 <section class="min-h-screen h-screen flex flex-col md:items-center justify-center py-20">
 
     <div
-        class="flex flex-col px-5 sm:px-10 md:px-20 py-12.5 gap-5 max-w-150.5 items-center rounded-[50px] md:shadow-2xl md:shadow-[#787878]/20">
+        class="flex flex-col px-5 sm:px-10 md:px-20 py-12.5 gap-5 max-w-150.5 items-center rounded-[50px] md:shadow-[0_0_15px_rgba(0,0,0,0.15)] md:shadow-[#787878]/20">
 
         <h2 class="font-bold text-3xl sm:text-4xl md:text-5xl ">
             Reset Password
@@ -164,6 +164,7 @@ if (isset($_POST['reset'])) {
                 </label>
 
                 <input type="password" name="password" placeholder="Masukkan Password Baru" autocomplete="new-password"
+                    required
                     class="password-input w-full border border-[#AFB1B6] placeholder:text-[#AFB1B6] rounded-lg p-4 text-base text-gray-600">
                 <button type="button" class="toggle-password absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer ">
                     <svg width="34" height="25" viewBox="0 0 34 25" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -194,7 +195,7 @@ if (isset($_POST['reset'])) {
 
                 </label>
 
-                <input type="password" name="confirm_password" placeholder="Konfirmasi Password Baru"
+                <input type="password" name="confirm_password" placeholder="Konfirmasi Password Baru" required
                     autocomplete="new-password"
                     class="password-input w-full border border-[#AFB1B6] placeholder:text-[#AFB1B6] rounded-lg p-4 text-base text-gray-600">
                 <button type="button" class="toggle-password absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer ">

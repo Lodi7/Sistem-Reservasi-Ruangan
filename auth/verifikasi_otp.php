@@ -80,7 +80,7 @@ if (isset($_POST['verifikasi'])) {
 <section class="min-h-screen flex flex-col md:items-center justify-center py-20">
 
     <div
-        class="flex flex-col px-5 sm:px-10 md:px-20 py-12.5 gap-5 max-w-150.5 items-center rounded-[50px] md:shadow-2xl md:shadow-[#787878]/20">
+        class="flex flex-col px-5 sm:px-10 md:px-20 py-12.5 gap-5 max-w-150.5 items-center rounded-[50px] md:shadow-[0_0_15px_rgba(0,0,0,0.15)] md:shadow-[#787878]/20">
 
         <h2 class="font-bold text-3xl sm:text-4xl md:text-5xl">
             Verifikasi OTP
@@ -111,7 +111,7 @@ if (isset($_POST['verifikasi'])) {
 
                 </label>
 
-                <input type="text" name="otp" placeholder="Masukkan OTP" maxlength="6"
+                <input type="text" name="otp" placeholder="Masukkan OTP" maxlength="6" required
                     class="w-full border border-[#AFB1B6] placeholder:text-[#AFB1B6] rounded-lg p-4 text-base text-gray-600">
 
             </div>

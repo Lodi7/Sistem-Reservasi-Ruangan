@@ -15,6 +15,7 @@ if (isset($_POST['register'])) {
     $nama = trim($_POST['nama']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
+    $confirm_password = trim($_POST['confirm_password']);
     $status = trim($_POST['status']);
     $npm = trim($_POST['npm']);
     $program_studi_id = trim($_POST['program_studi_id']);
@@ -22,7 +23,10 @@ if (isset($_POST['register'])) {
     if (
         empty($nama) ||
         empty($email) ||
+        empty($npm) ||
+        empty($program_studi_id) ||
         empty($password) ||
+        empty($confirm_password) ||
         empty($status)
     ) {
 
@@ -32,19 +36,15 @@ if (isset($_POST['register'])) {
 
         $error = "Format email tidak valid";
 
+    } elseif (
+        $password != $confirm_password
+    ) {
+        $error = "Konfirmasi password tidak sama";
     } elseif ($status == "mahasiswa") {
 
-        if (empty($npm)) {
+        if (!str_ends_with($email, "@student.upnjatim.ac.id")) {
 
-            $error = "NPM wajib diisi";
-
-        } elseif (empty($program_studi_id)) {
-
-            $error = "Program studi wajib dipilih";
-
-        } elseif (!str_contains($email, "@student")) {
-
-            $error = "Email mahasiswa wajib menggunakan @student";
+            $error = "Email mahasiswa harus menggunakan @student.upnjatim.ac.id";
 
         } elseif (explode("@", $email)[0] != $npm) {
 
@@ -83,6 +83,12 @@ if (isset($_POST['register'])) {
 
         }
 
+    } elseif ($status == 'dosen') {
+        if (str_ends_with($email, '@student.upnjatim.ac.id')) {
+            $error = "Email dosen tidak boleh menggunakan email mahasiswa";
+        } elseif (!str_ends_with($email, '@upnjatim.ac.id')) {
+            $error = "Email dosen harus menggunakan @upnjatim.ac.id";
+        }
     }
 
     if (empty($error)) {
@@ -148,7 +154,15 @@ if (isset($_POST['register'])) {
 
             if ($query) {
 
-                header("Location: ../?page=login.php");
+                echo "
+<script>
+
+    window.location.href =
+    'index.php?page=login';
+
+</script>
+";
+
                 exit;
 
             } else {
@@ -166,7 +180,7 @@ if (isset($_POST['register'])) {
 
 <section class="min-h-screen flex flex-col md:items-center justify-center mt-5 py-20">
     <div
-        class="flex flex-col px-5 sm:px-10 md:px-20 py-12.5 gap-5 max-w-150.5 items-center rounded-[50px] md:shadow-2xl md:shadow-[#787878]/20">
+        class="flex flex-col px-5 sm:px-10 md:px-20 py-12.5 gap-5 max-w-150.5 items-center rounded-[50px] md:shadow-[0_0_15px_rgba(0,0,0,0.15)] md:shadow-[#787878]/20">
         <h2 class="font-bold text-3xl sm:text-4xl md:text-5xl ">
             Daftar Akun
         </h2>
@@ -178,21 +192,21 @@ if (isset($_POST['register'])) {
                 <label class="absolute -top-2 left-5 bg-white px-2 text-[12px] text-[#AFB1B6] font-medium">
                     Nama
                 </label>
-                <input type="text" name="nama" placeholder="Masukkan nama lengkap"
+                <input type="text" name="nama" placeholder="Masukkan nama lengkap" required
                     class="w-full border border-[#AFB1B6] placeholder:[#AFB1B6] rounded-lg p-4 text-base text-gray-600">
             </div>
             <div class="relative">
                 <label class="absolute -top-2 left-5 bg-white px-2 text-[12px] text-[#AFB1B6] font-medium">
                     Email
                 </label>
-                <input type="email" name="email" placeholder="Masukkan Email UPN"
+                <input type="email" name="email" placeholder="Masukkan Email UPN" required
                     class="w-full border border-[#AFB1B6] placeholder:[#AFB1B6] rounded-lg p-4 text-base text-gray-600">
             </div>
             <div class="relative">
                 <label class="absolute -top-2 left-5 bg-white px-2 text-[12px] text-[#AFB1B6] font-medium">
                     NPM/NIP
                 </label>
-                <input type="text" name="npm" placeholder="Masukkan NPM/NIP"
+                <input type="text" name="npm" placeholder="Masukkan NPM/NIP" required
                     class="w-full border border-[#AFB1B6] placeholder:[#AFB1B6] rounded-lg p-4 text-base text-gray-600">
             </div>
             <div class="relative">
@@ -228,7 +242,8 @@ if (isset($_POST['register'])) {
                 <label class="absolute -top-2 left-5 bg-white px-2 text-[12px] text-[#AFB1B6] font-medium">
                     Password
                 </label>
-                <input type="password" name="password" placeholder="Masukkan Password"
+                <input type="password" name="password" placeholder="Masukkan Password" autocomplete="new-password"
+                    required
                     class="password-input w-full border border-[#AFB1B6] placeholder:[#AFB1B6] rounded-lg p-4 text-base text-gray-600">
                 <button type="button" class="toggle-password absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer">
                     <svg width="34" height="25" viewBox="0 0 34 25" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -255,6 +270,7 @@ if (isset($_POST['register'])) {
                     Konfirmasi Password
                 </label>
                 <input type="password" name="confirm_password" placeholder="Masukkan Password"
+                    autocomplete="new-password" required
                     class="password-input w-full border border-[#AFB1B6] placeholder:[#AFB1B6] rounded-lg p-4 text-base text-gray-600">
                 <button type="button" class="toggle-password absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer">
                     <svg width="34" height="25" viewBox="0 0 34 25" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -278,7 +294,7 @@ if (isset($_POST['register'])) {
             </div>
             <div class="flex flex-row gap-5 text-[#767676] items-center">
                 <label class="flex gap-1 items-center ">
-                    <input type="radio" name="status" value="mahasiswa" class="w-4 h-4 cursor-pointer">
+                    <input type="radio" name="status" value="mahasiswa" class="w-4 h-4 cursor-pointer" required>
                     Mahasiswa
                 </label>
                 <label class="flex gap-1 items-center ">

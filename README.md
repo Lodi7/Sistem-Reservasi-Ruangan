@@ -1,6 +1,6 @@
 # Lab Reservation System
 
-Website reservasi laboratorium berbasis PHP Native dengan fitur autentikasi, OTP email, reservasi jadwal, cek jadwal, dan dashboard admin.
+Website reservasi Lab Komputer berbasis PHP Native dengan fitur autentikasi, OTP email, reservasi jadwal, cek jadwal, dan dashboard admin.
 
 ---
 
@@ -155,12 +155,12 @@ npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch
 
 ## Mahasiswa & Dosen
 - Login menggunakan email mahasiswa/dosen milik UPN
-- Melakukan reservasi lab
+- Melakukan reservasi lab komputer
 - Melihat riwayat reservasi
 - Melihat Jadwal yang tersedia
 
 ## Admin
-- Mengelola laboratorium
+- Mengelola lab komputer
 - Mengelola reservasi
 - Validasi jadwal
 
@@ -172,22 +172,15 @@ npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch
 .env
 /vendor/
 /node_modules/
-*.log
-.vscode/
 ```
 
 ---
 
-# Screenshots
+# Preview
 
-Tambahkan screenshot website di sini.
-
-Contoh:
-
-```md
-![Home](screenshots/home.png)
-![Dashboard](screenshots/dashboard.png)
-```
+| Home | Login |
+|---|---|
+| ![](assets/screenshots/home.png) | ![](assets/screenshots/login.png) |
 
 # License
 

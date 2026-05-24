@@ -106,15 +106,16 @@
             hidden
             lg:absolute
             lg:top-10
-            lg:left-0
+            lg:right-0
 
             mt-3
             lg:mt-0
 
             bg-white
-            shadow-lg
-            border
-            rounded-xl
+            lg:shadow-lg
+            shadow-[0_0_20px_rgba(0,0,0,0.2)]
+            lg:border
+            lg:rounded-xl
 
             w-full
             lg:w-52

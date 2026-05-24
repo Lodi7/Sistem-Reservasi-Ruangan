@@ -10,8 +10,6 @@ $sections = [
     'status_lab'
 ];
 
-include __DIR__ . '/../components/navbar.php';
-
 foreach ($sections as $section) {
 
     include __DIR__ . "/../sections//beranda/{$section}.php";
