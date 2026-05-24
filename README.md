@@ -180,7 +180,7 @@ npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch
 
 | Home | Login |
 |---|---|
-| ![](assets/screenshots/home.png) | ![](assets/screenshots/login.png) |
+| ![](assets/screenshots/beranda.png) | ![](assets/screenshots/login.png) |
 
 # License
 
