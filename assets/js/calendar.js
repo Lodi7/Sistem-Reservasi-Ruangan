@@ -1,49 +1,114 @@
-flatpickr("#statusReservasiTerkini", {
-    inline: true,
-    defaultDate: "today",
-    enable: [new Date()],
-        onChange: function(selectedDates, dateStr) {
+const calendarElement =
+    document.querySelector(
+        "#statusReservasiTerkini"
+    );
 
-        getSessions(dateStr);
 
-    },
+// CEK CALENDAR ADA
+if (calendarElement) {
 
-    onDayCreate: function(dObj, dStr, fp, dayElem) {
+    flatpickr(
+        "#statusReservasiTerkini",
+        {
 
-        const today = new Date();
-        today.setHours(0,0,0,0);
+            inline: true,
 
-        const dayDate = new Date(dayElem.dateObj);
-        dayDate.setHours(0,0,0,0);
+            defaultDate: "today",
 
-        if(dayDate < today) {
-            dayElem.classList.add("before-today");
+            enable: [new Date()],
+
+            onChange: function(
+                selectedDates,
+                dateStr
+            ) {
+
+                getSessions(dateStr);
+
+            },
+
+            onDayCreate: function(
+                dObj,
+                dStr,
+                fp,
+                dayElem
+            ) {
+
+                const today = new Date();
+
+                today.setHours(
+                    0,0,0,0
+                );
+
+                const dayDate =
+                    new Date(
+                        dayElem.dateObj
+                    );
+
+                dayDate.setHours(
+                    0,0,0,0
+                );
+
+                if (dayDate < today) {
+
+                    dayElem.classList.add(
+                        "before-today"
+                    );
+
+                }
+
+                if (dayDate > today) {
+
+                    dayElem.classList.add(
+                        "after-today"
+                    );
+
+                }
+
+            }
+
         }
+    );
 
-        if(dayDate > today) {
-            dayElem.classList.add("after-today");
-        }
+
+    // TANGGAL HARI INI
+    const tanggal = new Date();
+
+    const tglHariIni =
+        document.getElementById(
+            "TglHariIni"
+        );
+
+    if (tglHariIni) {
+
+        tglHariIni.innerHTML =
+            tanggal.toLocaleDateString(
+                "id-ID",
+                {
+
+                    weekday: "long",
+
+                    day: "numeric",
+
+                    month: "long",
+
+                    year: "numeric"
+
+                }
+            );
 
     }
-});
 
-const tanggal = new Date();
 
-document.getElementById("TglHariIni")
-.innerHTML =
-tanggal.toLocaleDateString("id-ID", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric"
-});
+    // LOAD SESSION PERTAMA
+    getSessions(
+        flatpickr.formatDate(
+            new Date(),
+            "Y-m-d"
+        )
+    );
 
-getSessions(
-    flatpickr.formatDate(
-        new Date(),
-        "Y-m-d"
-    )
-);
+
+    // DATA LAB
     const labs = [
 
         "Lab PPSTI",
@@ -51,14 +116,20 @@ getSessions(
         "Lab SCR",
 
         "Lab Solusi",
+
         "Lab Rekayasa dan Bisnis Digital",
+
         "Lab MSI",
+
         "Lab Sains Data",
+
         "Lab INSYDE"
 
     ];
 
     let currentLab = 0;
+
+
     // =========================
     // FETCH SESSION
     // =========================
@@ -68,11 +139,12 @@ getSessions(
         lab
     ) {
 
-        const response = await fetch(
+        const response =
+            await fetch(
 
-            `api/get_sessions.php?tanggal=${tanggal}&lab=${lab}`
+                `api/get_sessions.php?tanggal=${tanggal}&lab=${lab}`
 
-        );
+            );
 
         const bookedSessions =
             await response.json();
@@ -81,27 +153,42 @@ getSessions(
 
     }
 
+
     // =========================
     // RENDER SESSION
     // =========================
 
-    function renderSessions(bookedSessions) {
+    function renderSessions(
+        bookedSessions
+    ) {
+
+        const container =
+            document.getElementById(
+                "sessionContainer"
+            );
+
+        // CEK CONTAINER ADA
+        if (!container) return;
+
 
         const sessions = [
 
             {
                 sesi: 1,
-                waktu: "07.00 - 09.30"
+                waktu:
+                    "07.00 - 09.30"
             },
 
             {
                 sesi: 2,
-                waktu: "09.30 - 12.00"
+                waktu:
+                    "09.30 - 12.00"
             },
 
             {
                 sesi: 3,
-                waktu: "13.00 - 15.30"
+                waktu:
+                    "13.00 - 15.30"
             }
 
         ];
@@ -173,76 +260,95 @@ getSessions(
 
         });
 
-        document.getElementById(
-            "sessionContainer"
-        ).innerHTML = html;
+        container.innerHTML = html;
 
     }
 
+
     // =========================
-    // START
+    // ROTATE LAB
     // =========================
 
-async function rotateLab() {
+    async function rotateLab() {
 
-    const wrapper =
-        document.getElementById(
-            "sessionWrapper"
-        );
+        const wrapper =
+            document.getElementById(
+                "sessionWrapper"
+            );
 
-    // Fade out
-    wrapper.classList.remove(
-        "opacity-100"
-    );
+        const namaLab =
+            document.getElementById(
+                "NamaLab"
+            );
 
-    wrapper.classList.add(
-        "opacity-0"
-    );
+        // CEK ELEMENT ADA
+        if (
+            !wrapper ||
+            !namaLab
+        ) return;
 
-    setTimeout(async () => {
 
-        const lab = labs[currentLab];
-
-        document.getElementById(
-            "NamaLab"
-        ).innerHTML = lab;
-
-        await getSessions(
-
-            flatpickr.formatDate(
-                new Date(),
-                "Y-m-d"
-            ),
-
-            lab
-
-        );
-
-        // Fade in
+        // Fade Out
         wrapper.classList.remove(
-            "opacity-0"
-        );
-
-        wrapper.classList.add(
             "opacity-100"
         );
 
-        currentLab++;
+        wrapper.classList.add(
+            "opacity-0"
+        );
 
-        if(currentLab >= labs.length) {
 
-            currentLab = 0;
+        setTimeout(async () => {
 
-        }
+            const lab =
+                labs[currentLab];
 
-    }, 300);
+            namaLab.innerHTML =
+                lab;
 
-}
+            await getSessions(
 
-rotateLab();
+                flatpickr.formatDate(
+                    new Date(),
+                    "Y-m-d"
+                ),
 
-setInterval(() => {
+                lab
 
+            );
+
+            // Fade In
+            wrapper.classList.remove(
+                "opacity-0"
+            );
+
+            wrapper.classList.add(
+                "opacity-100"
+            );
+
+            currentLab++;
+
+            if (
+                currentLab >=
+                labs.length
+            ) {
+
+                currentLab = 0;
+
+            }
+
+        }, 300);
+
+    }
+
+
+    // START
     rotateLab();
 
-}, 5000);
+    setInterval(() => {
+
+        rotateLab();
+
+    }, 5000);
+
+}

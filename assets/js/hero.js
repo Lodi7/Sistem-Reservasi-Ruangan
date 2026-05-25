@@ -1,89 +1,137 @@
-const slides = document.querySelectorAll('.hero-slide')
-const indicators = document.querySelectorAll('.indicator')
+const slides =
+    document.querySelectorAll('.hero-slide')
 
-const nextBtn = document.getElementById('nextBtn')
-const prevBtn = document.getElementById('prevBtn')
+const indicators =
+    document.querySelectorAll('.indicator')
 
-let currentSlide = 0
+const nextBtn =
+    document.getElementById('nextBtn')
 
-function showSlide(index) {
-
-    // SLIDE
-    slides.forEach(slide => {
-
-        slide.classList.remove('opacity-100')
-        slide.classList.add('opacity-0')
-
-    })
-
-    slides[index].classList.remove('opacity-0')
-    slides[index].classList.add('opacity-100')
+const prevBtn =
+    document.getElementById('prevBtn')
 
 
-    // INDICATOR
-    indicators.forEach(indicator => {
+// CEK ELEMENT ADA
+if (
+    slides.length > 0 &&
+    indicators.length > 0 &&
+    nextBtn &&
+    prevBtn
+) {
 
-        indicator.classList.remove('w-12', 'bg-white')
-        indicator.classList.add('w-3', 'bg-white/50')
+    let currentSlide = 0
 
-    })
+    function showSlide(index) {
 
-    indicators[index].classList.remove('w-3', 'bg-white/50')
-    indicators[index].classList.add('w-12', 'bg-white')
+        // SLIDE
+        slides.forEach(slide => {
 
-}
+            slide.classList.remove('opacity-100')
+            slide.classList.add('opacity-0')
+
+        })
+
+        slides[index].classList.remove('opacity-0')
+        slides[index].classList.add('opacity-100')
 
 
-// NEXT
-nextBtn.addEventListener('click', () => {
+        // INDICATOR
+        indicators.forEach(indicator => {
 
-    currentSlide++
+            indicator.classList.remove(
+                'w-12',
+                'bg-white'
+            )
 
-    if (currentSlide >= slides.length) {
-        currentSlide = 0
+            indicator.classList.add(
+                'w-3',
+                'bg-white/50'
+            )
+
+        })
+
+        indicators[index].classList.remove(
+            'w-3',
+            'bg-white/50'
+        )
+
+        indicators[index].classList.add(
+            'w-12',
+            'bg-white'
+        )
+
     }
 
-    showSlide(currentSlide)
 
-})
+    // NEXT
+    nextBtn.addEventListener('click', () => {
 
+        currentSlide++
 
-// PREV
-prevBtn.addEventListener('click', () => {
+        if (
+            currentSlide >= slides.length
+        ) {
 
-    currentSlide--
+            currentSlide = 0
 
-    if (currentSlide < 0) {
-        currentSlide = slides.length - 1
-    }
+        }
 
-    showSlide(currentSlide)
-
-})
-
-
-// CLICK INDICATOR
-indicators.forEach((indicator, index) => {
-
-    indicator.addEventListener('click', () => {
-
-        currentSlide = index
         showSlide(currentSlide)
 
     })
 
-})
+
+    // PREV
+    prevBtn.addEventListener('click', () => {
+
+        currentSlide--
+
+        if (currentSlide < 0) {
+
+            currentSlide =
+                slides.length - 1
+
+        }
+
+        showSlide(currentSlide)
+
+    })
 
 
-// AUTO SLIDE
-setInterval(() => {
+    // CLICK INDICATOR
+    indicators.forEach(
+        (indicator, index) => {
 
-    currentSlide++
+            indicator.addEventListener(
+                'click',
+                () => {
 
-    if (currentSlide >= slides.length) {
-        currentSlide = 0
-    }
+                    currentSlide = index
 
-    showSlide(currentSlide)
+                    showSlide(currentSlide)
 
-}, 5000)
+                }
+            )
+
+        }
+    )
+
+
+    // AUTO SLIDE
+    setInterval(() => {
+
+        currentSlide++
+
+        if (
+            currentSlide >= slides.length
+        ) {
+
+            currentSlide = 0
+
+        }
+
+        showSlide(currentSlide)
+
+    }, 5000)
+
+}

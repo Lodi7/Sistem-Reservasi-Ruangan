@@ -1,11 +1,11 @@
 <footer
-    class="bg-[#FF925C] py-10 px-6 md:px-10 lg:px-12 grid grid-cols-1 md:grid-cols-2 text-black text-sm items-center mt-30">
+    class="bg-[#FF925C] py-10 px-6 md:px-10 lg:px-12 grid grid-cols-1 md:grid-cols-2 text-black text-sm items-center mt-30 ">
 
     <div class="space-y-2 flex flex-col">
 
         <div class="flex items-center mb-3.5 gap-2.5">
 
-            <img src="../assets/images/logo.png" alt="LabHub Logo">
+            <img src="../assets/images/logo-labhub.svg" alt="LabHub Logo" class="w-10">
 
             <h2 class="text-xl font-bold">
                 LabHub

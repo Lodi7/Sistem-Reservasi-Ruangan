@@ -14,7 +14,9 @@ $hideLayoutFooter = [
     'register',
     'lupa_password',
     'verifikasi_otp',
-    'reset_password'
+    'reset_password',
+    'ubah_profile',
+    'ubah_password',
 ];
 
 include 'layouts/header.php';
@@ -60,8 +62,12 @@ switch ($page) {
         include 'auth/register.php';
         break;
 
-    case 'profile':
-        include 'pages/profile.php';
+    case 'ubah_profile':
+        include 'pages/ubah_profile.php';
+        break;
+
+    case 'ubah_password':
+        include 'pages/ubah_password.php';
         break;
 
     case 'logout':

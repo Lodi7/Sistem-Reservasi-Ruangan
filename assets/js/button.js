@@ -1,3 +1,4 @@
+
 document.querySelectorAll('.toggle-password').forEach(button => {
 
     button.addEventListener('click', function () {
