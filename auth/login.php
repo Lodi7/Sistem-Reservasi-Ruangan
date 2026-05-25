@@ -83,11 +83,24 @@ if (isset($_POST['login'])) {
 
             if ($user['role'] == 'admin') {
 
-                header("Location: ../?page=admin");
+                echo "
+<script>
+
+    window.location.href =
+    'index.php?page=admin';
+
+</script>
+";
 
             } else {
+                echo "
+<script>
 
-                header("Location: ../?page=beranda");
+    window.location.href =
+    'index.php?page=beranda';
+
+</script>
+";
 
             }
 

@@ -18,7 +18,7 @@
                 </figcaption>
 
                 <a href="index.php?page=tentang_kami"
-                    class="inline-block text-white bg-[#FF925C] rounded-full px-5 py-3 text-sm">
+                    class="inline-block text-white bg-[#FF925C] rounded-full px-5 py-3 text-sm hover:opacity-70">
                     Selengkapnya
                 </a>
 

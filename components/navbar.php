@@ -9,7 +9,7 @@
         </div>
 
         <!-- Hamburger -->
-        <button id="menuButton" class="lg:hidden inline-flex items-center justify-center">
+        <button data-target="#mobileMenu" class="dropdownButton lg:hidden inline-flex items-center justify-center">
 
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 
@@ -82,7 +82,7 @@
             <!-- Dropdown -->
             <li class="relative w-full lg:w-auto">
 
-                <button id="dropdownButton" class="flex items-center justify-between w-full lg:w-auto gap-2
+                <button data-target="#reservasiMenu" class="dropdownButton flex items-center justify-between w-full lg:w-auto gap-2
         <?= in_array($page, [
             'ajukan_reservasi',
             'jadwal_lab',
@@ -102,7 +102,7 @@
                 </button>
 
                 <!-- Dropdown Menu -->
-                <div id="dropdownMenu" class="
+                <div id="reservasiMenu" class="
             hidden
             lg:absolute
             lg:top-10
@@ -115,7 +115,7 @@
             lg:shadow-lg
             shadow-[0_0_20px_rgba(0,0,0,0.2)]
             lg:border
-            lg:rounded-xl
+            lg:rounded-md
 
             w-full
             lg:w-52
@@ -180,7 +180,7 @@
 
                 <?php if (isset($_SESSION['is_login'])): ?>
 
-                    <a href="index.php?page=profile" class="flex items-center justify-center">
+                    <a href="index.php?page=logout" class="flex items-center justify-center">
                         <img src="<?= !empty($user['foto_profile'])
                             ? $user['foto_profile']
                             : 'assets/images/profile-default.png'; ?>"
@@ -218,33 +218,106 @@
 
             <?php if (isset($_SESSION['is_login'])): ?>
 
-                <a href="index.php?page=profile" class="flex items-center justify-center">
-                    <img src="<?= !empty($user['foto_profile'])
-                        ? $user['foto_profile']
-                        : 'assets/images/profile-default.png'; ?>"
-                        class="w-12 h-12 rounded-full border border-gray-300 hover:opacity-80 transition">
-                </a>
+                <!-- Dropdown -->
+                <div class="relative w-full lg:w-auto">
 
-            <?php else: ?>
+                    <button data-target="#profile"
+                        class="dropdownButton flex items-center justify-between w-full lg:w-auto gap-2">
+                        <img src="<?= !empty($user['foto_profile'])
+                            ? $user['foto_profile']
+                            : 'assets/images/profile-default.png'; ?>"
+                            class="w-12 h-12 rounded-full border border-gray-300 hover:opacity-80 transition">
+                    </button>
 
-                <a href="index.php?page=login"
-                    class="bg-[#FF925C] text-base px-5 py-3 text-white rounded-3xl text-center hover:opacity-80 transition duration-300">
+                    <!-- Dropdown Menu -->
+                    <div id="profile" class="
+            hidden
+            lg:absolute
+            lg:top-13
+            lg:right-0
 
-                    Masuk
+            mt-3
+            lg:mt-0
 
-                </a>
+            bg-white
+            lg:shadow-lg
+            shadow-[0_0_20px_rgba(0,0,0,0.2)]
+            lg:border
+            lg:rounded-md
 
-                <a href="index.php?page=register"
-                    class="bg-white border border-[#FF925C] hover:bg-[#FF925C] hover:text-white transition duration-300 text-base px-5 py-3 text-black rounded-3xl text-center">
+            w-full
+            lg:w-52
 
-                    Daftar
+            p-2
+        ">
 
-                </a>
+                        <!-- ubah profile -->
+                        <a href="index.php?page=ubah_profile" class="
+                block
+                px-4
+                py-2
+                rounded-lg
 
-            <?php endif; ?>
+                <?= $page === 'ubah_profile'
+                    ? 'bg-[#FF925C] text-white'
+                    : 'hover:bg-gray-100' ?>
+            ">
+
+                            Ubah Profile
+
+                        </a>
+
+                        <!-- Ubah Password -->
+                        <a href="index.php?page=ubah_password" class="
+                block
+                px-4
+                py-2
+                rounded-lg
+
+                <?= $page === 'ubah_password'
+                    ? 'bg-[#FF925C] text-white'
+                    : 'hover:bg-gray-100' ?>
+            ">
+
+                            Ubah Password
+
+                        </a>
+                        <div class="flex items-center text-black hover:text-red-500 hover:bg-gray-100'">
+                            <!-- Logout -->
+                            <a href="index.php?page=logout" class="
+                block
+                px-4
+                py-2
+                rounded-lg
+
+            ">
+
+                                Logout
+                            </a><i data-lucide="log-out" class="w-5 h-auto ml-auto mr-4"></i>
+                        </div>
+
+                    </div>
+
+                <?php else: ?>
+
+                    <a href="index.php?page=login"
+                        class="bg-[#FF925C] text-base px-5 py-3 text-white rounded-3xl text-center hover:opacity-80 transition duration-300">
+
+                        Masuk
+
+                    </a>
+
+                    <a href="index.php?page=register"
+                        class="bg-white border border-[#FF925C] hover:bg-[#FF925C] hover:text-white transition duration-300 text-base px-5 py-3 text-black rounded-3xl text-center">
+
+                        Daftar
+
+                    </a>
+
+                <?php endif; ?>
+
+            </div>
 
         </div>
-
-    </div>
 
 </nav>

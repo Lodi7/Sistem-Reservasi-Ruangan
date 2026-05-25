@@ -187,6 +187,16 @@ if (isset($_POST['register'])) {
         <p class="text-sm md:text-base ">
             Siilahkan daftar akun untuk bisa melakukan reservasi lab
         </p>
+        <?php if (!empty($error)): ?>
+
+            <div class="w-full bg-red-100 border border-red-400 text-red-700 p-4 rounded-lg text-center">
+
+                <?= $error; ?>
+
+            </div>
+
+        <?php endif; ?>
+
         <form method="POST" class="w-full flex flex-col gap-7">
             <div class="relative">
                 <label class="absolute -top-2 left-5 bg-white px-2 text-[12px] text-[#AFB1B6] font-medium">

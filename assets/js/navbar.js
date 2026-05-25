@@ -1,34 +1,44 @@
-const menuButton = document.getElementById('menuButton')
-const mobileMenu = document.getElementById('mobileMenu')
+// MOBILE MENU
+document.querySelectorAll('.menuButton').forEach((button) => {
 
-menuButton.addEventListener('click', () => {
+    button.addEventListener('click', () => {
 
-    mobileMenu.classList.toggle('hidden')
+        const target = document.querySelector(
+            button.dataset.target
+        )
+
+        target.classList.toggle('hidden')
+
+    })
 
 })
 
 
 // DROPDOWN
-const dropdownButton = document.getElementById('dropdownButton')
-const dropdownMenu = document.getElementById('dropdownMenu')
+document.querySelectorAll('.dropdownButton').forEach((button) => {
 
-dropdownButton.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
 
-    dropdownMenu.classList.toggle('hidden')
+        e.stopPropagation()
+
+        const menu = document.querySelector(
+            button.dataset.target
+        )
+
+        menu.classList.toggle('hidden')
+
+    })
 
 })
 
 
-// CLOSE DROPDOWN WHEN CLICK OUTSIDE
-document.addEventListener('click', (e) => {
-    
-    if (
-        !dropdownButton.contains(e.target) &&
-        !dropdownMenu.contains(e.target)
-    ) {
+// CLOSE ALL DROPDOWN
+document.addEventListener('click', () => {
 
-        dropdownMenu.classList.add('hidden')
+    document.querySelectorAll('.dropdownMenu').forEach((menu) => {
 
-    }
+        menu.classList.add('hidden')
+
+    })
 
 })
