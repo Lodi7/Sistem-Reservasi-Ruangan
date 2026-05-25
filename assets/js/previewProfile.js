@@ -33,11 +33,15 @@ const submitFoto =
         'submitFoto'
     );
 
+const uploadButton =
+    document.getElementById(
+        'uploadButton'
+    );
+
 let cropper;
 
 
-// CLICK FOTO
-previewImage.addEventListener(
+uploadButton.addEventListener(
     'click',
     () => {
 
@@ -184,3 +188,4 @@ cancelCrop.addEventListener(
 
     }
 );
+

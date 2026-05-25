@@ -7,7 +7,7 @@ include __DIR__ . "/../middleware/auth.php";
 
 $error = "";
 
-// AMBIL DATA USER
+// ambil data
 $stmt = mysqli_prepare(
     $conn,
     "SELECT users.*, program_studi.nama_prodi
@@ -32,14 +32,11 @@ $result = mysqli_stmt_get_result($stmt);
 
 $user = mysqli_fetch_assoc($result);
 
-
-// =========================
-// HAPUS FOTO
-// =========================
+// Hapus Foto
 
 if (isset($_POST['hapus_foto'])) {
 
-    // HAPUS FILE LAMA
+    // Hapus file lama
     if (
         !empty($user['foto_profile']) &&
         file_exists($user['foto_profile'])
@@ -49,7 +46,7 @@ if (isset($_POST['hapus_foto'])) {
 
     }
 
-    // UPDATE DATABASE
+    // Update 
     $stmt = mysqli_prepare(
         $conn,
         "UPDATE users
@@ -68,19 +65,15 @@ if (isset($_POST['hapus_foto'])) {
     if ($query) {
 
         unset($_SESSION['foto_profile']);
-
+        $user['foto_profil'] = null;
         echo "
-        <script>
+                    <script>
 
-            alert(
-                'Foto profile berhasil dihapus'
-            );
+                        window.location.href =
+                        '?page=ubah_profile';
 
-            window.location.href =
-            '?page=ubah_profile';
-
-        </script>
-        ";
+                    </script>
+                    ";
 
         exit;
 
@@ -88,10 +81,7 @@ if (isset($_POST['hapus_foto'])) {
 
 }
 
-
-// =========================
-// UPLOAD FOTO
-// =========================
+// upload foto
 
 if (isset($_POST['upload_foto'])) {
 
@@ -154,12 +144,12 @@ if (isset($_POST['upload_foto'])) {
             // FOLDER
             if (
                 !file_exists(
-                    "assets/images/profile"
+                    "assets/images/uploads/profile"
                 )
             ) {
 
                 mkdir(
-                    "assets/images/profile",
+                    "assets/images/uploads/profile",
                     0777,
                     true
                 );
@@ -188,7 +178,7 @@ if (isset($_POST['upload_foto'])) {
             // PATH
             $upload_path =
 
-                "assets/images/profile/" .
+                "assets/images/uploads/profile/" .
                 $new_name;
 
             // UPLOAD
@@ -246,7 +236,7 @@ if (isset($_POST['upload_foto'])) {
 }
 ?>
 
-<section class="min-h-screen py-20 px-10 mt-18">
+<section class="min-h-screen py-10 px-5 xl:px-10 mt-18">
 
     <div class="max-w-7xl mx-auto flex flex-col gap-10">
 
@@ -266,7 +256,7 @@ if (isset($_POST['upload_foto'])) {
 
         <?php endif; ?>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-5 xl:gap-20 items-start">
 
             <!-- FOTO PROFILE -->
             <div class="flex flex-col items-center gap-8">
@@ -277,8 +267,13 @@ if (isset($_POST['upload_foto'])) {
                     <img id="previewImage" src="<?= !empty($user['foto_profile'])
                         ? $user['foto_profile']
                         : 'assets/images/profile-default.png'; ?>" alt="Profile"
-                        class="w-70 h-70 rounded-full object-cover border border-gray-300 cursor-pointer hover:opacity-80 transition">
+                        class="w-70 h-70 lg:h-91.25 lg:w-91.25 rounded-full object-cover border border-gray-300 hover:opacity-80 transition">
+                    <button type="button" id="uploadButton"
+                        class="bg-[#FF925C] text-white font-medium px-5 py-3 rounded-full hover:opacity-70 transition text-base sm:text-xl lg:text-2xl shadow-xl cursor-pointer">
 
+                        Upload Foto
+
+                    </button>
                     <!-- INPUT FILE -->
                     <input type="file" name="foto_profile" accept=".jpg,.jpeg,.png" class="hidden"
                         id="fotoProfileInput">
@@ -286,12 +281,16 @@ if (isset($_POST['upload_foto'])) {
                     <!-- BUTTON -->
                     <div class="flex gap-4">
 
-                        <button type="submit" name="hapus_foto"
-                            class="border border-red-400 text-red-500 px-10 py-3 rounded-full font-semibold hover:bg-red-50 transition">
+                        <?php if (!empty($user['foto_profile'])): ?>
 
-                            Hapus Foto
+                            <button type="button" name="hapus_foto" id="hapusFotoButton"
+                                class="border border-red-400 text-red-400 px-5 py-3 rounded-full font-medium hover:bg-red-50 transition text-base sm:text-xl lg:text-2xl shadow-xl cursor-pointer">
 
-                        </button>
+                                Hapus Foto
+
+                            </button>
+
+                        <?php endif; ?>
 
                     </div>
 
@@ -302,10 +301,19 @@ if (isset($_POST['upload_foto'])) {
 
                 </form>
 
+                <!-- Form Hapus Foto -->
+                <form method="POST" id="hapusFotoForm" class="hidden">
+
+                    <button type="submit" name="hapus_foto" id="submitHapusFoto">
+
+                    </button>
+
+                </form>
+
             </div>
 
-            <!-- DATA PROFILE -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Data Profile -->
+            <div class="grid grid-cols-1 md:grid-cols-2  gap-4 xl:gap-8">
 
                 <div class="flex flex-col gap-2">
 
@@ -316,7 +324,7 @@ if (isset($_POST['upload_foto'])) {
                     </label>
 
                     <input type="text" value="<?= $user['nama']; ?>" readonly
-                        class="w-full border border-gray-300 rounded-2xl px-5 py-4 bg-gray-100 outline-none">
+                        class="w-full border-2 border-gray-400 rounded-2xl px-5 py-3.5 bg-white shadow-md shadow-[#AFB1B6] outline-none">
 
                 </div>
 
@@ -329,7 +337,7 @@ if (isset($_POST['upload_foto'])) {
                     </label>
 
                     <input type="text" value="<?= $user['npm']; ?>" readonly
-                        class="w-full border border-gray-300 rounded-2xl px-5 py-4 bg-gray-100 outline-none">
+                        class="w-full border-2 border-gray-400 rounded-2xl px-5 py-3.5 bg-white shadow-md shadow-[#AFB1B6] outline-none">
 
                 </div>
 
@@ -342,7 +350,7 @@ if (isset($_POST['upload_foto'])) {
                     </label>
 
                     <input type="text" value="<?= ucfirst($user['status']); ?>" readonly
-                        class="w-full border border-gray-300 rounded-2xl px-5 py-4 bg-gray-100 outline-none">
+                        class="w-full border-2 border-gray-400 rounded-2xl px-5 py-3.5 bg-white shadow-md shadow-[#AFB1B6] outline-none">
 
                 </div>
 
@@ -355,7 +363,7 @@ if (isset($_POST['upload_foto'])) {
                     </label>
 
                     <input type="text" value="<?= $user['nama_prodi']; ?>" readonly
-                        class="w-full border border-gray-300 rounded-2xl px-5 py-4 bg-gray-100 outline-none">
+                        class="w-full border-2 border-gray-400 rounded-2xl px-5 py-3.5 bg-white shadow-md shadow-[#AFB1B6] outline-none">
 
                 </div>
 
@@ -368,9 +376,51 @@ if (isset($_POST['upload_foto'])) {
                     </label>
 
                     <input type="email" value="<?= $user['email']; ?>" readonly
-                        class="w-full border border-gray-300 rounded-2xl px-5 py-4 bg-gray-100 outline-none">
+                        class="w-full border-2 border-gray-400 rounded-2xl px-5 py-3.5 bg-white shadow-md shadow-[#AFB1B6] outline-none">
 
                 </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Konfirmasi Hapus -->
+    <div id="hapusModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full flex flex-col gap-6">
+
+            <div class="flex flex-col gap-2">
+
+                <h2 class="text-3xl font-bold">
+
+                    Hapus Foto?
+
+                </h2>
+
+                <p class="text-gray-500">
+
+                    Foto profile akan dihapus permanen.
+
+                </p>
+
+            </div>
+
+            <div class="flex justify-end gap-4">
+
+                <button type="button" id="batalHapus" class="px-6 py-3 border rounded-full cursor-pointer">
+
+                    Batal
+
+                </button>
+
+                <button type="button" id="confirmHapus"
+                    class="bg-red-500 text-white px-6 py-3 rounded-full cursor-pointer hover:opacity-70">
+
+                    Hapus
+
+                </button>
 
             </div>
 
@@ -394,13 +444,14 @@ if (isset($_POST['upload_foto'])) {
 
         <div class="flex justify-end gap-4">
 
-            <button type="button" id="cancelCrop" class="px-6 py-3 border rounded-full">
+            <button type="button" id="cancelCrop" class="px-5 cursor-pointer py-3 border rounded-full hover:opacity-90">
 
                 Batal
 
             </button>
 
-            <button type="button" id="saveCrop" class="bg-[#FF925C] text-white px-6 py-3 rounded-full">
+            <button type="button" id="saveCrop"
+                class="bg-[#FF925C] cursor-pointer hover:opacity-70 text-white px-5 py-3 rounded-full">
 
                 Simpan
 

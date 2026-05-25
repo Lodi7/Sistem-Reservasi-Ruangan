@@ -50,7 +50,7 @@ $statusClass = match ($status) {
                 </svg>
 
                 <span class="font-semibold text-sm md:text-base">
-                    <?= $ukuran ?>
+                    <?= $luas ?>
                 </span>
 
                 <p class="font-light text-sm md:text-base">m²</p>
@@ -117,9 +117,8 @@ $statusClass = match ($status) {
             <div class="grid gap-2 grid-cols-2 sm:grid-cols-3">
 
                 <?php
-                $fasilitas_list = explode(',', $fasilitas);
 
-                foreach ($fasilitas_list as $fasilitas_item):
+                foreach ($fasilitas as $fasilitas_item):
                     ?>
 
                     <span

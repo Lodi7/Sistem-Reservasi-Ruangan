@@ -9,6 +9,8 @@
 <script src="../assets/js/hero.js"></script>
 <script src="../assets/js/button.js"></script>
 <script src="../assets/js/previewProfile.js"></script>
+<script src="../assets/js/hapusFoto.js"></script>
+<script src="../assets/js/labsAnimation.js"></script>
 </body>
 
 </html>

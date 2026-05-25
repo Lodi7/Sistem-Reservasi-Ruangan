@@ -1,42 +1,12 @@
 <?php
-$labs = [
-    [
-        'gambar' => '/assets/images/lab/Lab-PPSTI.png',
-        'status' => 'Tersedia',
-        'nama' => 'Lab PPSTI',
-        'kategori' => 'Lab FASILKOM',
-        'ukuran' => 60,
-        'kapasitas' => 30,
-        'lokasi' => 'FIK-II, Lantai 2',
-        'jam_buka' => '07:00',
-        'jam_tutup' => '15:30',
-        'fasilitas' => 'Wi-Fi, Computer, AC, Proyektor'
-    ],
-    [
-        'gambar' => '/assets/images/lab/lab-SCR.png',
-        'status' => 'Perbaikan',
-        'nama' => 'Lab SCR',
-        'kategori' => 'Lab FASILKOM',
-        'ukuran' => 50,
-        'kapasitas' => 30,
-        'lokasi' => 'FIK-II, Lantai 2',
-        'jam_buka' => '07:00',
-        'jam_tutup' => '15:30',
-        'fasilitas' => 'Wi-Fi, Computer, AC'
-    ],
-    [
-        'gambar' => '/assets/images/lab/Lab-Sain-Data.png',
-        'status' => 'Tersedia',
-        'nama' => 'Lab Sains Data',
-        'kategori' => 'Lab FASILKOM',
-        'ukuran' => 60,
-        'kapasitas' => 30,
-        'lokasi' => 'FIK-II, Lantai 2',
-        'jam_buka' => '07:00',
-        'jam_tutup' => '15:30',
-        'fasilitas' => 'Wi-Fi, Computer, AC, Proyektor'
-    ]
-];
+
+include __DIR__ . '/../../config/config.php';
+include __DIR__ . '/../../helpers/labs.php';
+
+$labs = getLabs($conn);
+
+$labs = array_slice($labs, 0, 3);
+
 
 ?>
 
@@ -47,22 +17,22 @@ $labs = [
             lebih
             cepat dan praktis. Pilih jadwal, cek ketersediaan, dan booking lab langsung
             secara online</p>
-        <div class="grid lg:grid-cols-2 xl:grid-cols-3 grid-cols-1 gap-7.25 place-items-center">
-            <?php foreach ($labs as $lab): ?>
-                <?php
-                $gambar = $lab['gambar'];
-                $status = $lab['status'];
-                $nama = $lab['nama'];
-                $kategori = $lab['kategori'];
-                $ukuran = $lab['ukuran'];
-                $kapasitas = $lab['kapasitas'];
-                $lokasi = $lab['lokasi'];
-                $jam_buka = $lab['jam_buka'];
-                $jam_tutup = $lab['jam_tutup'];
-                $fasilitas = $lab['fasilitas'];
-                include __DIR__ . '/../../components/card_lab.php';
-                ?>
-            <?php endforeach; ?>
+        <div id="labsAnimation" class="
+        grid
+        lg:grid-cols-2
+        xl:grid-cols-3
+        grid-cols-1
+        gap-7.25
+        place-items-center
+
+        transition-all
+        duration-1000
+        ease-in-out
+    ">
+            <?php
+            $labs = array_slice($labs, 0, 3);
+            include __DIR__ . '/../../components/render_card_labs.php';
+            ?>
         </div>
         <a href="index.php?page=informasi_lab" class="
     bg-[#FF925C] text-white rounded-full font-semibold
