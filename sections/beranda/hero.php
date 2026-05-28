@@ -1,5 +1,5 @@
 <section id="hero" class=" relative min-h-screen overflow-hidden">
-    <!-- SLIDE 1 -->
+    <!-- slide 1 -->
     <div class="hero-slide absolute inset-0 opacity-100 transition-opacity duration-1000 ease-in-out max-h-123.5 mt-18">
 
         <!-- Background -->
@@ -59,7 +59,7 @@
 
     </div>
 
-    <!-- SLIDE 2 -->
+    <!-- slide 2 -->
     <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out max-h-123.5 mt-18">
 
         <!-- Background -->
@@ -119,23 +119,23 @@
 
     </div>
 
-    <!-- PREV BUTTON -->
+    <!-- Prev button -->
     <button id="prevBtn"
-        class="absolute left-4 top-2/5 -translate-y-1/2 z-20 text-white text-lg hover:scale-110 transition bg-black/40 rounded-full pl-3 pr-4 py-1">
+        class="absolute left-4 top-2/5 -translate-y-1/2 z-20 text-white text-lg hover:scale-110 transition bg-black/40 rounded-full pl-1 pr-1.5 py-1.25">
 
-        ❮
+        <i data-lucide="chevron-left"></i>
 
     </button>
 
-    <!-- NEXT BUTTON -->
+    <!-- Next button -->
     <button id="nextBtn"
-        class="absolute right-4 top-2/5 -translate-y-1/2 z-20 text-white text-lg hover:scale-110 transition bg-black/40 rounded-full pr-3 pl-4 py-1">
+        class="absolute right-4 top-2/5 -translate-y-1/2 z-20 text-white text-lg hover:scale-110 transition bg-black/40 rounded-full pr-1 pl-1.5 py-1.25 ">
 
-        ❯
+        <i data-lucide="chevron-right"></i>
 
     </button>
 
-    <!-- INDICATOR -->
+    <!-- indicator -->
     <div class="absolute bottom-1/4 left-1/2 -translate-x-1/2 z-20 flex gap-3">
 
         <button class="indicator w-12 h-3 rounded-full bg-white transition-all duration-300">

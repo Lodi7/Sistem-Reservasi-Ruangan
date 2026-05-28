@@ -102,7 +102,7 @@ if (isset($_POST['upload_foto'])) {
         $size =
             $file['size'];
 
-        // EXTENSION
+        // extension
         $extension = strtolower(
 
             pathinfo(
@@ -112,7 +112,7 @@ if (isset($_POST['upload_foto'])) {
 
         );
 
-        // FORMAT VALID
+        // format valid
         $allowed = [
 
             'jpg',
@@ -133,7 +133,7 @@ if (isset($_POST['upload_foto'])) {
 
         }
 
-        // MAX 2MB
+        // max size 
         elseif ($size > 2000000) {
 
             $error =
@@ -141,7 +141,7 @@ if (isset($_POST['upload_foto'])) {
 
         } else {
 
-            // FOLDER
+            // folder uploads
             if (
                 !file_exists(
                     "assets/images/uploads/profile"
@@ -156,7 +156,7 @@ if (isset($_POST['upload_foto'])) {
 
             }
 
-            // HAPUS FOTO LAMA
+            // hapus foto
             if (
                 !empty($user['foto_profile']) &&
                 file_exists($user['foto_profile'])
@@ -166,7 +166,7 @@ if (isset($_POST['upload_foto'])) {
 
             }
 
-            // NAMA BARU
+            // nama baru
             $new_name =
 
                 time() .
@@ -175,13 +175,13 @@ if (isset($_POST['upload_foto'])) {
                 "." .
                 $extension;
 
-            // PATH
+            // path foto
             $upload_path =
 
                 "assets/images/uploads/profile/" .
                 $new_name;
 
-            // UPLOAD
+            // upload
             if (
 
                 move_uploaded_file(
@@ -191,7 +191,7 @@ if (isset($_POST['upload_foto'])) {
 
             ) {
 
-                // UPDATE DATABASE
+                // update database
                 $stmt = mysqli_prepare(
                     $conn,
                     "UPDATE users
@@ -258,12 +258,12 @@ if (isset($_POST['upload_foto'])) {
 
         <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-5 xl:gap-20 items-start">
 
-            <!-- FOTO PROFILE -->
+            <!-- foto profile -->
             <div class="flex flex-col items-center gap-8">
 
                 <form method="POST" enctype="multipart/form-data" class="flex flex-col items-center gap-5">
 
-                    <!-- IMAGE -->
+                    <!-- image -->
                     <img id="previewImage" src="<?= !empty($user['foto_profile'])
                         ? $user['foto_profile']
                         : 'assets/images/profile-default.png'; ?>" alt="Profile"
@@ -274,11 +274,11 @@ if (isset($_POST['upload_foto'])) {
                         Upload Foto
 
                     </button>
-                    <!-- INPUT FILE -->
+                    <!-- input foto -->
                     <input type="file" name="foto_profile" accept=".jpg,.jpeg,.png" class="hidden"
                         id="fotoProfileInput">
 
-                    <!-- BUTTON -->
+                    <!-- button -->
                     <div class="flex gap-4">
 
                         <?php if (!empty($user['foto_profile'])): ?>
@@ -294,7 +294,7 @@ if (isset($_POST['upload_foto'])) {
 
                     </div>
 
-                    <!-- AUTO SUBMIT -->
+                    <!-- auto submit -->
                     <button type="submit" name="upload_foto" id="submitFoto" class="hidden">
 
                     </button>
@@ -431,7 +431,7 @@ if (isset($_POST['upload_foto'])) {
 </section>
 
 
-<!-- MODAL CROPPER -->
+<!-- modal cropper foto -->
 <div id="cropModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50">
 
     <div class="bg-white p-6 rounded-3xl flex flex-col gap-5 max-w-xl w-full">

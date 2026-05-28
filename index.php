@@ -17,6 +17,7 @@ $hideLayoutFooter = [
     'reset_password',
     'ubah_profile',
     'ubah_password',
+    'ajukan_reservasi'
 ];
 
 include 'layouts/header.php';
@@ -40,6 +41,10 @@ switch ($page) {
 
     case 'informasi_lab':
         include 'pages/informasi_lab.php';
+        break;
+
+    case 'detail_lab':
+        include 'pages/detail_lab.php';
         break;
 
     case 'ajukan_reservasi':

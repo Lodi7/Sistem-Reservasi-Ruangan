@@ -8,12 +8,11 @@ $statusClass = match ($status) {
 };
 
 ?>
-
 <div
-    class="flex flex-col h-full justify-start items-start gap-5 p-4 md:p-5 w-full lg:max-w-98.25 shadow rounded-[28px] shadow-black/25 text-left hover:-translate-y-2 hover:shadow-[#FF925C] hover:shadow-xl transition duration-300">
+    class="flex flex-col h-full justify-start items-start gap-5 p-4 md:p-5 w-full lg:max-w-98.25 shadow rounded-[28px] shadow-black/25 text-left hover:-translate-y-1 hover:shadow-[#FF925C] hover:shadow-xl transition duration-300">
 
-    <!-- ISI CARD -->
-    <div class="flex flex-col gap-5 flex-1 w-full">
+    <!-- isi card -->
+    <a href="index.php?page=detail_lab&lab=<?= $slug ?>" class="flex flex-col gap-5 flex-1 w-full">
 
         <div class="relative w-full">
             <img src="<?= $gambar ?>" alt="<?= $nama ?>"
@@ -74,7 +73,15 @@ $statusClass = match ($status) {
             </div>
 
             <div class="flex gap-2 items-center col-span-2 md:col-span-1">
-                <i data-lucide="map-pin" class="w-7 h-7 p-1.25 rounded bg-[#FF925C] text-white"></i>
+                <svg width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="p-1.25 w-7 h-7 rounded bg-[#FF925C]">
+                    <path
+                        d="M14.657 14.6567L10.414 18.8997C10.039 19.2743 9.53059 19.4848 9.0005 19.4848C8.47042 19.4848 7.96202 19.2743 7.587 18.8997L3.343 14.6567C2.22422 13.5379 1.46234 12.1124 1.15369 10.5606C0.845043 9.00873 1.00349 7.40022 1.60901 5.93844C2.21452 4.47665 3.2399 3.22725 4.55548 2.34821C5.87107 1.46918 7.41777 1 9 1C10.5822 1 12.1289 1.46918 13.4445 2.34821C14.7601 3.22725 15.7855 4.47665 16.391 5.93844C16.9965 7.40022 17.155 9.00873 16.8463 10.5606C16.5377 12.1124 15.7758 13.5379 14.657 14.6567Z"
+                        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                        d="M5.625 9.11743C5.625 10.0125 5.98058 10.871 6.61351 11.5039C7.24645 12.1369 8.10489 12.4924 9 12.4924C9.89511 12.4924 10.7536 12.1369 11.3865 11.5039C12.0194 10.871 12.375 10.0125 12.375 9.11743C12.375 8.22233 12.0194 7.36388 11.3865 6.73095C10.7536 6.09801 9.89511 5.74243 9 5.74243C8.10489 5.74243 7.24645 6.09801 6.61351 6.73095C5.98058 7.36388 5.625 8.22233 5.625 9.11743Z"
+                        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
 
                 <span class="font-semibold text-sm md:text-base">
                     <?= $lokasi ?>
@@ -84,7 +91,12 @@ $statusClass = match ($status) {
 
         <div class="flex flex-col max-w-50">
             <div class="flex gap-2 items-center">
-                <i data-lucide="clock-3" class="w-7 h-7 p-1.25 rounded bg-[#FF925C] text-white"></i>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="p-1.25 w-7 h-7 rounded bg-[#FF925C]">
+                    <path
+                        d="M10 18C14.4 18 18 14.4 18 10C18 5.6 14.4 2 10 2C5.6 2 2 5.6 2 10C2 14.4 5.6 18 10 18ZM10 0C15.5 0 20 4.5 20 10C20 15.5 15.5 20 10 20C4.5 20 0 15.5 0 10C0 4.5 4.5 0 10 0ZM15 9.5V11H9V5H10.5V9.5H15Z"
+                        fill="white" />
+                </svg>
 
                 <h2 class="font-semibold text-lg md:text-xl">
                     Jam Operasional
@@ -132,16 +144,23 @@ $statusClass = match ($status) {
 
             </div>
         </div>
-
-    </div>
-
-    <!-- BUTTON -->
-    <a href="" class="w-full p-2 flex justify-center items-center text-center rounded-full font-semibold text-base md:text-xl text-white <?= $status == 'Tersedia'
-        ? 'bg-[#FF925C]'
-        : 'bg-gray-300' ?>">
-
-        Ajukan Reservasi
-
     </a>
+    <!-- tombol -->
+    <?php if (isset($_SESSION['is_login'])): ?>
+        <a href="index.php?page=ajukan_reservasi" class="w-full p-2 flex justify-center items-center text-center rounded-full font-semibold text-base md:text-xl text-white <?= $status == 'Tersedia'
+            ? 'bg-[#FF925C] cursor-pointer'
+            : 'bg-gray-300 cursor-not-allowed pointer-events-none' ?>">
+
+            Ajukan Reservasi
+
+        </a><?php else: ?>
+        <a href="index.php?page=login" class="w-full p-2 flex justify-center items-center text-center rounded-full font-semibold text-base md:text-xl text-white <?= $status == 'Tersedia'
+            ? 'bg-[#FF925C] cursor-pointer'
+            : 'bg-gray-300 cursor-not-allowed pointer-events-none' ?>">
+
+            Ajukan Reservasi
+
+        </a>
+    <?php endif; ?>
 
 </div>

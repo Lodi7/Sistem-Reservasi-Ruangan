@@ -8,7 +8,7 @@ include __DIR__ . "/../middleware/auth.php";
 $error = "";
 $success = "";
 
-// AMBIL DATA USER
+// ambil data user
 $stmt = mysqli_prepare(
     $conn,
     "SELECT * FROM users
@@ -27,7 +27,7 @@ $result = mysqli_stmt_get_result($stmt);
 
 $user = mysqli_fetch_assoc($result);
 
-// SUBMIT UBAH PASSWORD
+// submit ubah password
 if (isset($_POST['ubah_password'])) {
 
     $password_lama =
@@ -39,7 +39,7 @@ if (isset($_POST['ubah_password'])) {
     $confirm_password =
         trim($_POST['confirm_password']);
 
-    // VALIDASI INPUT
+    // validasi input
     if (
         empty($password_lama) ||
         empty($password_baru) ||
@@ -51,7 +51,7 @@ if (isset($_POST['ubah_password'])) {
 
     }
 
-    // PASSWORD LAMA SALAH
+    // password lama salah
     elseif (
         !password_verify(
             $password_lama,
@@ -64,7 +64,7 @@ if (isset($_POST['ubah_password'])) {
 
     }
 
-    // PASSWORD BARU TIDAK SAMA
+    // password baru tidak sama
     elseif (
         $password_baru !=
         $confirm_password
@@ -75,7 +75,7 @@ if (isset($_POST['ubah_password'])) {
 
     }
 
-    // PASSWORD BARU SAMA
+    // password baru sama
     elseif (
         password_verify(
             $password_baru,
@@ -88,13 +88,13 @@ if (isset($_POST['ubah_password'])) {
 
     } else {
 
-        // HASH PASSWORD BARU
+        // hash password
         $password_hash = password_hash(
             $password_baru,
             PASSWORD_DEFAULT
         );
 
-        // UPDATE PASSWORD
+        // update
         $stmt = mysqli_prepare(
             $conn,
             "UPDATE users

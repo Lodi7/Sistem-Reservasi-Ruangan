@@ -4,7 +4,7 @@ include __DIR__ . "/../config/config.php";
 
 $error = "";
 
-// AMBIL TOKEN
+// ambil token
 $token = $_GET['token'] ?? '';
 
 if (empty($token)) {
@@ -13,7 +13,7 @@ if (empty($token)) {
 
 }
 
-// CEK USER
+// cek user
 $stmt = mysqli_prepare(
     $conn,
     "SELECT * FROM users
@@ -32,26 +32,26 @@ $result = mysqli_stmt_get_result($stmt);
 
 $user = mysqli_fetch_assoc($result);
 
-// SUBMIT OTP
+// kirim otp
 if (isset($_POST['verifikasi'])) {
 
     $otp = trim($_POST['otp']);
 
-    // VALIDASI INPUT
+    // validasi otp
     if (empty($otp)) {
 
         $error = "OTP wajib diisi";
 
     }
 
-    // OTP SALAH
+    // otp salah
     elseif ($otp != $user['reset_otp']) {
 
         $error = "OTP tidak valid";
 
     }
 
-    // OTP EXPIRED
+    // otp expired
     elseif (
         strtotime(
             $user['reset_otp_expired']

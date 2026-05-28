@@ -1,4 +1,4 @@
-// MOBILE MENU
+// mobile menu(hamburger button)
 document.querySelectorAll('.menuButton').forEach((button) => {
 
     button.addEventListener('click', () => {
@@ -14,7 +14,7 @@ document.querySelectorAll('.menuButton').forEach((button) => {
 })
 
 
-// DROPDOWN
+// dropdown
 document.querySelectorAll('.dropdownButton').forEach((button) => {
 
     button.addEventListener('click', (e) => {
@@ -32,7 +32,7 @@ document.querySelectorAll('.dropdownButton').forEach((button) => {
 })
 
 
-// CLOSE ALL DROPDOWN
+// tutup dropdown
 document.addEventListener('click', () => {
 
     document.querySelectorAll('.dropdownMenu').forEach((menu) => {

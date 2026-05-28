@@ -124,7 +124,7 @@ if (isset($_SESSION['is_login'])) {
             </li>
 
             <li>
-                <a href="index.php?page=informasi_lab" class="<?= $page === 'informasi_lab'
+                <a href="index.php?page=informasi_lab" class="<?= $page === 'informasi_lab' || $page === 'detail_lab'
                     ? 'text-[#FF925C] font-medium'
                     : 'hover:text-[#FF925C]' ?>">
 
@@ -176,7 +176,7 @@ if (isset($_SESSION['is_login'])) {
             p-2
         ">
 
-                    <!-- AJUKAN RESERVASI -->
+                    <!-- ajukan reservasi -->
                     <a href="index.php?page=ajukan_reservasi" class="
                 block
                 px-4
@@ -192,7 +192,7 @@ if (isset($_SESSION['is_login'])) {
 
                     </a>
 
-                    <!-- JADWAL LAB -->
+                    <!-- jadwal lab -->
                     <a href="index.php?page=jadwal_lab" class="
                 block
                 px-4
@@ -208,7 +208,7 @@ if (isset($_SESSION['is_login'])) {
 
                     </a>
 
-                    <!-- RIWAYAT -->
+                    <!-- riwayat reservasi -->
                     <a href="index.php?page=riwayat_reservasi" class="
                 block
                 px-4

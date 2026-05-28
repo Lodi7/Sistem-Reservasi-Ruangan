@@ -10,8 +10,6 @@ const nextBtn =
 const prevBtn =
     document.getElementById('prevBtn')
 
-
-// CEK ELEMENT ADA
 if (
     slides.length > 0 &&
     indicators.length > 0 &&
@@ -23,7 +21,7 @@ if (
 
     function showSlide(index) {
 
-        // SLIDE
+        // slide
         slides.forEach(slide => {
 
             slide.classList.remove('opacity-100')
@@ -35,7 +33,7 @@ if (
         slides[index].classList.add('opacity-100')
 
 
-        // INDICATOR
+        // indicator
         indicators.forEach(indicator => {
 
             indicator.classList.remove(
@@ -63,7 +61,7 @@ if (
     }
 
 
-    // NEXT
+    // next
     nextBtn.addEventListener('click', () => {
 
         currentSlide++
@@ -81,7 +79,7 @@ if (
     })
 
 
-    // PREV
+    // prev
     prevBtn.addEventListener('click', () => {
 
         currentSlide--
@@ -98,7 +96,7 @@ if (
     })
 
 
-    // CLICK INDICATOR
+    // click indicator
     indicators.forEach(
         (indicator, index) => {
 
@@ -117,7 +115,7 @@ if (
     )
 
 
-    // AUTO SLIDE
+    // slide auto pindah
     setInterval(() => {
 
         currentSlide++

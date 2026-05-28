@@ -8,14 +8,14 @@ $success = "";
 
 $token = $_GET['token'] ?? '';
 
-// TOKEN KOSONG
+// token kosong
 if (empty($token)) {
 
     die("Token tidak valid");
 
 }
 
-// AMBIL USER
+// ambil data user
 $stmt = mysqli_prepare(
     $conn,
     "SELECT * FROM users
@@ -34,7 +34,7 @@ $result = mysqli_stmt_get_result($stmt);
 
 $user = mysqli_fetch_assoc($result);
 
-// SUBMIT RESET PASSWORD
+// submit reset password
 if (isset($_POST['reset'])) {
 
     $password = trim($_POST['password']);
@@ -42,7 +42,7 @@ if (isset($_POST['reset'])) {
     $confirm_password =
         trim($_POST['confirm_password']);
 
-    // VALIDASI INPUT
+    // validasi password
     if (
         empty($password) ||
         empty($confirm_password)
@@ -52,7 +52,7 @@ if (isset($_POST['reset'])) {
 
     }
 
-    // PASSWORD TIDAK SAMA
+    // error password tidak sama
     elseif (
         $password !=
         $confirm_password
@@ -63,13 +63,13 @@ if (isset($_POST['reset'])) {
 
     } else {
 
-        // HASH PASSWORD
+        // hash password
         $password_hash = password_hash(
             $password,
             PASSWORD_DEFAULT
         );
 
-        // UPDATE PASSWORD
+        // update password
         $stmt = mysqli_prepare(
             $conn,
             "UPDATE users

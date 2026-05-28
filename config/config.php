@@ -18,4 +18,21 @@ if (!$conn) {
     die("Koneksi gagal: " . mysqli_connect_error());
 }
 
+// kalau deploy hapus aja ngab
+if (
+
+    !isset(
+    $_SESSION['generate_checked']
+)
+
+) {
+
+    require_once __DIR__ .
+        '/../scripts/generate_jadwal.php';
+
+    $_SESSION['generate_checked'] =
+        true;
+
+}
+
 ?>

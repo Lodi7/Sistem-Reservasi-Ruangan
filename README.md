@@ -21,12 +21,34 @@ Website reservasi Lab Komputer berbasis PHP Native dengan fitur autentikasi, OTP
 
 # Tech Stack
 
-- PHP Native
-- MySQL
-- Composer
-- Tailwind CSS
-- JavaScript
-- PHPMailer
+## Backend
+
+* PHP Native
+* MySQL
+* Composer
+* PHPMailer
+
+## Frontend
+
+* Tailwind CSS
+* JavaScript
+* Flatpickr
+* GSAP
+* CropperJS
+* Lucide Icons
+
+---
+
+# Security Features
+
+* Session Authentication
+* Password Hashing
+* Email Verification Token
+* Reset Password Token
+* OTP Email Verification
+* Prepared Statements
+* Role-Based Access Control
+* Secure Password Reset
 
 ---
 
@@ -43,7 +65,7 @@ git clone https://github.com/Lodi7/Sistem-Reservasi-Ruangan.git
 ## 2. Masuk Folder Project
 
 ```bash
-cd name-project
+cd Sistem-Reservasi-Ruangan
 ```
 
 ---
@@ -131,7 +153,7 @@ Jika menggunakan Laragon:
 Akses:
 
 ```txt
-http://name-project.test
+http://Sistem-Reservasi-Ruangan.test
 ```
 
 

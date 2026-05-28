@@ -1,18 +1,189 @@
-/*defaul*/
+/* =========================
+   LABHUB FLATPICKR THEME
+========================= */
+
+/* CONTAINER */
+.flatpickr-calendar {
+    border: none !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+
+    box-shadow:
+        0 12px 30px rgba(15, 23, 42, 0.12),
+        0 4px 10px rgba(15, 23, 42, 0.06) !important;
+}
+
+/* HEADER */
+.flatpickr-months {
+    background: #FF925C !important;
+    padding: 8px 0 !important;
+}
+
+/* BULAN & TAHUN */
+.flatpickr-current-month,
+.flatpickr-current-month input.cur-year {
+    color: white !important;
+    font-weight: 600 !important;
+}
+
+.flatpickr-current-month {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding-top: 6px !important;
+}
+
+.flatpickr-prev-month {
+    top: 11px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.flatpickr-next-month {
+    top: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* PANAH */
+.flatpickr-prev-month svg,
+.flatpickr-next-month svg {
+    fill: rgba(255, 255, 255, .9) !important;
+    transition: .2s !important;
+}
+
+.flatpickr-prev-month:hover svg,
+.flatpickr-next-month:hover svg {
+    fill: white !important;
+    transform: scale(1.08) !important;
+}
+
+/* NAMA HARI */
+span.flatpickr-weekday {
+    color: #64748b !important;
+    font-weight: 600 !important;
+}
+
+/* TANGGAL */
+.flatpickr-day {
+    border-radius: 12px !important;
+    color: #0f172a !important;
+    transition: all .18s ease !important;
+}
+
+/* HOVER */
+.flatpickr-day:hover {
+    background: #fdad8a !important;
+    border-color: #ffad89 !important;
+    border-radius: 100% !important;
+}
+
+/* HARI INI */
+.flatpickr-day.today {
+    background: rgba(255, 146, 92, 0.2) !important;
+    border-color: rgba(255, 146, 92, 0.2) !important;
+    border-radius: 100% !important;
+    color: black !important;
+}
+
+/* SELECTED */
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+    background: rgba(255, 146, 92) !important;
+    border-color: rgba(255, 146, 92) !important;
+    color: white !important;
+    border-radius: 100% !important;
+}
+
+/* RANGE */
+.flatpickr-day.inRange {
+    background: #ffe3d6 !important;
+    border-color: #ffe3d6 !important;
+    color: #e86c29 !important;
+}
+
+/* DISABLED */
 .flatpickr-day.flatpickr-disabled {
-    color: #6b6b6b !important;
-    opacity: 0.7 !important;
-    cursor: default !important;
+    color: #696969 !important;
 }
 
-/* Hari sebelum hari ini */
-.flatpickr-day.flatpickr-disabled.before-today {
-    color: #6b6b6b !important;
-    opacity: 0.7 !important;
+/* DROPDOWN BULAN */
+.flatpickr-monthDropdown-months {
+    background: transparent !important;
+    color: white !important;
+    border: none !important;
+    font-weight: 600 !important;
+}
+
+/* OPTION DROPDOWN */
+.flatpickr-monthDropdown-months option {
+    background: white !important;
+    color: #0f172a !important;
+}
+
+/* TIME PICKER */
+.flatpickr-time {
+    border-top: 1px solid #f1f5f9 !important;
+}
+
+.flatpickr-time input,
+.flatpickr-am-pm {
+    color: #0f172a !important;
+}
+
+.flatpickr-time input:hover,
+.flatpickr-am-pm:hover {
+    background: #fff1eb !important;
+}
+
+/* SCROLLBAR */
+.flatpickr-monthDropdown-months::-webkit-scrollbar {
+    width: 5px !important;
+}
+
+.flatpickr-monthDropdown-months::-webkit-scrollbar-thumb {
+    background: #FF925C !important;
+    border-radius: 999px !important;
+}
+
+.full-date {
+
+    background: #F5F5F5 !important;
+
+    color: rgb(129, 129, 129) !important;
+
+    border-radius: 100% !important;
 
 }
 
-/* Hari setelah hari ini */
-.flatpickr-day.flatpickr-disabled.after-today {
-    color: rgb(0, 0, 0) !important;
+.partial-date {
+
+    background: rgba(255, 146, 92, 0.2) !important;
+
+    color: black !important;
+
+    border-radius: 100% !important;
+
+}
+
+@media (max-width: 768px) {
+
+    .flatpickr-calendar.inline {
+        transform: scale(0.95) !important;
+        transform-origin: top left !important;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .flatpickr-calendar.inline {
+        transform: scale(0.85) !important;
+        transform-origin: top left !important;
+    }
+
 }

@@ -40,120 +40,153 @@ const uploadButton =
 
 let cropper;
 
+if (
+    previewImage &&
+    fotoInput &&
+    cropModal &&
+    cropImage &&
+    saveCrop &&
+    cancelCrop &&
+    submitFoto &&
+    uploadButton
+) {
 
-uploadButton.addEventListener(
-    'click',
-    () => {
+    // upload button
+    uploadButton.addEventListener(
+        'click',
+        () => {
 
-        fotoInput.click();
-
-    }
-);
-
-
-// PILIH FILE
-fotoInput.addEventListener(
-    'change',
-    (e) => {
-
-        const file =
-            e.target.files[0];
-
-        if (!file) return;
-
-        const imageURL =
-            URL.createObjectURL(file);
-
-        cropImage.src =
-            imageURL;
-
-        cropModal.classList.remove(
-            'hidden'
-        );
-
-        cropModal.classList.add(
-            'flex'
-        );
-
-        // DESTROY
-        if (cropper) {
-
-            cropper.destroy();
+            fotoInput.click();
 
         }
+    );
 
-        cropImage.onload = () => {
+
+    // pilih file
+    fotoInput.addEventListener(
+        'change',
+        (e) => {
+
+            const file =
+                e.target.files[0];
+
+            if (!file) return;
+
+            const imageURL =
+                URL.createObjectURL(file);
+
+            cropImage.src =
+                imageURL;
+
+            cropModal.classList.remove(
+                'hidden'
+            );
+
+            cropModal.classList.add(
+                'flex'
+            );
+
+            // tutup cropper
+            if (cropper) {
+
+                cropper.destroy();
+
+            }
+
+            cropImage.onload = () => {
+
                 cropper =
-    new Cropper(
-        cropImage,
-        {
+                    new Cropper(
+                        cropImage,
+                        {
 
-            aspectRatio: 1,
+                            aspectRatio: 1,
 
-            viewMode: 1,
+                            viewMode: 1,
 
-            autoCropArea: 1,
+                            autoCropArea: 1,
 
-            responsive: true,
+                            responsive: true,
 
-            movable: true,
+                            movable: true,
 
-            zoomable: true,
+                            zoomable: true,
 
-            scalable: false,
+                            scalable: false,
 
-            cropBoxMovable: true,
+                            cropBoxMovable: true,
 
-            cropBoxResizable: true,
+                            cropBoxResizable: true,
+
+                        }
+                    );
+
+            };
 
         }
-);
-
-        };
-
-    }
-);
+    );
 
 
-// SAVE CROP
-saveCrop.addEventListener(
-    'click',
-    () => {
+    // simpan cropper
+    saveCrop.addEventListener(
+        'click',
+        () => {
 
-        const canvas =
-            cropper.getCroppedCanvas({
+            const canvas =
+                cropper.getCroppedCanvas({
 
-                width: 500,
+                    width: 500,
 
-                height: 500,
+                    height: 500,
+
+                });
+
+            // preview
+            previewImage.src =
+                canvas.toDataURL();
+
+            canvas.toBlob((blob) => {
+
+                const file =
+                    new File(
+                        [blob],
+                        'profile.png',
+                        {
+                            type: 'image/png'
+                        }
+                    );
+
+                const dataTransfer =
+                    new DataTransfer();
+
+                dataTransfer.items.add(file);
+
+                fotoInput.files =
+                    dataTransfer.files;
+
+                // tutup modal
+                cropModal.classList.add(
+                    'hidden'
+                );
+
+                cropModal.classList.remove(
+                    'flex'
+                );
+
+                // auto submit foto
+                submitFoto.click();
 
             });
 
-        // PREVIEW
-        previewImage.src =
-            canvas.toDataURL();
+        }
+    );
 
-        // BLOB
-        canvas.toBlob((blob) => {
 
-            const file =
-                new File(
-                    [blob],
-                    'profile.png',
-                    {
-                        type: 'image/png'
-                    }
-                );
+    // cancel
+    cancelCrop.addEventListener(
+        'click',
+        () => {
 
-            const dataTransfer =
-                new DataTransfer();
-
-            dataTransfer.items.add(file);
-
-            fotoInput.files =
-                dataTransfer.files;
-
-            // CLOSE MODAL
             cropModal.classList.add(
                 'hidden'
             );
@@ -162,30 +195,9 @@ saveCrop.addEventListener(
                 'flex'
             );
 
-            // AUTO SUBMIT
-            submitFoto.click();
+            cropper.destroy();
 
-        });
+        }
+    );
 
-    }
-);
-
-
-// CANCEL
-cancelCrop.addEventListener(
-    'click',
-    () => {
-
-        cropModal.classList.add(
-            'hidden'
-        );
-
-        cropModal.classList.remove(
-            'flex'
-        );
-
-        cropper.destroy();
-
-    }
-);
-
+}

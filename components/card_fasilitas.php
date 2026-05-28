@@ -6,7 +6,7 @@
         <?= $title ?>
     </h3>
 
-    <p class="text-sm sm:text-basemd:text-lg text-gray-600 leading-relaxed w-full">
+    <p class="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed w-full">
         <?= $deskripsi ?>
     </p>
 </div>

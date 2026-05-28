@@ -2,7 +2,14 @@
 
 if (!isset($_SESSION['is_login'])) {
 
-    header("Location: ?page=login");
+    echo "
+<script>
+
+    window.location.href =
+    'index.php?page=login';
+
+</script>
+";
     exit;
 
 }

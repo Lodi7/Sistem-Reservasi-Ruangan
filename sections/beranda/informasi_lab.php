@@ -1,15 +1,3 @@
-<?php
-
-include __DIR__ . '/../../config/config.php';
-include __DIR__ . '/../../helpers/labs.php';
-
-$labs = getLabs($conn);
-
-$labs = array_slice($labs, 0, 3);
-
-
-?>
-
 <section id="informasi-lab" class="mt-30 px-5 sm:px-15 md:px-25">
     <div class="flex flex-col items-center justify-center text-center max-w-full gap-6.25">
         <h1 class="text-4xl md:text-5xl xl:text-6xl font-bold">Informasi Lab</h1>
@@ -17,7 +5,7 @@ $labs = array_slice($labs, 0, 3);
             lebih
             cepat dan praktis. Pilih jadwal, cek ketersediaan, dan booking lab langsung
             secara online</p>
-        <div id="labsAnimation" class="
+        <div id="labsContainer" class="
         grid
         lg:grid-cols-2
         xl:grid-cols-3
@@ -26,13 +14,8 @@ $labs = array_slice($labs, 0, 3);
         place-items-center
 
         transition-all
-        duration-1000
-        ease-in-out
+        duration-500
     ">
-            <?php
-            $labs = array_slice($labs, 0, 3);
-            include __DIR__ . '/../../components/render_card_labs.php';
-            ?>
         </div>
         <a href="index.php?page=informasi_lab" class="
     bg-[#FF925C] text-white rounded-full font-semibold
@@ -45,7 +28,7 @@ $labs = array_slice($labs, 0, 3);
     flex gap-2 sm:gap-3 items-center
     w-fit
 
-    hover:opacity-80 transition duration-300
+    hover:opacity-80 transition duration-500
 ">
             <span>Lihat Selengkapnya</span>
 

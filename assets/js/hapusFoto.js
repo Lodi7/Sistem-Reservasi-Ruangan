@@ -18,53 +18,61 @@ const confirmHapus =
         'confirmHapus'
     );
 
+if (
+    hapusFotoButton &&
+    hapusModal &&
+    batalHapus &&
+    confirmHapus
+) {
 
-// OPEN MODAL
-hapusFotoButton.addEventListener(
-    'click',
-    () => {
+    // buka modal hapus
+    hapusFotoButton.addEventListener(
+        'click',
+        () => {
 
-        hapusModal.classList.remove(
-            'hidden'
-        );
+            hapusModal.classList.remove(
+                'hidden'
+            );
 
-        hapusModal.classList.add(
-            'flex'
-        );
+            hapusModal.classList.add(
+                'flex'
+            );
 
-    }
-);
-
-
-// CLOSE MODAL
-batalHapus.addEventListener(
-    'click',
-    () => {
-
-        hapusModal.classList.add(
-            'hidden'
-        );
-
-        hapusModal.classList.remove(
-            'flex'
-        );
-
-    }
-);
+        }
+    );
 
 
-// CONFIRM HAPUS
-confirmHapus.addEventListener(
-    'click',
-    () => {
+    // tutup modal
+    batalHapus.addEventListener(
+        'click',
+        () => {
 
-        previewImage.src =
-            'assets/images/profile-default.png?t=' +
-            new Date().getTime();
+            hapusModal.classList.add(
+                'hidden'
+            );
 
-        document.getElementById(
-            'submitHapusFoto'
-        ).click();
+            hapusModal.classList.remove(
+                'flex'
+            );
 
-    }
-);
+        }
+    );
+
+
+    // konfirmasi hapus
+    confirmHapus.addEventListener(
+        'click',
+        () => {
+
+            previewImage.src =
+                'assets/images/profile-default.png?t=' +
+                new Date().getTime();
+
+            document.getElementById(
+                'submitHapusFoto'
+            ).click();
+
+        }
+    );
+
+}

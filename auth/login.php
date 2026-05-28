@@ -208,7 +208,7 @@ if (isset($_POST['login'])) {
 
                     <div class="grow border-t border-[#8C8C8C]"></div>
                 </div>
-                <a href='../?page=register'
+                <a href='../index.php?page=register'
                     class="font-medium text-center border border-[#FF925C] py-2.5 rounded-full shadow-lg shadow-black/20 text-black hover:bg-[#FF925C] hover:text-white transition duration-300">
                     Daftar
                 </a>

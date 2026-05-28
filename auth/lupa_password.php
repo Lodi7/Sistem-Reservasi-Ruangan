@@ -13,21 +13,21 @@ if (isset($_POST['kirim'])) {
 
     $email = trim($_POST['email']);
 
-    // VALIDASI INPUT
+    // validasi input email
     if (empty($email)) {
 
         $error = "Email wajib diisi";
 
     }
 
-    // VALIDASI FORMAT EMAIL
+    // validasi format email
     elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
         $error = "Format email tidak valid";
 
     } else {
 
-        // CEK EMAIL
+        // cek email
         $stmt = mysqli_prepare(
             $conn,
             "SELECT * FROM users
@@ -111,23 +111,23 @@ if (isset($_POST['kirim'])) {
 
                 $mail->Port = 587;
 
-                // PENGIRIM
+                // nama pengirim
                 $mail->setFrom(
                     $_ENV['MAIL_USERNAME'],
                     'LabHub'
                 );
 
-                // PENERIMA
+                // penerima
                 $mail->addAddress($email);
 
-                // EMAIL HTML
+                // email html 
                 $mail->isHTML(true);
 
-                // SUBJECT
+                // isi subject
                 $mail->Subject =
                     'Kode OTP Reset Password';
 
-                // BODY EMAIL
+                // isi email
                 $mail->Body = "
                     <div
                         style='
@@ -161,7 +161,7 @@ if (isset($_POST['kirim'])) {
                     </div>
                 ";
 
-                // KIRIM EMAIL
+                // kirim email
                 $mail->send();
 
                 echo "

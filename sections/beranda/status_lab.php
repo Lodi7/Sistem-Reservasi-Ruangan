@@ -1,18 +1,305 @@
-<section class="mt-30 px-5 sm:px-15 md:px-25">
-    <div class="flex gap-4 flex-col">
-        <div class="flex xl:flex-row xl:items-end justify-between gap-4 flex-col ">
+<?php
+
+include __DIR__ . '/../../config/config.php';
+
+$tanggal =
+    date('Y-m-d');
+
+$queryLabs = mysqli_query(
+
+    $conn,
+
+    "SELECT *
+    FROM labs"
+
+);
+
+
+$labsData = [];
+
+while (
+
+    $lab =
+    mysqli_fetch_assoc($queryLabs)
+
+) {
+
+    $lab_id =
+        $lab['id'];
+
+    // jadwal non aktif
+    $stmtNonaktif = mysqli_prepare(
+
+        $conn,
+
+        "SELECT id
+        FROM jadwal_nonaktif
+        WHERE
+
+        lab_id = ?
+        AND tanggal = ?"
+
+    );
+
+    mysqli_stmt_bind_param(
+
+        $stmtNonaktif,
+
+        "is",
+
+        $lab_id,
+        $tanggal
+
+    );
+
+    mysqli_stmt_execute(
+        $stmtNonaktif
+    );
+
+    $nonaktif =
+        mysqli_stmt_get_result(
+            $stmtNonaktif
+        );
+
+
+    $isNonaktif =
+        mysqli_num_rows(
+            $nonaktif
+        ) > 0;
+
+
+    // Ambil jadwal
+    $stmtJadwal = mysqli_prepare(
+
+        $conn,
+
+        "SELECT *
+        FROM jadwal
+        WHERE
+
+        lab_id = ?
+        AND tanggal = ?
+
+        ORDER BY jam_mulai ASC"
+
+    );
+
+    mysqli_stmt_bind_param(
+
+        $stmtJadwal,
+
+        "is",
+
+        $lab_id,
+        $tanggal
+
+    );
+
+    mysqli_stmt_execute(
+        $stmtJadwal
+    );
+
+    $resultJadwal =
+        mysqli_stmt_get_result(
+            $stmtJadwal
+        );
+
+
+    $jadwal = [];
+
+
+    // Loop sesi
+    while (
+
+        $item =
+        mysqli_fetch_assoc(
+            $resultJadwal
+        )
+
+    ) {
+
+        $status =
+            'Tersedia';
+
+        if (
+
+            $lab['status']
+            == 'Perbaikan'
+
+        ) {
+
+            $status =
+                'Perbaikan';
+
+        } elseif (
+
+            $lab['status']
+            == 'Non-aktif'
+
+        ) {
+
+            $status =
+                'Non-aktif';
+
+        } elseif (
+
+            $isNonaktif
+
+        ) {
+
+            $status =
+                'Nonaktif Hari Ini';
+
+        } else {
+
+            // Cek reservasi
+            $stmtReservasi =
+                mysqli_prepare(
+
+                    $conn,
+
+                    "SELECT id
+                    FROM reservasi
+                    WHERE
+
+                    jadwal_id = ?
+
+                    AND status IN (
+
+                        'Pending',
+                        'Disetujui',
+                        'Belum Ambil Kunci',
+                        'Sedang Berlangsung'
+
+                    )"
+
+                );
+
+            mysqli_stmt_bind_param(
+
+                $stmtReservasi,
+
+                "i",
+
+                $item['id']
+
+            );
+
+            mysqli_stmt_execute(
+                $stmtReservasi
+            );
+
+            $reservasi =
+                mysqli_stmt_get_result(
+                    $stmtReservasi
+                );
+
+
+            if (
+
+                mysqli_num_rows(
+                    $reservasi
+                ) > 0
+
+            ) {
+
+                $status =
+                    'Dipakai';
+
+            }
+
+        }
+
+
+        $jadwal[] = [
+
+            'sesi' =>
+                $item['sesi'],
+
+            'jam' =>
+
+                substr(
+                    $item['jam_mulai'],
+                    0,
+                    5
+                )
+
+                .
+
+                ' - '
+
+                .
+
+                substr(
+                    $item['jam_selesai'],
+                    0,
+                    5
+                ),
+
+            'status' =>
+                $status
+
+        ];
+
+    }
+
+
+    // render table
+    ob_start();
+
+    include __DIR__ .
+        '/../../components/status_lab_table.php';
+
+    $table =
+        ob_get_clean();
+
+
+    // data lab
+    $labsData[] = [
+
+        'nama' =>
+            $lab['nama_lab'],
+
+        'lokasi' =>
+
+            str_replace(
+
+                [
+                    'Gedung ',
+                    ' UPNVJT'
+                ],
+
+                '',
+
+                $lab['lokasi']
+
+            ),
+
+        'table' =>
+            $table
+
+    ];
+
+}
+
+?>
+<section class="
+        mt-30 px-5 sm:px-15 xl:px-25
+    ">
+    <div class="flex gap-10 flex-col">
+        <div class=" flex xl:flex-row xl:items-end justify-between gap-4 flex-col">
             <div class="flex flex-col gap-4">
+
                 <h1 class="text-4xl md:text-5xl xl:text-6xl font-bold">
                     Status Lab Terkini
                 </h1>
-                <P class="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-184.5">
+
+                <p class="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-3xl">
                     Cek jadwal lab, informasi status slot diperbarui secara otomatis setiap saat, membantu Anda
-                    menemukan
-                    waktu
-                    terbaik untuk reservasi fasilitas laboratorium.
-                </P>
+                    menemukan waktu terbaik untuk reservasi fasilitas laboratorium.
+                </p>
             </div>
-            <a href="index.php?page=informasi_lab" class="
+            <a href="index.php?page=jadwal_lab" class="
     bg-[#FF925C] text-white rounded-full font-semibold
 
     text-sm sm:text-base md:text-lg lg:text-xl
@@ -34,47 +321,101 @@
                         fill="white" />
                 </svg>
             </a>
+
         </div>
-        <div class="flex flex-col lg:flex-row justify-center items-center gap-11.25">
-            <input type="text" id="statusReservasiTerkini" hidden>
-            <div class="
-    bg-white
-    rounded-3xl
-    border
-    border-gray-300
-    overflow-hidden
+
+
+        <!-- content -->
+        <div class="flex flex-col lg:flex-row justify-center items-center gap-11.5">
+
+            <div id="calendar"></div>
+
+            <!-- tabel -->
+            <div id="statusLabCard" class="
+                border
+                border-gray-300
+                rounded-[10px]
+                overflow-hidden
+                bg-white
+                shadow-md
     w-full
+    lg:min-w-75
+    lg:max-w-120
+    xl:max-w-200
+            ">
+
+                <!-- header tabel -->
+                <div class="
+    bg-[#FF925C]
+    text-white
+    px-2
+    md:px-8
+    py-5
+    flex
+    items-center
+    justify-between
+    transition-opacity
+    duration-500
+    ease-in-out
 ">
 
-                <div id="sessionWrapper" class="
-            transition-all
+                    <!-- tanggal -->
+                    <h2 id="statusLabDate" class="
+                    text-base
+                    sm:text-lg
+            lg:text-xl
+            xl:text-2xl
+            font-medium
+            whitespace-nowrap
+             transition-opacity
             duration-500
-            opacity-100
+            ease-in-out
         ">
 
-                    <div class="
-            grid grid-cols-2
-            bg-[#FF925C]
-            p-5
-            text-white
-            items-center
-        ">
+                        Loading...
 
-                        <div id="TglHariIni"
-                            class="font-semibold pl-5 md:pl-10 lg:pl-15 text-lg md:text-xl lg:text-2xl">
-                        </div>
+                    </h2>
 
-                        <div id="NamaLab"
-                            class="text-right font-light pr-5 md:pr-10 lg:pr-15 text-[12px] md:text-sm lg:text-base">
-                        </div>
+
+                    <!-- nama lab -->
+
+                    <div class="flex flex-col min-w-0 gap-1 pl-1">
+
+                        <p id="statusLabTitle" class="
+                    text-sm    
+                    sm:text-base
+                    md:text-lg
+                    leading-none
+                    truncate
+                    text-right
+                    overflow-hidden
+                ">
+
+                        </p>
+
+                        <p id="statusLabLocation" class="
+                    text-[12px]
+                    md:text-sm
+                    opacity-80
+                    truncate
+                    text-right
+                ">
+
+                        </p>
 
                     </div>
 
-                    <div id="sessionContainer"></div>
+                </div>
+
+
+                <!-- table -->
+                <div id="statusLabTable">
 
                 </div>
 
             </div>
+
         </div>
     </div>
+
 </section>
