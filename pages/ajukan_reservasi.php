@@ -5,8 +5,6 @@ $page = 'ajukan_reservasi';
 include __DIR__ .
     '/../config/config.php';
 
-include __DIR__ . '/../middleware/auth.php';
-
 // submit
 if (
 
@@ -400,16 +398,7 @@ if (
                         $_SESSION['success'] =
                             'Reservasi berhasil diajukan';
 
-                        echo "
-
-                        <script>
-
-                            window.location.href =
-                                'index.php?page=riwayat_reservasi';
-
-                        </script>
-
-                        ";
+                        header("Location: index.php?page=riwayat_reservasi");
 
                         exit;
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 28, 2026 at 04:02 PM
+-- Generation Time: May 29, 2026 at 06:58 PM
 -- Server version: 8.0.40
 -- PHP Version: 8.4.20
 
@@ -329,7 +329,25 @@ INSERT INTO `jadwal` (`id`, `lab_id`, `tanggal`, `sesi`, `jam_mulai`, `jam_seles
 (285, 5, '2026-06-11', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-27 17:10:03'),
 (286, 6, '2026-06-11', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-27 17:10:03'),
 (287, 6, '2026-06-11', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-27 17:10:03'),
-(288, 6, '2026-06-11', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-27 17:10:03');
+(288, 6, '2026-06-11', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-27 17:10:03'),
+(289, 1, '2026-06-12', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-28 17:00:16'),
+(290, 1, '2026-06-12', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-28 17:00:16'),
+(291, 1, '2026-06-12', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-28 17:00:16'),
+(292, 2, '2026-06-12', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-28 17:00:16'),
+(293, 2, '2026-06-12', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-28 17:00:16'),
+(294, 2, '2026-06-12', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-28 17:00:16'),
+(295, 3, '2026-06-12', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-28 17:00:16'),
+(296, 3, '2026-06-12', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-28 17:00:16'),
+(297, 3, '2026-06-12', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-28 17:00:16'),
+(298, 4, '2026-06-12', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-28 17:00:16'),
+(299, 4, '2026-06-12', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-28 17:00:16'),
+(300, 4, '2026-06-12', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-28 17:00:16'),
+(301, 5, '2026-06-12', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-28 17:00:16'),
+(302, 5, '2026-06-12', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-28 17:00:16'),
+(303, 5, '2026-06-12', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-28 17:00:16'),
+(304, 6, '2026-06-12', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-28 17:00:16'),
+(305, 6, '2026-06-12', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-28 17:00:16'),
+(306, 6, '2026-06-12', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-28 17:00:16');
 
 -- --------------------------------------------------------
 
@@ -431,9 +449,9 @@ CREATE TABLE `reservasi` (
 INSERT INTO `reservasi` (`id`, `user_id`, `jadwal_id`, `kode_reservasi`, `dosen_penanggung_jawab`, `kontak`, `keperluan`, `berkas`, `status`, `created_at`, `alasan_pembatalan`) VALUES
 (2, 1, 29, 'F80E74', 'assxasdxc', '021546896532', 'ascasxas', NULL, 'Dibatalkan', '2026-05-27 14:55:22', 'kepo'),
 (3, 1, 181, 'MSI-3', 'asasasa', '021546896532', 'asdfgh', NULL, 'Ditolak', '2026-05-27 15:38:04', NULL),
-(4, 1, 6, 'PPSTI-4', 'asasasa', '021546896532', 'ascvxcbnghgfngbdfvd', NULL, 'Pending', '2026-05-28 09:20:13', NULL),
 (5, 1, 187, 'MSI-5', 'asasasa', '021546896532', 'wesrdtfgvhbjn', NULL, 'Disetujui', '2026-05-28 10:41:44', NULL),
-(6, 1, 146, 'RBD-6', 'dfghbj', '0851320520', 'aqwsexdcfgvhbjnkm', NULL, 'Pending', '2026-05-28 15:41:47', NULL);
+(6, 1, 146, 'RBD-6', 'dfghbj', '0851320520', 'aqwsexdcfgvhbjnkm', NULL, 'Disetujui', '2026-05-28 15:41:47', NULL),
+(7, 1, 188, 'MSI-7', 'dfghbj', '0851320520', 'aesxdfcgvhbjnkm', NULL, 'Pending', '2026-05-28 17:36:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -462,7 +480,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nama`, `email`, `password`, `foto_profile`, `role`, `status`, `npm`, `program_studi_id`, `created_at`, `reset_otp`, `reset_otp_expired`, `reset_token`) VALUES
-(1, 'Lodi Galang Putra Sugianto', '24081010193@student.upnjatim.ac.id', '$2y$12$.VaJC2YRWwFTiHarcKTRjeViFRg4pm0L/sI6SXMHOkGlzZm84AgJe', 'assets/images/uploads/profile/1779731249_6a148b31a2c7c.png', 'user', 'mahasiswa', '24081010193', 1, '2026-05-24 08:13:41', NULL, NULL, NULL);
+(1, 'Lodi Galang Putra Sugianto', '24081010193@student.upnjatim.ac.id', '$2y$12$FZvxBQnmKPLsXhXTuxmeWuZleAkcFbKVUB3S1vEdfGGPgrn1nfOd2', NULL, 'user', 'mahasiswa', '24081010193', 1, '2026-05-24 08:13:41', NULL, NULL, NULL),
+(2, 'Admin', 'labhubupn@gmail.com', '$2y$12$LD2RgF3Eyn/7AU7rPVTYFu523bJ52F.yGbuS.BOj0tEWbcmtgrqM.', NULL, 'admin', 'dosen', NULL, NULL, '2026-05-28 16:12:19', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -523,7 +542,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=289;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=307;
 
 --
 -- AUTO_INCREMENT for table `jadwal_nonaktif`
@@ -547,13 +566,13 @@ ALTER TABLE `program_studi`
 -- AUTO_INCREMENT for table `reservasi`
 --
 ALTER TABLE `reservasi`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

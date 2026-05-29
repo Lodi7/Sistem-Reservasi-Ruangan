@@ -61,14 +61,8 @@ if (isset($_POST['verifikasi'])) {
         $error = "OTP sudah expired";
 
     } else {
-        echo "
-<script>
 
-    window.location.href =
-    'index.php?page=reset_password&token=$token';
-
-</script>
-";
+        header("Location: index.php?page=reset_password&token=$token");
 
         exit;
 

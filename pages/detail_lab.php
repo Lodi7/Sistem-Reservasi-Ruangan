@@ -7,15 +7,7 @@ include __DIR__ . "/../config/config.php";
 
 if (!isset($_GET['lab'])) {
 
-    echo "
-<script>
-
-    window.location.href =
-    'index.php?page=informasi_lab';
-
-</script>
-";
-
+    header("Location: index.php?page=informasi_lab");
     exit;
 
 }

@@ -95,18 +95,8 @@ if (isset($_POST['reset'])) {
             $success =
                 "Password berhasil diubah";
 
-            echo "
-<script>
-
-    setTimeout(() => {
-
-        window.location.href =
-        'index.php?page=login';
-
-    }, 2000);
-
-</script>
-";
+            header("Refresh: 2; url=index.php?page=login");
+            exit;
 
         } else {
 

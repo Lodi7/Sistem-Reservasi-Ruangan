@@ -7,9 +7,9 @@ $remember_email = $_COOKIE['remember_email'] ?? '';
 
 if (isset($_SESSION['is_login'])) {
     if ($_SESSION['role'] == 'admin') {
-        header("Location: ../?page=admin");
+        header("Location: ../admin/index.php?page=dashboard");
     } else {
-        header("Location:../?page=beranda");
+        header("Location: index.php?page=beranda");
     }
 }
 if (isset($_POST['login'])) {
@@ -82,25 +82,10 @@ if (isset($_POST['login'])) {
             }
 
             if ($user['role'] == 'admin') {
-
-                echo "
-<script>
-
-    window.location.href =
-    'index.php?page=admin';
-
-</script>
-";
+                header("Location: ../admin/index.php");
 
             } else {
-                echo "
-<script>
-
-    window.location.href =
-    'index.php?page=beranda';
-
-</script>
-";
+                header("Location: index.php?page=beranda");
 
             }
 

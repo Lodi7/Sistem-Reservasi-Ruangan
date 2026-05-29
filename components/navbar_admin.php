@@ -34,7 +34,7 @@ if (isset($_SESSION['is_login'])) {
 
         <!-- Logo -->
         <div class="flex items-center gap-3">
-            <img src="assets/images/logo-labhub.svg" class="h-10" alt="LabHub Logo">
+            <img src="../assets/images/logo-labhub.svg" class="h-10" alt="LabHub Logo">
             <h1 class="text-xl font-bold">LabHub</h1>
         </div>
 
@@ -87,8 +87,8 @@ if (isset($_SESSION['is_login'])) {
                     <div class="flex items-center gap-3">
 
                         <img src="<?= !empty($user['foto_profile'])
-                            ? $user['foto_profile']
-                            : 'assets/images/profile-default.png'; ?>"
+                            ? '../' . $user['foto_profile']
+                            : '../assets/images/profile-default.png'; ?>"
                             class="w-10 h-10 rounded-full border border-gray-300 object-cover">
 
                         <h2 class="font-semibold text-gray-700">
@@ -102,49 +102,29 @@ if (isset($_SESSION['is_login'])) {
             <?php endif; ?>
 
 
-
+            <!-- dashboard -->
             <li>
-                <a href="index.php?page=beranda" class="<?= $page === 'beranda'
+                <a href="?page=dashboard" class="<?= $page === 'dashboard'
                     ? 'text-[#FF925C] font-medium'
                     : 'hover:text-[#FF925C]' ?>">
 
-                    Beranda
+                    Dashboard
 
                 </a>
             </li>
-
-            <li>
-                <a href="index.php?page=tentang_kami" class="<?= $page === 'tentang_kami'
-                    ? 'text-[#FF925C] font-medium'
-                    : 'hover:text-[#FF925C]' ?>">
-
-                    Tentang Kami
-
-                </a>
-            </li>
-
-            <li>
-                <a href="index.php?page=informasi_lab" class="<?= $page === 'informasi_lab' || $page === 'detail_lab'
-                    ? 'text-[#FF925C] font-medium'
-                    : 'hover:text-[#FF925C]' ?>">
-
-                    Informasi Lab
-                </a>
-            </li>
-
             <!-- Dropdown -->
             <li class="relative w-full lg:w-auto">
 
-                <button data-target="#reservasiMenu" class="dropdownButton flex items-center justify-between w-full lg:w-auto gap-2 cursor-pointer
+                <button data-target="#permohonanMenu" class="dropdownButton flex items-center justify-between w-full lg:w-auto gap-2 cursor-pointer
         <?= in_array($page, [
-            'ajukan_reservasi',
-            'jadwal_lab',
-            'riwayat_reservasi'
+            'kelola_permohonan',
+            'riwayat_permohonan',
+            'detail_reservasi'
         ])
             ? 'text-[#FF925C] font-medium'
             : 'hover:text-[#FF925C]' ?>">
 
-                    Reservasi
+                    Permohonan
 
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 
@@ -155,7 +135,7 @@ if (isset($_SESSION['is_login'])) {
                 </button>
 
                 <!-- Dropdown Menu -->
-                <div id="reservasiMenu" class="
+                <div id="permohonanMenu" class="
             hidden
             lg:absolute
             lg:top-10
@@ -176,57 +156,62 @@ if (isset($_SESSION['is_login'])) {
             p-2
         ">
 
-                    <!-- ajukan reservasi -->
-                    <a href="index.php?page=ajukan_reservasi" class="
+                    <!-- kelola permohonan -->
+                    <a href="?page=kelola_permohonan" class="
                 block
                 px-4
                 py-2
                 rounded-lg
 
-                <?= $page === 'ajukan_reservasi'
+                <?= $page === 'kelola_permohonan' || $page === 'detail_reservasi'
                     ? 'bg-[#FF925C] text-white'
                     : 'hover:bg-gray-100' ?>
             ">
 
-                        Ajukan Reservasi
+                        Kelola Permohonan
 
                     </a>
 
-                    <!-- jadwal lab -->
-                    <a href="index.php?page=jadwal_lab" class="
+                    <!-- riwayat permohonan -->
+                    <a href="?page=riwayat_permohonan" class="
                 block
                 px-4
                 py-2
                 rounded-lg
 
-                <?= $page === 'jadwal_lab'
+                <?= $page === 'riwayat_permohonan'
                     ? 'bg-[#FF925C] text-white'
                     : 'hover:bg-gray-100' ?>
             ">
 
-                        Jadwal Lab
-
-                    </a>
-
-                    <!-- riwayat reservasi -->
-                    <a href="index.php?page=riwayat_reservasi" class="
-                block
-                px-4
-                py-2
-                rounded-lg
-
-                <?= $page === 'riwayat_reservasi'
-                    ? 'bg-[#FF925C] text-white'
-                    : 'hover:bg-gray-100' ?>
-            ">
-
-                        Riwayat Reservasi
+                        Riwayat Permohonan
 
                     </a>
 
                 </div>
 
             </li>
+            <!-- reservasi hari ini -->
+            <li>
+                <a href="?page=reservasi_hari_ini" class="<?= $page === 'reservasi_hari_ini'
+                    ? 'text-[#FF925C] font-medium'
+                    : 'hover:text-[#FF925C]' ?>">
+
+                    Reservasi Hari Ini
+
+                </a>
+            </li>
+            <!-- manajemen operasional -->
+            <li>
+                <a href="?page=manajemen_operasional" class="<?= $page === 'manajemen_operasional'
+                    ? 'text-[#FF925C] font-medium'
+                    : 'hover:text-[#FF925C]' ?>">
+
+                    Manajemen Operasional
+                </a>
+            </li>
+
+
 
             <!-- Mobile Button -->
             <li class="w-full lg:hidden">
@@ -273,7 +258,7 @@ if (isset($_SESSION['is_login'])) {
         ">
 
                             <!-- ubah profile -->
-                            <a href="index.php?page=ubah_profile" class="
+                            <a href="?page=ubah_profile" class="
                 block
                 px-4
                 py-2
@@ -289,7 +274,7 @@ if (isset($_SESSION['is_login'])) {
                             </a>
 
                             <!-- Ubah Password -->
-                            <a href="index.php?page=ubah_password" class="
+                            <a href="?page=ubah_password" class="
                 block
                 px-4
                 py-2
@@ -305,7 +290,7 @@ if (isset($_SESSION['is_login'])) {
                             </a>
                             <div class="flex items-center text-black hover:text-red-500 hover:bg-gray-100 cursor-pointer">
                                 <!-- Logout -->
-                                <a href="index.php?page=logout" class="
+                                <a href="?page=logout" class="
                 block
                 px-4
                 py-2
@@ -323,14 +308,14 @@ if (isset($_SESSION['is_login'])) {
 
                         <div class="flex flex-col gap-3 mt-2">
 
-                            <a href="index.php?page=login"
+                            <a href="?page=login"
                                 class="bg-[#FF925C] text-base md:text-lg px-5 py-2 md:py-3 text-white rounded-full text-center hover:opacity-80 transition duration-300">
 
                                 Masuk
 
                             </a>
 
-                            <a href="index.php?page=register"
+                            <a href="?page=register"
                                 class="bg-white border border-[#FF925C] hover:bg-[#FF925C] hover:text-white transition duration-300 text-base md:text-lg px-5 py-2 md:py-3 text-black rounded-full text-center">
 
                                 Daftar
@@ -356,8 +341,8 @@ if (isset($_SESSION['is_login'])) {
                     <button data-target="#profile"
                         class="dropdownButton flex items-center justify-between w-full lg:w-auto gap-2 cursor-pointer">
                         <img src="<?= !empty($user['foto_profile'])
-                            ? $user['foto_profile']
-                            : 'assets/images/profile-default.png'; ?>"
+                            ? '../' . $user['foto_profile']
+                            : '../assets/images/profile-default.png'; ?>"
                             class="w-12 h-12 rounded-full border border-gray-300 hover:opacity-80 transition">
                     </button>
 
@@ -384,7 +369,7 @@ if (isset($_SESSION['is_login'])) {
         ">
 
                         <!-- ubah profile -->
-                        <a href="index.php?page=ubah_profile" class="
+                        <a href="?page=ubah_profile" class="
                 block
                 px-4
                 py-2
@@ -400,7 +385,7 @@ if (isset($_SESSION['is_login'])) {
                         </a>
 
                         <!-- Ubah Password -->
-                        <a href="index.php?page=ubah_password" class="
+                        <a href="?page=ubah_password" class="
                 block
                 px-4
                 py-2
@@ -416,7 +401,7 @@ if (isset($_SESSION['is_login'])) {
                         </a>
                         <div class="flex items-center text-black hover:text-red-500 hover:bg-gray-100 cursor-pointer">
                             <!-- Logout -->
-                            <a href="index.php?page=logout" class="
+                            <a href="?page=logout" class="
                 block
                 px-4
                 py-2
@@ -432,14 +417,14 @@ if (isset($_SESSION['is_login'])) {
 
                 <?php else: ?>
 
-                    <a href="index.php?page=login"
+                    <a href="?page=login"
                         class="bg-[#FF925C] text-base px-5 py-3 text-white rounded-3xl text-center hover:opacity-80 transition duration-300">
 
                         Masuk
 
                     </a>
 
-                    <a href="index.php?page=register"
+                    <a href="?page=register"
                         class="bg-white border border-[#FF925C] hover:bg-[#FF925C] hover:text-white transition duration-300 text-base px-5 py-3 text-black rounded-3xl text-center">
 
                         Daftar

@@ -9,12 +9,4 @@ setcookie(
     time() - 3600,
     "/"
 );
-
-echo "
-<script>
-
-    window.location.href =
-    'index.php?page=beranda';
-
-</script>
-";
+header("Location: index.php?page=beranda");

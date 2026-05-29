@@ -1,34 +1,52 @@
 <?php
 $page = 'ubah_profile';
 
-include __DIR__ . "/../config/config.php";
+include __DIR__ . "/../../config/config.php";
 
 $error = "";
 
 // ambil data
-$stmt = mysqli_prepare(
-    $conn,
-    "SELECT users.*, program_studi.nama_prodi
-    FROM users
+$userId =
+    $_SESSION['user_id'];
 
-    LEFT JOIN program_studi
-    ON users.program_studi_id =
-    program_studi.id
+$upload_dir = __DIR__ . '/../../assets/images/uploads/profile/';
 
-    WHERE users.id = ?"
-);
+$stmt =
+    mysqli_prepare(
+
+        $conn,
+
+        "SELECT
+
+            nama,
+            email,
+            foto_profile
+
+        FROM users
+
+        WHERE id = ?"
+
+    );
 
 mysqli_stmt_bind_param(
     $stmt,
     "i",
-    $_SESSION['user_id']
+    $userId
 );
 
-mysqli_stmt_execute($stmt);
+mysqli_stmt_execute(
+    $stmt
+);
 
-$result = mysqli_stmt_get_result($stmt);
+$result =
+    mysqli_stmt_get_result(
+        $stmt
+    );
 
-$user = mysqli_fetch_assoc($result);
+$user =
+    mysqli_fetch_assoc(
+        $result
+    );
 
 // Hapus Foto
 
@@ -55,7 +73,7 @@ if (isset($_POST['hapus_foto'])) {
     mysqli_stmt_bind_param(
         $stmt,
         "i",
-        $user['id']
+        $userId
     );
 
     $query = mysqli_stmt_execute($stmt);
@@ -64,7 +82,7 @@ if (isset($_POST['hapus_foto'])) {
 
         unset($_SESSION['foto_profile']);
         $user['foto_profile'] = null;
-        header("Location: index.php?page=ubah_profile");
+        header("Location: ?page=ubah_profile");
 
         exit;
 
@@ -134,13 +152,11 @@ if (isset($_POST['upload_foto'])) {
 
             // folder uploads
             if (
-                !file_exists(
-                    "assets/images/uploads/profile"
-                )
+                !file_exists($upload_dir)
             ) {
 
                 mkdir(
-                    "assets/images/uploads/profile",
+                    $upload_dir,
                     0777,
                     true
                 );
@@ -167,10 +183,9 @@ if (isset($_POST['upload_foto'])) {
                 $extension;
 
             // path foto
-            $upload_path =
+            $upload_path = $upload_dir . $new_name;
+            $db_path = "assets/images/uploads/profile/" . $new_name;
 
-                "assets/images/uploads/profile/" .
-                $new_name;
 
             // upload
             if (
@@ -193,8 +208,8 @@ if (isset($_POST['upload_foto'])) {
                 mysqli_stmt_bind_param(
                     $stmt,
                     "si",
-                    $upload_path,
-                    $user['id']
+                    $db_path,
+                    $userId
                 );
 
                 $query =
@@ -203,9 +218,9 @@ if (isset($_POST['upload_foto'])) {
                 if ($query) {
 
                     $_SESSION['foto_profile'] =
-                        $upload_path;
+                        $db_path;
 
-                    header("Location: index.php?page=ubah_profile");
+                    header("Location: ?page=ubah_profile");
 
                     exit;
 
@@ -249,8 +264,8 @@ if (isset($_POST['upload_foto'])) {
 
                     <!-- image -->
                     <img id="previewImage" src="<?= !empty($user['foto_profile'])
-                        ? $user['foto_profile']
-                        : 'assets/images/profile-default.png'; ?>" alt="Profile"
+                        ? '../' . $user['foto_profile']
+                        : '../assets/images/profile-default.png'; ?>" alt="Profile"
                         class="w-70 h-70 lg:h-91.25 lg:w-91.25 rounded-full object-cover border border-gray-300 hover:opacity-80 transition">
                     <button type="button" id="uploadButton"
                         class="bg-[#FF925C] text-white font-medium px-5 py-3 rounded-full hover:opacity-70 transition text-base sm:text-xl lg:text-2xl shadow-xl cursor-pointer">
@@ -313,45 +328,6 @@ if (isset($_POST['upload_foto'])) {
                 </div>
 
                 <div class="flex flex-col gap-2">
-
-                    <label class="text-2xl font-medium">
-
-                        NPM / NIP
-
-                    </label>
-
-                    <input type="text" value="<?= $user['npm']; ?>" readonly
-                        class="w-full border-2 border-gray-400 rounded-2xl px-5 py-3.5 bg-white shadow-md shadow-[#AFB1B6] outline-none">
-
-                </div>
-
-                <div class="flex flex-col gap-2">
-
-                    <label class="text-2xl font-medium">
-
-                        Status
-
-                    </label>
-
-                    <input type="text" value="<?= ucfirst($user['status']); ?>" readonly
-                        class="w-full border-2 border-gray-400 rounded-2xl px-5 py-3.5 bg-white shadow-md shadow-[#AFB1B6] outline-none">
-
-                </div>
-
-                <div class="flex flex-col gap-2">
-
-                    <label class="text-2xl font-medium">
-
-                        Program Studi
-
-                    </label>
-
-                    <input type="text" value="<?= $user['nama_prodi']; ?>" readonly
-                        class="w-full border-2 border-gray-400 rounded-2xl px-5 py-3.5 bg-white shadow-md shadow-[#AFB1B6] outline-none">
-
-                </div>
-
-                <div class="flex flex-col gap-2 md:col-span-2">
 
                     <label class="text-2xl font-medium">
 

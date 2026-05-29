@@ -3,8 +3,6 @@ $page = 'ubah_password';
 
 include __DIR__ . "/../config/config.php";
 
-include __DIR__ . "/../middleware/auth.php";
-
 $error = "";
 $success = "";
 
@@ -115,15 +113,15 @@ if (isset($_POST['ubah_password'])) {
 
             $success =
                 "Password berhasil diubah";
-            echo "
-<script>
+            if ($_SESSION['role'] === 'admin') {
 
-    window.location.href =
-    'index.php?page=beranda';
+                header("Location: ?page=dashboard");
 
-</script>
-";
+            } else {
 
+                header("Location: index.php?page=beranda");
+
+            }
             exit;
 
         } else {

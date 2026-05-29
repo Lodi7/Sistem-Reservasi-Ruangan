@@ -164,14 +164,7 @@ if (isset($_POST['kirim'])) {
                 // kirim email
                 $mail->send();
 
-                echo "
-<script>
-
-    window.location.href =
-    'index.php?page=verifikasi_otp&token=$token';
-
-</script>
-";
+                header("Location: index.php?page=verifikasi_otp&token=$token");
 
                 exit;
 

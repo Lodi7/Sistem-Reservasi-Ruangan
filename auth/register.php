@@ -154,14 +154,7 @@ if (isset($_POST['register'])) {
 
             if ($query) {
 
-                echo "
-<script>
-
-    window.location.href =
-    'index.php?page=login';
-
-</script>
-";
+                header("Location: index.php?page=login");
 
                 exit;
 

@@ -1,10 +1,15 @@
 <?php
 
-include __DIR__ . "/auth.php";
+if (!isset($_SESSION['is_login'])) {
 
-if ($_SESSION['role'] != 'admin') {
+    header("Location: ../index.php?page=login");
+    exit;
 
-    include __DIR__ . "/../pages/404.php";
+}
+
+if ($_SESSION['role'] !== 'admin') {
+
+    include __DIR__ . '/../pages/404.php';
     exit;
 
 }

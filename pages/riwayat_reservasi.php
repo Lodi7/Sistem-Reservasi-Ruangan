@@ -5,10 +5,6 @@ $page = 'riwayat_reservasi';
 include __DIR__ .
     '/../config/config.php';
 
-include __DIR__ .
-    '/../middleware/auth.php';
-
-
 //page    
 $limit = 10;
 
@@ -310,11 +306,11 @@ $result =
         <!-- tabel -->
         <div class="
             border
-            border-gray-300
+        border-gray-300
             rounded-[10px]
             overflow-hidden
             bg-white
-            shadow-md
+            md:shadow-md
             w-full
         ">
 
@@ -477,6 +473,7 @@ $result =
                                     items-center
                                     justify-center
                                     text-center
+                                    whitespace-nowrap
                                 ">
 
                                     <?= substr(
@@ -502,12 +499,16 @@ $result =
                                     px-4
                                     border-r
                                     border-gray-300
+                                    flex
+                                    justify-center
+                                    items-center
                                 ">
 
                                     <div class="
                                         flex
                                         justify-center
                                         items-center
+                                        w-full
                                     ">
 
                                         <span class="
@@ -533,6 +534,9 @@ $result =
                                 <div class="
                                     py-6
                                     px-4
+                                    flex
+                                    justify-center
+                                    items-center
                                 ">
 
                                     <div class="
@@ -575,7 +579,7 @@ $result =
                                                    5
                                                ) ?>
 
-    -
+-
 
     <?= substr(
                         $item['jam_selesai'],
@@ -619,7 +623,10 @@ $result =
 
                                             </button>
 
-                                        <?php else: ?>
+                                        <?php elseif (
+                                            $item['status']
+                                            == 'Dibatalkan'
+                                        ): ?>
 
                                             <span class="
                                                 px-6
@@ -634,7 +641,7 @@ $result =
                                                 Dibatalkan
 
                                             </span>
-
+                                        <?php else: ?>
                                         <?php endif; ?>
 
                                     </div>
@@ -894,7 +901,10 @@ $result =
 
                                         </button>
 
-                                    <?php else: ?>
+                                    <?php elseif (
+                                        $item['status']
+                                        == 'Dibatalkan'
+                                    ): ?>
 
                                         <span class="
                                             px-5
@@ -910,7 +920,7 @@ $result =
                                             Dibatalkan
 
                                         </span>
-
+                                    <?php else: ?>
                                     <?php endif; ?>
 
                                 </div>

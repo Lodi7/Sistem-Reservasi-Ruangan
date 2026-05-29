@@ -1,13 +1,23 @@
 <?php
 
+ob_start();
+
 session_start();
 
 $page = $_GET['page'] ?? 'beranda';
 
-
-$hideLayoutNavbar = [
-
+$protectedPages = [
+    'ajukan_reservasi',
+    'riwayat_reservasi',
+    'ubah_profile',
+    'ubah_password'
 ];
+
+if (in_array($page, $protectedPages)) {
+
+    include 'middleware/auth.php';
+
+}
 
 $hideLayoutFooter = [
     'login',
@@ -21,13 +31,8 @@ $hideLayoutFooter = [
 ];
 
 include 'layouts/header.php';
+include 'components/navbar.php';
 
-
-if (!in_array($page, $hideLayoutNavbar)) {
-
-    include 'components/navbar.php';
-
-}
 
 switch ($page) {
 
@@ -95,6 +100,9 @@ switch ($page) {
         include 'pages/404.php';
         break;
 }
+
+
+
 if (!in_array($page, $hideLayoutFooter)) {
 
     include 'components/footer.php';

@@ -24,13 +24,13 @@
 <script src="assets/js/jadwalLab.js"></script>
 <script src="assets/js/ajukanReservasi.js"></script>
 <script src="assets/js/riwayat.js"></script>
-<script src="../assets/js/navbar.js"></script>
-<script src="../assets/js/hero.js"></script>
-<script src="../assets/js/button.js"></script>
-<script src="../assets/js/previewProfile.js"></script>
-<script src="../assets/js/hapusFoto.js"></script>
-<script src="../assets/js/cardLabsHero.js"></script>
-<script src="../assets/js/statusLabHero.js"></script>
+<script src="assets/js/navbar.js"></script>
+<script src="assets/js/hero.js"></script>
+<script src="assets/js/button.js"></script>
+<script src="assets/js/previewProfile.js"></script>
+<script src="assets/js/hapusFoto.js"></script>
+<script src="assets/js/cardLabsHero.js"></script>
+<script src="assets/js/statusLabHero.js"></script>
 </body>
 
 </html>
