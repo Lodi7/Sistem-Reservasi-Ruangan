@@ -3,7 +3,7 @@
     <div class="hero-slide absolute inset-0 opacity-100 transition-opacity duration-1000 ease-in-out max-h-123.5 mt-18">
 
         <!-- Background -->
-        <img src="/assets/images/Lab/Lab-Solusi.png" alt="background"
+        <img src="assets/images/Lab/Lab-Solusi.png" alt="background"
             class="absolute inset-0 w-full h-full object-cover -z-10">
 
         <!-- Overlay -->
@@ -38,21 +38,6 @@
                     Sistem reservasi laboratorium komputer yang cepat,
                     praktis, dan terorganisir.
                 </p>
-                <!-- 
-                <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-
-                    <a href="#"
-                        class="bg-[#F88B4A] hover:bg-[#e77d3f] transition px-6 py-3 rounded-full text-sm md:text-base font-medium">
-                        Reservasi Sekarang
-                    </a>
-
-                    <a href="#"
-                        class="border border-white hover:bg-white hover:text-black transition px-6 py-3 rounded-full text-sm md:text-base font-medium">
-                        Lihat Laboratorium
-                    </a>
-
-                </div> -->
-
             </div>
 
         </div>
@@ -63,7 +48,7 @@
     <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out max-h-123.5 mt-18">
 
         <!-- Background -->
-        <img src="/assets/images/Lab/Lab-Sain-Data.png" alt="background"
+        <img src="assets/images/Lab/Lab-Sain-Data.png" alt="background"
             class="absolute inset-0 w-full h-full object-cover -z-10">
 
         <!-- Overlay -->
@@ -98,21 +83,6 @@
                     Pantau penggunaan laboratorium dan pengajuan
                     reservasi dalam satu sistem modern.
                 </p>
-                <!-- 
-                <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-
-                    <a href="#"
-                        class="bg-[#F88B4A] hover:bg-[#e77d3f] transition px-6 py-3 rounded-full text-sm md:text-base font-medium">
-                        Lihat Jadwal
-                    </a>
-
-                    <a href="#"
-                        class="border border-white hover:bg-white hover:text-black transition px-6 py-3 rounded-full text-sm md:text-base font-medium">
-                        Informasi Lab
-                    </a>
-
-                </div> -->
-
             </div>
 
         </div>

@@ -223,14 +223,19 @@ if (
 
     );
 
-    mysqli_stmt_execute(
-        $stmtTambah
-    );
+    if (mysqli_stmt_execute($stmtTambah)) {
 
-    header(
-        'Location: ?page=manajemen_operasional'
-    );
+        $_SESSION['success'] =
+            'Lab berhasil ditambahkan';
 
+    } else {
+
+        $_SESSION['error'] =
+            'Gagal menambahkan lab: ' .
+            mysqli_stmt_error($stmtTambah);
+    }
+
+    header('Location: ?page=manajemen_operasional');
     exit;
 
 }
@@ -488,16 +493,20 @@ if (isset($_POST['edit_lab'])) {
 
     );
 
-    mysqli_stmt_execute(
-        $stmtUpdate
-    );
+    if (mysqli_stmt_execute($stmtUpdate)) {
 
-    header(
-        "Location: ?page=manajemen_operasional"
-    );
+        $_SESSION['success'] =
+            'Lab berhasil diperbarui';
 
+    } else {
+
+        $_SESSION['error'] =
+            'Gagal memperbarui lab: ' .
+            mysqli_stmt_error($stmtUpdate);
+    }
+
+    header('Location: ?page=manajemen_operasional');
     exit;
-
 }
 
 if (isset($_POST['hapus_lab'])) {
@@ -767,6 +776,41 @@ $resultLabs =
 ?>
 
 <section class="mt-20 px-5 sm:px-15 lg:px-25 min-h-screen py-10">
+    <?php if (isset($_SESSION['success'])): ?>
+
+        <div class="
+        mb-5
+        bg-green-100
+        text-green-700
+        border
+        border-green-300
+        p-4
+        rounded-xl
+    ">
+            <?= htmlspecialchars($_SESSION['success']) ?>
+        </div>
+
+        <?php unset($_SESSION['success']); ?>
+
+    <?php endif; ?>
+
+    <?php if (isset($_SESSION['error'])): ?>
+
+        <div class="
+        mb-5
+        bg-red-100
+        text-red-700
+        border
+        border-red-300
+        p-4
+        rounded-xl
+    ">
+            <?= htmlspecialchars($_SESSION['error']) ?>
+        </div>
+
+        <?php unset($_SESSION['error']); ?>
+
+    <?php endif; ?>
     <div class="
         flex
         flex-col

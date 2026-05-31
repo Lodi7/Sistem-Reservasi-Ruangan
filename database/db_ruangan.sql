@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 31, 2026 at 02:49 PM
+-- Generation Time: May 31, 2026 at 04:40 PM
 -- Server version: 8.0.40
 -- PHP Version: 8.4.20
 
@@ -444,6 +444,13 @@ CREATE TABLE `jadwal_nonaktif` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `jadwal_nonaktif`
+--
+
+INSERT INTO `jadwal_nonaktif` (`id`, `lab_id`, `tanggal`, `keterangan`, `created_at`) VALUES
+(1, 1, '2026-06-03', 'Digunakan untuk rapat ASSIN', '2026-05-31 15:38:10');
+
 -- --------------------------------------------------------
 
 --
@@ -479,7 +486,7 @@ INSERT INTO `labs` (`id`, `nama_lab`, `kode_lab`, `kategori`, `lokasi`, `luas`, 
 (4, 'Lab Rekayasa dan Bisnis Digital', 'RBD', 'Lab FASILKOM', 'Gedung FIK II, Lantai 3 UPNVJT', 65, 32, '2 Wi-Fi, 32 Komputer, 2 AC,  1 Proyektor, 2 Speaker', 'Laboratorium Rekayasa dan Bisnis Digital memiliki kapasitas hingga 32 orang dengan luas ruangan sebesar 65 m². Dilengkapi fasilitas komputer, koneksi internet, AC, proyektor, dan speaker untuk mendukung kegiatan pembelajaran, praktikum, serta pengembangan bisnis digital mahasiswa. Lab ini berlokasi di Gedung FIK II, Lantai 3 dan beroperasi mulai pukul 07.00–15.30 WIB.', 'assets/images/uploads/labs/Rekayasa-Data-dan-Bisnis-Digital.png', '07:00:00', '15:30:00', 'Tersedia', '2026-05-25 18:37:30', 'lab-rekayasa-dan-bisnis-digital'),
 (5, 'Lab MSI', 'MSI', 'Lab FASILKOM', 'Gedung FIK II, Lantai 2 UPNVJT', 55, 28, '2 WiFi, 28 Komputer, AC,  1 Proyektor', 'Laboratorium MSI memiliki kapasitas hingga 28 orang dengan luas ruangan sebesar 55 m². Laboratorium ini digunakan untuk menunjang kegiatan praktikum sistem informasi dan analisis data mahasiswa. Dilengkapi fasilitas komputer, Wi-Fi, AC, dan proyektor untuk mendukung kegiatan akademik secara optimal. Lab ini berlokasi di Gedung FIK II, Lantai 2 dan beroperasi mulai pukul 07.00–15.30 WIB.', 'assets/images/uploads/labs/Lab-MSI.png', '07:00:00', '15:30:00', 'Tersedia', '2026-05-25 18:37:30', 'lab-msi'),
 (6, 'Lab Sains Data', 'LSD', 'Lab FASILKOM', 'Gedung FIK II, Lantai 2 UPNVJT', 70, 35, '3 Wi-Fi, 35 Komputer,2 AC, 2 Proyektor, 1 Smart TV', 'Laboratorium Sains Data memiliki kapasitas hingga 35 orang dengan luas ruangan sebesar 70 m². Laboratorium ini difokuskan untuk kegiatan pembelajaran data science, machine learning, dan analisis data mahasiswa. Dilengkapi fasilitas komputer, internet, AC, proyektor, dan Smart TV untuk menunjang kegiatan akademik dan workshop teknologi. Lab ini berlokasi di Gedung FIK II, Lantai 1 dan beroperasi mulai pukul 07.00–15.30 WIB.', 'assets/images/uploads/labs/Lab-Sain-Data.png', '07:00:00', '15:30:00', 'Non-aktif', '2026-05-25 18:37:30', 'lab-sains-data'),
-(8, 'Lab INSYIDE', 'INSYIDE', '', 'Gedung FIK II, Lantai 2 UPNVJT', 40, 25, '2 Wi-Fi, 25 Komputer,2 AC, 1 Proyektor, 1 Smart TV', 'Laboratorium PPSTI memiliki kapasitas hingga 25 orang dengan luas ruangan sebesar 40 m². Dilengkapi fasilitas seperti komputer, koneksi Wi-Fi, AC, serta lingkungan laboratorium yang nyaman untuk mendukung kegiatan pembelajaran, praktikum, maupun workshop akademik. Lab ini berlokasi di Gedung FIK II, Lantai 2 dan beroperasi mulai pukul 07.00–15.30 WIB.', 'assets/images/uploads/labs/Lab-INSYDE.png', '07:00:00', '15:30:00', 'Tersedia', '2026-05-31 11:27:07', 'lab-insyide');
+(8, 'Lab INSYIDE', 'INSYIDE', 'Lab Fasilkom', 'Gedung FIK II, Lantai 2 UPNVJT', 40, 25, '2 Wi-Fi, 25 Komputer,2 AC, 1 Proyektor, 1 Smart TV', 'Laboratorium PPSTI memiliki kapasitas hingga 25 orang dengan luas ruangan sebesar 40 m². Dilengkapi fasilitas seperti komputer, koneksi Wi-Fi, AC, serta lingkungan laboratorium yang nyaman untuk mendukung kegiatan pembelajaran, praktikum, maupun workshop akademik. Lab ini berlokasi di Gedung FIK II, Lantai 2 dan beroperasi mulai pukul 07.00–15.30 WIB.', 'assets/images/uploads/labs/Lab-INSYDE.png', '07:00:00', '15:30:00', 'Tersedia', '2026-05-31 11:27:07', 'lab-insyide');
 
 -- --------------------------------------------------------
 
@@ -566,7 +573,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `nama`, `email`, `password`, `foto_profile`, `role`, `status`, `npm`, `program_studi_id`, `created_at`, `reset_otp`, `reset_otp_expired`, `reset_token`) VALUES
 (1, 'Lodi Galang Putra Sugianto', '24081010193@student.upnjatim.ac.id', '$2y$12$tM7oaYXrhP370XqqPb0.OOCx518GUjIHWhiBPUOeGiXUpgaXSVsji', NULL, 'user', 'mahasiswa', '24081010193', 1, '2026-05-24 08:13:41', NULL, NULL, NULL),
-(2, 'Admin', 'labhubupn@gmail.com', '$2y$12$LD2RgF3Eyn/7AU7rPVTYFu523bJ52F.yGbuS.BOj0tEWbcmtgrqM.', NULL, 'admin', 'dosen', NULL, NULL, '2026-05-28 16:12:19', NULL, NULL, NULL);
+(2, 'Admin', 'labhubupn@gmail.com', '$2y$12$jfKHsOgHvgk628lAxJ708ebyaFyKDkLXTpIrAEs6dFx.DPsUiRcja', NULL, 'admin', 'dosen', NULL, NULL, '2026-05-28 16:12:19', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -633,7 +640,7 @@ ALTER TABLE `jadwal`
 -- AUTO_INCREMENT for table `jadwal_nonaktif`
 --
 ALTER TABLE `jadwal_nonaktif`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `labs`

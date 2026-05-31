@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 include __DIR__ . "/../config/config.php";
 
 $query = mysqli_query(

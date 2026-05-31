@@ -364,7 +364,7 @@
                     <button type="submit" name="edit_lab" class="
             flex-1
 
-            bg-[#FDD3D0]
+            bg-[#FFD8E4]
 
             text-[#444444]
 
@@ -390,7 +390,7 @@
 
             border
 
-            border-[#FDD3D0]
+            border-[#FFD8E4]
 
             text-[#444444]
 

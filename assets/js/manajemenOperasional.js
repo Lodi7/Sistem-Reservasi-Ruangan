@@ -37,6 +37,7 @@ if (modalEditLab) {
                 const editLuas = document.getElementById('edit_luas');
                 const editLokasi = document.getElementById('edit_lokasi');
                 const editStatusValue = document.getElementById('editStatusValue');
+                const editKategori = document.getElementById('edit_kategori');                
                 const editStatusLabel = document.getElementById('editStatusLabel');
                 const editFasilitas = document.getElementById('edit_fasilitas');
                 const editDeskripsi = document.getElementById('edit_deskripsi');
@@ -51,6 +52,7 @@ if (modalEditLab) {
                     !editLuas ||
                     !editLokasi ||
                     !editStatusValue ||
+                    !editKategori ||
                     !editStatusLabel ||
                     !editFasilitas ||
                     !editDeskripsi ||
@@ -65,6 +67,7 @@ if (modalEditLab) {
                 editKapasitas.value = btn.dataset.kapasitas || '';
                 editLuas.value = btn.dataset.luas || '';
                 editLokasi.value = btn.dataset.lokasi || '';
+                editKategori.value = btn.dataset.kategori || '';                
 
                 const status = btn.dataset.status || '';
 
@@ -186,6 +189,19 @@ if (
     editStatusTrigger.addEventListener('click', () => {
         editStatusDropdown.classList.toggle('hidden');
     });
+
+document.addEventListener('click', (e) => {
+
+    if (
+        !editStatusTrigger.contains(e.target) &&
+        !editStatusDropdown.contains(e.target)
+    ) {
+
+        editStatusDropdown.classList.add('hidden');
+
+    }
+
+});    
 
     document
         .querySelectorAll('#editStatusDropdown .status-option')
