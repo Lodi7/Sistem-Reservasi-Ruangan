@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 31, 2026 at 02:05 PM
+-- Generation Time: May 31, 2026 at 02:49 PM
 -- Server version: 8.0.40
 -- PHP Version: 8.4.20
 
@@ -521,21 +521,22 @@ CREATE TABLE `reservasi` (
   `berkas` varchar(255) DEFAULT NULL,
   `status` enum('Pending','Disetujui','Ditolak','Dibatalkan','Belum Ambil Kunci','Sedang Berlangsung','Selesai','Tidak Hadir') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Pending',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `alasan_pembatalan` text
+  `alasan_pembatalan` text,
+  `email_h1_dikirim` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `reservasi`
 --
 
-INSERT INTO `reservasi` (`id`, `user_id`, `jadwal_id`, `kode_reservasi`, `dosen_penanggung_jawab`, `kontak`, `keperluan`, `berkas`, `status`, `created_at`, `alasan_pembatalan`) VALUES
-(2, 1, 29, 'F80E74', 'assxasdxc', '021546896532', 'ascasxas', NULL, 'Dibatalkan', '2026-05-27 14:55:22', 'kepo'),
-(3, 1, 181, 'MSI-3', 'asasasa', '021546896532', 'asdfgh', NULL, 'Ditolak', '2026-05-27 15:38:04', NULL),
-(5, 1, 187, 'MSI-5', 'asasasa', '021546896532', 'wesrdtfgvhbjn', NULL, 'Tidak Hadir', '2026-05-28 10:41:44', NULL),
-(6, 1, 146, 'RBD-6', 'dfghbj', '0851320520', 'aqwsexdcfgvhbjnkm', NULL, 'Tidak Hadir', '2026-05-28 15:41:47', NULL),
-(7, 1, 188, 'MSI-7', 'dfghbj', '0851320520', 'aesxdfcgvhbjnkm', NULL, 'Selesai', '2026-05-28 17:36:11', NULL),
-(8, 1, 190, 'MSI-8', 'dfghbj', '0851320520', 'asdxfcgvhbjnkm', '1780159786-6a1b152abcefe.pdf', 'Ditolak', '2026-05-30 16:49:46', NULL),
-(9, 1, 194, 'MSI-9', 'dfghbj', '0851320520', 'sdfcgvhbjnkml', '1780162379-6a1b1f4b64a27.docx', 'Selesai', '2026-05-30 17:32:59', NULL);
+INSERT INTO `reservasi` (`id`, `user_id`, `jadwal_id`, `kode_reservasi`, `dosen_penanggung_jawab`, `kontak`, `keperluan`, `berkas`, `status`, `created_at`, `alasan_pembatalan`, `email_h1_dikirim`) VALUES
+(2, 1, 29, 'F80E74', 'assxasdxc', '021546896532', 'ascasxas', NULL, 'Dibatalkan', '2026-05-27 14:55:22', 'kepo', NULL),
+(3, 1, 181, 'MSI-3', 'asasasa', '021546896532', 'asdfgh', NULL, 'Ditolak', '2026-05-27 15:38:04', NULL, NULL),
+(5, 1, 187, 'MSI-5', 'asasasa', '021546896532', 'wesrdtfgvhbjn', NULL, 'Tidak Hadir', '2026-05-28 10:41:44', NULL, NULL),
+(6, 1, 146, 'RBD-6', 'dfghbj', '0851320520', 'aqwsexdcfgvhbjnkm', NULL, 'Tidak Hadir', '2026-05-28 15:41:47', NULL, NULL),
+(7, 1, 188, 'MSI-7', 'dfghbj', '0851320520', 'aesxdfcgvhbjnkm', NULL, 'Selesai', '2026-05-28 17:36:11', NULL, NULL),
+(8, 1, 190, 'MSI-8', 'dfghbj', '0851320520', 'asdxfcgvhbjnkm', '1780159786-6a1b152abcefe.pdf', 'Ditolak', '2026-05-30 16:49:46', NULL, NULL),
+(9, 1, 194, 'MSI-9', 'dfghbj', '0851320520', 'sdfcgvhbjnkml', '1780162379-6a1b1f4b64a27.docx', 'Selesai', '2026-05-30 17:32:59', NULL, NULL);
 
 -- --------------------------------------------------------
 

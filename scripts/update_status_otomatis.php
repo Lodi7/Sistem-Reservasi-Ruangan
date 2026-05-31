@@ -122,6 +122,140 @@ mysqli_query(
 
 );
 
+// Disetujui -> Pengingat H-1
+$qPengingatH1 = mysqli_query(
+
+    $conn,
+
+    "SELECT
+
+        reservasi.id,
+
+        users.nama,
+        users.email,
+
+        reservasi.kode_reservasi,
+
+        labs.nama_lab,
+
+        jadwal.tanggal,
+        jadwal.jam_mulai,
+        jadwal.jam_selesai
+
+    FROM reservasi
+
+    JOIN users
+    ON reservasi.user_id = users.id
+
+    JOIN jadwal
+    ON reservasi.jadwal_id = jadwal.id
+
+    JOIN labs
+    ON jadwal.lab_id = labs.id
+
+    WHERE
+
+        reservasi.status = 'Disetujui'
+
+        AND
+
+        reservasi.email_h1_dikirim IS NULL
+
+        AND
+
+        jadwal.tanggal = DATE_ADD(CURDATE(), INTERVAL 1 DAY)"
+
+);
+
+while (
+
+    $row =
+    mysqli_fetch_assoc(
+        $qPengingatH1
+    )
+
+) {
+
+    $isiEmail = "
+
+        <h2>Pengingat Reservasi</h2>
+
+        <p>
+            Halo {$row['nama']},
+        </p>
+
+        <p>
+
+            Reservasi Anda dijadwalkan berlangsung besok.
+
+        </p>
+
+        <p>
+
+            <b>Lab:</b>
+            {$row['nama_lab']}
+
+            <br>
+
+            <b>Tanggal:</b>
+            {$row['tanggal']}
+
+            <br>
+
+            <b>Sesi:</b>
+            {$row['jam_mulai']}
+            -
+            {$row['jam_selesai']}
+
+            <br>
+
+            <b>Kode Reservasi:</b>
+            {$row['kode_reservasi']}
+
+        </p>
+
+        <p>
+
+            Mohon hadir tepat waktu dan melakukan pengambilan kunci beberapa menit sebelum sesi dimulai.
+
+        </p>
+
+        <p>
+            Terima kasih.
+        </p>
+
+    ";
+
+    $berhasil = kirimEmail(
+
+        $row['email'],
+
+        'Pengingat Reservasi Besok',
+
+        $isiEmail
+
+    );
+
+    if ($berhasil) {
+
+        $id = (int) $row['id'];
+
+        mysqli_query(
+
+            $conn,
+
+            "UPDATE reservasi
+
+            SET email_h1_dikirim = NOW()
+
+            WHERE id = $id"
+
+        );
+
+    }
+
+}
+
 // Disetujui -> Belum Ambil Kunci (Otomatis berubah Saat hari reservasi tiba)
 $qPengingat =
     mysqli_query(
