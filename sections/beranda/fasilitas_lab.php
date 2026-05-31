@@ -1,7 +1,7 @@
 <?php
 $data = [
     [
-        'gambar' => '/assets/images/Lab/Rekayasa-Data-dan-Bisnis-Digital.png',
+        'gambar' => '/assets/images/lab/Rekayasa-Data-dan-Bisnis-Digital.png',
         'title' => 'Ruang Laboratorium',
         'deskripsi' => 'Akses ke ruang laboratorium yang dilengkapi dengan infrastruktur jaringan modern dan meja kerja ergonomis.'
     ],
