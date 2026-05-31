@@ -3,6 +3,7 @@
 $page = 'kelola_permohonan';
 
 include __DIR__ . '/../../config/config.php';
+require_once __DIR__ . '/../../config/mailer.php';
 
 //page    
 $limit = 10;
@@ -31,6 +32,107 @@ if (
     $reservasi_id =
         (int) $_POST['reservasi_id'];
 
+    $stmtEmail =
+        mysqli_prepare(
+
+            $conn,
+
+            "SELECT
+
+            users.nama,
+            users.email,
+
+            labs.nama_lab,
+
+            jadwal.tanggal,
+            jadwal.jam_mulai,
+            jadwal.jam_selesai
+
+        FROM reservasi
+
+        JOIN users
+        ON reservasi.user_id = users.id
+
+        JOIN jadwal
+        ON reservasi.jadwal_id = jadwal.id
+
+        JOIN labs
+        ON jadwal.lab_id = labs.id
+
+        WHERE reservasi.id = ?"
+
+        );
+
+    mysqli_stmt_bind_param(
+        $stmtEmail,
+        "i",
+        $reservasi_id
+    );
+
+    mysqli_stmt_execute(
+        $stmtEmail
+    );
+
+    $data =
+        mysqli_fetch_assoc(
+            mysqli_stmt_get_result(
+                $stmtEmail
+            )
+        );
+
+    kirimEmail(
+
+        $data['email'],
+
+        'Reservasi Disetujui',
+
+        "
+
+    <h2>Reservasi Disetujui</h2>
+
+    <p>
+        Halo {$data['nama']},
+    </p>
+
+    <p>
+
+        Permohonan reservasi Anda telah disetujui.
+
+    </p>
+
+    <p>
+
+        <b>Lab:</b>
+        {$data['nama_lab']}
+
+        <br>
+
+        <b>Tanggal:</b>
+        " . date(
+            'd F Y',
+            strtotime(
+                $data['tanggal']
+            )
+        ) . "
+
+        <br>
+
+        <b>Sesi:</b>
+        {$data['jam_mulai']}
+        -
+        {$data['jam_selesai']}
+
+    </p>
+
+    <p>
+        Terima kasih.
+    </p>
+
+    "
+
+    );
+
+    // update status
     $stmtApprove =
         mysqli_prepare(
 
@@ -58,7 +160,7 @@ if (
         $stmtApprove
     );
 
-    header("Location: ?page=kelola_permohonan");
+    header("Location: ?page=kelola_permohonan&p=$pageNumber");
     exit;
 }
 
@@ -72,6 +174,94 @@ if (
     $reservasi_id =
         (int) $_POST['reservasi_id'];
 
+    $stmtEmail =
+        mysqli_prepare(
+
+            $conn,
+
+            "SELECT
+
+            users.nama,
+            users.email,
+
+            labs.nama_lab,
+
+            jadwal.tanggal,
+            jadwal.jam_mulai,
+            jadwal.jam_selesai
+
+        FROM reservasi
+
+        JOIN users
+        ON reservasi.user_id = users.id
+
+        JOIN jadwal
+        ON reservasi.jadwal_id = jadwal.id
+
+        JOIN labs
+        ON jadwal.lab_id = labs.id
+
+        WHERE reservasi.id = ?"
+
+        );
+
+    mysqli_stmt_bind_param(
+        $stmtEmail,
+        "i",
+        $reservasi_id
+    );
+
+    mysqli_stmt_execute(
+        $stmtEmail
+    );
+
+    $data =
+        mysqli_fetch_assoc(
+            mysqli_stmt_get_result(
+                $stmtEmail
+            )
+        );
+
+    kirimEmail(
+
+        $data['email'],
+
+        'Status Reservasi Anda',
+
+        "
+
+    <h2>Status Reservasi</h2>
+
+    <p>
+        Halo {$data['nama']},
+    </p>
+
+    <p>
+
+        Mohon maaf,
+
+        permohonan reservasi Anda untuk
+
+        <b>{$data['nama_lab']}</b>
+
+        belum dapat disetujui.
+
+    </p>
+
+    <p>
+
+        Silakan melakukan pengajuan kembali pada jadwal lain apabila diperlukan.
+
+    </p>
+
+    <p>
+        Terima kasih.
+    </p>
+
+    "
+
+    );
+    // update status
     $stmtReject =
         mysqli_prepare(
 
@@ -99,7 +289,7 @@ if (
         $stmtReject
     );
 
-    header("Location: ?page=kelola_permohonan");
+    header("Location: ?page=kelola_permohonan&p=$pageNumber");
     exit;
 }
 
@@ -195,7 +385,6 @@ $result =
 
 
 ?>
-
 
 <section class="mt-20 px-4 sm:px-6 lg:px-25 min-h-screen py-10">
 
@@ -458,7 +647,7 @@ $result =
                                         </form>
 
 
-                                        <a href="?page=detail_reservasi&id=<?= $item['id'] ?>" class="
+                                        <a href="?page=detail_reservasi&id=<?= $item['id'] ?>&from=<?= $page ?>" class="
                                                     w-8
                                                     h-8
                                                     lg:w-11
@@ -694,7 +883,7 @@ $result =
                                     </form>
 
 
-                                    <a href="?page=detail_reservasi&id=<?= $item['id'] ?>" class="
+                                    <a href="?page=detail_reservasi&id=<?= $item['id'] ?>&from=<?= $page ?>" class="
                                 w-8
                                 h-8
                                 rounded-full

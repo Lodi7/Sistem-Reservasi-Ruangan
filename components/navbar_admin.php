@@ -26,7 +26,14 @@ if (isset($_SESSION['is_login'])) {
 
     $user = mysqli_fetch_assoc($result);
 
-} ?>
+}
+$activePage = $page;
+
+if ($page === 'detail_reservasi' && isset($_GET['from'])) {
+    $activePage = $_GET['from'];
+}
+
+?>
 
 <nav class="bg-white border-b border-gray-400 fixed top-0 w-full h-18 z-50">
 
@@ -112,14 +119,14 @@ if (isset($_SESSION['is_login'])) {
 
                 </a>
             </li>
-            <!-- Dropdown -->
+
+            <!-- Dropdown Permohonan-->
             <li class="relative w-full lg:w-auto">
 
                 <button data-target="#permohonanMenu" class="dropdownButton flex items-center justify-between w-full lg:w-auto gap-2 cursor-pointer
-        <?= in_array($page, [
+        <?= in_array($activePage, [
             'kelola_permohonan',
-            'riwayat_permohonan',
-            'detail_reservasi'
+            'riwayat_permohonan'
         ])
             ? 'text-[#FF925C] font-medium'
             : 'hover:text-[#FF925C]' ?>">
@@ -134,7 +141,7 @@ if (isset($_SESSION['is_login'])) {
 
                 </button>
 
-                <!-- Dropdown Menu -->
+                <!-- Dropdown Menu Permohonan -->
                 <div id="permohonanMenu" class="
             hidden
             lg:absolute
@@ -163,7 +170,7 @@ if (isset($_SESSION['is_login'])) {
                 py-2
                 rounded-lg
 
-                <?= $page === 'kelola_permohonan' || $page === 'detail_reservasi'
+                <?= $activePage === 'kelola_permohonan'
                     ? 'bg-[#FF925C] text-white'
                     : 'hover:bg-gray-100' ?>
             ">
@@ -179,7 +186,7 @@ if (isset($_SESSION['is_login'])) {
                 py-2
                 rounded-lg
 
-                <?= $page === 'riwayat_permohonan'
+                <?= $activePage === 'riwayat_permohonan'
                     ? 'bg-[#FF925C] text-white'
                     : 'hover:bg-gray-100' ?>
             ">
@@ -191,15 +198,85 @@ if (isset($_SESSION['is_login'])) {
                 </div>
 
             </li>
-            <!-- reservasi hari ini -->
-            <li>
-                <a href="?page=reservasi_hari_ini" class="<?= $page === 'reservasi_hari_ini'
-                    ? 'text-[#FF925C] font-medium'
-                    : 'hover:text-[#FF925C]' ?>">
 
-                    Reservasi Hari Ini
 
-                </a>
+            <!-- Dropdown Reservasi-->
+            <li class="relative w-full lg:w-auto">
+
+                <button data-target="#reservasiMenu" class="dropdownButton flex items-center justify-between w-full lg:w-auto gap-2 cursor-pointer
+        <?= in_array($activePage, [
+            'reservasi_hari_ini',
+            'riwayat_reservasi'
+        ])
+            ? 'text-[#FF925C] font-medium'
+            : 'hover:text-[#FF925C]' ?>">
+
+                    Reservasi
+
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+
+                    </svg>
+
+                </button>
+
+                <!-- Dropdown Menu Permohonan -->
+                <div id="reservasiMenu" class="
+            hidden
+            lg:absolute
+            lg:top-10
+            lg:right-0
+
+            mt-3
+            lg:mt-0
+
+            bg-white
+            lg:shadow-lg
+            shadow-[0_0_20px_rgba(0,0,0,0.2)]
+            lg:border
+            lg:rounded-md
+
+            w-full
+            lg:w-52
+
+            p-2
+        ">
+
+                    <!-- reservasi hari ini -->
+                    <a href="?page=reservasi_hari_ini" class="
+                block
+                px-4
+                py-2
+                rounded-lg
+
+                <?= $activePage === 'reservasi_hari_ini'
+                    ? 'bg-[#FF925C] text-white'
+                    : 'hover:bg-gray-100' ?>
+            ">
+
+                        Reservasi Hari Ini
+
+                    </a>
+
+                    <!-- riwayat reservasi -->
+                    <a href="?page=riwayat_reservasi" class="
+                block
+                px-4
+                py-2
+                rounded-lg
+
+                <?= $activePage === 'riwayat_reservasi'
+                    ? 'bg-[#FF925C] text-white'
+                    : 'hover:bg-gray-100' ?>
+            ">
+
+                        Riwayat Reservasi
+
+                    </a>
+
+                </div>
+
             </li>
             <!-- manajemen operasional -->
             <li>

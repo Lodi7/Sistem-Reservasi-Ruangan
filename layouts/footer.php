@@ -20,6 +20,15 @@
         ) ?>;
 
 </script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 120,
+        easing: 'ease-out-cubic'
+    });
+</script>
 <script src="assets/js/utils/jadwalLabs.js"></script>
 <script src="assets/js/jadwalLab.js"></script>
 <script src="assets/js/ajukanReservasi.js"></script>

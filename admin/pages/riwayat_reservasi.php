@@ -1,5 +1,5 @@
 <?php
-$page = 'riwayat_permohonan';
+$page = 'riwayat_reservasi';
 
 include __DIR__ . '/../../config/config.php';
 
@@ -27,7 +27,9 @@ $stmtCount =
         $conn,
         "SELECT COUNT(*) as total
         FROM reservasi
-        WHERE NOT status = 'Pending'"
+        WHERE status = 'Selesai'
+        OR status = 'Tidak Hadir'
+        "
 
     );
 
@@ -81,7 +83,9 @@ $stmt =
         JOIN labs
         ON jadwal.lab_id = labs.id
 
-        WHERE NOT reservasi.status = 'Pending'
+        WHERE reservasi.status IN ( 
+        'Selesai',
+        'Tidak Hadir') 
 
         ORDER BY jadwal.tanggal DESC
 
@@ -131,7 +135,7 @@ $result =
                 xl:text-6xl
                 font-bold
             ">
-                Riwayat Permohonan
+                Riwayat Reservasi
             </h1>
 
         </div>
@@ -154,7 +158,9 @@ $result =
                 <!-- header -->
                 <div class="
                     grid
-                    grid-cols-7
+                    grid-cols-[repeat(4,minmax(0,1fr))_130px_120px_80px]                    
+                    lg:grid-cols-[repeat(4,minmax(0,1fr))_130px_120px_120px]
+                    xl:grid-cols-[repeat(4,minmax(0,1fr))_200px_120px_150px]
                     bg-[#FF925C]
                     text-white
                     font-semibold
@@ -241,7 +247,7 @@ $result =
 
                             if (
                                 $item['status']
-                                !== 'Ditolak' && $item['status'] !== 'Dibatalkan'
+                                == 'Selesai'
                             ) {
 
                                 $statusClass =
@@ -254,10 +260,12 @@ $result =
 
                             <div class="
                                 grid
-                                grid-cols-7
+                                grid-cols-[repeat(4,minmax(0,1fr))_130px_120px_80px]                                
+                                lg:grid-cols-[repeat(4,minmax(0,1fr))_130px_120px_120px]
+                                xl:grid-cols-[repeat(4,minmax(0,1fr))_200px_120px_150px]
                                 items-stretch
                             ">
-                                <!-- lab -->
+                                <!-- nama -->
                                 <div class="
                                     py-6
                                     px-4
@@ -355,9 +363,7 @@ $result =
                                 <!-- status -->
                                 <div class="
                                     py-6
-                                    px-1
-                                    lg:px-2
-                                    xl:px-4
+                                    px-4
                                     border-r
                                     border-gray-300
                                     flex
@@ -373,18 +379,16 @@ $result =
                                     ">
 
                                         <span class="
-                                            px-2
-                                            xl:px-4
+                                            px-4
                                             py-2
                                             rounded-full
                                             font-medium
                                             text-center
-                                            w-full
                                             whitespace-nowrap
                                             <?= $statusClass ?>
                                         ">
-                                            <?php if ($item['status'] !== 'Ditolak' && $item['status'] !== 'Dibatalkan'): ?>
-                                                Disetujui
+                                            <?php if ($item['status'] == 'Selesai'): ?>
+                                                <?= $item['status'] ?>
                                             <?php else: ?>             <?= $item['status'] ?>
                                             <?php endif; ?>
                                         </span>
@@ -405,12 +409,9 @@ $result =
                                                     text-center
                                                     break-all
                                                 ">
-                                    <?php if ($item['status'] !== 'Ditolak' && $item['status'] !== 'Dibatalkan'): ?>
-                                        <?= htmlspecialchars(
-                                            $item['kode_reservasi']
-                                        ) ?>
-                                    <?php else: ?> -
-                                    <?php endif; ?>
+                                    <?= htmlspecialchars(
+                                        $item['kode_reservasi']
+                                    ) ?>
                                 </div>
 
                                 <!-- aksi -->
@@ -443,6 +444,8 @@ $result =
                                     </a>
 
                                 </div>
+
+
                             </div>
 
                         <?php endwhile; ?>
@@ -458,7 +461,7 @@ $result =
                             text-lg
                         ">
 
-                            Belum ada riwayat permohonan.
+                            Belum ada riwayat reservasi.
 
                         </div>
 
@@ -499,9 +502,7 @@ $result =
 
                             if (
 
-                                $item['status'] !== 'Ditolak'
-                                &&
-                                $item['status'] !== 'Dibatalkan'
+                                $item['status'] == 'Selesai'
 
                             ) {
 
@@ -638,13 +639,11 @@ $result =
 
                                         <?php if (
 
-                                            $item['status'] !== 'Ditolak'
-                                            &&
-                                            $item['status'] !== 'Dibatalkan'
+                                            $item['status'] == 'Selesai'
 
                                         ): ?>
 
-                                            Disetujui
+                                            <?= $item['status'] ?>
 
                                         <?php else: ?>
 
@@ -730,7 +729,7 @@ $result =
             text-gray-500
         ">
 
-                        Belum ada riwayat permohonan.
+                        Belum ada riwayat reservasi.
 
                     </div>
 

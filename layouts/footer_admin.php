@@ -5,6 +5,8 @@
 <script src="../assets/js/navbar.js"></script>
 <script src="../assets/js/button.js"></script>
 <script src="../assets/js/previewProfile.js"></script>
+<script src="../assets/js/manajemenOperasional.js"></script>
+<script src="../assets/js/reservasiHariIni.js"></script>
 <script src="../assets/js/hapusFoto.js"></script>
 </body>
 

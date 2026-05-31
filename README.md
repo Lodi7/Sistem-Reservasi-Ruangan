@@ -6,16 +6,25 @@ Website reservasi Lab Komputer berbasis PHP Native dengan fitur autentikasi, OTP
 
 # Features
 
-- Login & Register
-- OTP Email Verification
-- Forgot Password
+## User Features
+
+- Registrasi Akun
+- Login & Logout
+- Lupa Password
+- Verifikasi OTP Email
 - Reset Password
-- Reservasi Lab Komputer
+- Reservasi Lab
 - Riwayat Reservasi
-- Cek Jadwal
-- Dashboard Admin
-- Responsive Design
-- Role User & Admin
+- Cek Status Reservasi
+- Lihat Jadwal Lab
+- Fitur Notifikasi 
+
+## Admin Features
+
+- Dashboard Statistik
+- Kelola Reservasi
+- Riwayat Reservasi
+- Manajemen Operasional Lab
 
 ---
 
@@ -33,7 +42,7 @@ Website reservasi Lab Komputer berbasis PHP Native dengan fitur autentikasi, OTP
 * Tailwind CSS
 * JavaScript
 * Flatpickr
-* GSAP
+* AOS
 * CropperJS
 * Lucide Icons
 

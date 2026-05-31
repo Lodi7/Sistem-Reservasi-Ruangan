@@ -57,7 +57,7 @@
 
         </div>
 
-        <a href="index.php?page=beranda" class="
+        <a href="index.php" class="
                 bg-[#FF925C]
                 text-white
                 px-10

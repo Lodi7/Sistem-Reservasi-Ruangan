@@ -1,8 +1,7 @@
 <?php
 
-$page = 'detail_reservasi';
-
 include __DIR__ . '/../../config/config.php';
+require_once __DIR__ . '/../../config/mailer.php';
 
 // cek ada id tidak
 if (
@@ -11,12 +10,38 @@ if (
 
 ) {
 
-    header('Location: ?page=kelola_permohonann');
+    header('Location: ?page=kelola_permohonan');
     exit;
 }
 
 $reservasiId =
     (int) $_GET['id'];
+$from =
+    $_GET['from']
+    ?? 'dashboard';
+
+$allowedPages = [
+    'dashboard',
+    'riwayat_reservasi',
+    'riwayat_permohonan',
+    'kelola_permohonan'
+
+];
+
+if (
+
+    !in_array(
+        $from,
+        $allowedPages
+    )
+
+) {
+
+    $from =
+        'dashboard';
+}
+
+$page = $from;
 
 // terima reservasi
 if (
@@ -24,6 +49,56 @@ if (
     isset($_POST['terima'])
 
 ) {
+
+    kirimEmail(
+
+        $data['email'],
+
+        'Reservasi Disetujui',
+
+        "
+
+    <h2>Reservasi Disetujui</h2>
+
+    <p>
+        Halo {$data['nama']},
+    </p>
+
+    <p>
+
+        Permohonan reservasi Anda telah disetujui.
+
+    </p>
+
+    <p>
+
+        <b>Lab:</b>
+        {$data['nama_lab']}
+
+        <br>
+
+        <b>Tanggal:</b>
+        " . date(
+            'd F Y',
+            strtotime(
+                $data['tanggal']
+            )
+        ) . "
+
+        <br>
+
+        <b>Sesi:</b>
+        {$data['sesi']}
+
+    </p>
+
+    <p>
+        Terima kasih.
+    </p>
+
+    "
+
+    );
 
     $stmtApprove =
         mysqli_prepare(
@@ -34,7 +109,8 @@ if (
 
             SET status = 'Disetujui'
 
-            WHERE id = ?"
+            WHERE id = ?
+            AND status = 'Pending'"
 
         );
 
@@ -55,12 +131,53 @@ if (
     header("Location: ?page=kelola_permohonan");
     exit;
 }
+
 // tolak reservasi
 if (
 
     isset($_POST['tolak'])
 
 ) {
+
+    kirimEmail(
+
+        $data['email'],
+
+        'Status Reservasi Anda',
+
+        "
+
+    <h2>Status Reservasi</h2>
+
+    <p>
+        Halo {$data['nama']},
+    </p>
+
+    <p>
+
+        Mohon maaf,
+
+        permohonan reservasi Anda untuk
+
+        <b>{$data['nama_lab']}</b>
+
+        belum dapat disetujui.
+
+    </p>
+
+    <p>
+
+        Silakan melakukan pengajuan kembali pada jadwal lain apabila diperlukan.
+
+    </p>
+
+    <p>
+        Terima kasih.
+    </p>
+
+    "
+
+    );
 
     $stmtReject =
         mysqli_prepare(
@@ -71,7 +188,8 @@ if (
 
             SET status = 'Ditolak'
 
-            WHERE id = ?"
+            WHERE id = ?
+            AND status = 'Pending'"
 
         );
 
@@ -107,8 +225,10 @@ $stmt =
             reservasi.keperluan,
             reservasi.berkas,
             reservasi.status,
+            reservasi.alasan_pembatalan,
 
             users.nama,
+            users.email,
 
             labs.nama_lab,
 
@@ -339,6 +459,7 @@ if (!$data) {
                 rounded-2xl
                 px-5
                 py-3
+                whitespace-nowrap
             ">
                 <?= htmlspecialchars(
                     $data['sesi']
@@ -367,7 +488,7 @@ if (!$data) {
 
     <div class="
         grid
-        md:grid-cols-2
+        lg:grid-cols-2
         gap-5
         mt-5
     ">
@@ -399,15 +520,15 @@ if (!$data) {
 
         </div>
 
+        <div class="grid md:grid-rows-2">
+            <!-- Berkas -->
+            <div>
 
-        <!-- Berkas -->
-        <div>
+                <label>
+                    Upload Berkas
+                </label>
 
-            <label>
-                Upload Berkas
-            </label>
-
-            <div class="
+                <div class="
                 mt-2
                 border
                 border-gray-300
@@ -416,37 +537,66 @@ if (!$data) {
                 py-3
             ">
 
-                <?php if (
+                    <?php if (
 
-                    !empty(
-                    $data['berkas']
-                )
+                        !empty(
+                        $data['berkas']
+                    )
 
-                ): ?>
+                    ): ?>
 
-                    <a href="<?= $data['berkas'] ?>" target="_blank" class="
+                        <a href="/assets/files/uploads/<?= urlencode($data['berkas']) ?>" target="_blank"
+                            rel="noopener noreferrer" class="
                             text-blue-600
                             underline
                         ">
 
-                        Lihat Berkas
+                            Lihat Berkas
 
-                    </a>
+                        </a>
 
-                <?php else: ?>
+                    <?php else: ?>
 
-                    Tidak ada
+                        Tidak ada
 
-                <?php endif; ?>
+                    <?php endif; ?>
+
+                </div>
 
             </div>
+            <?php if ($data['status'] == 'Dibatalkan'): ?>
+                <!-- Alasan Pembatalan -->
+                <div>
+
+                    <label>
+                        Alasan Pembatalan
+                    </label>
+
+                    <div class="
+                mt-2
+                border
+                border-gray-300
+                rounded-2xl
+                p-5
+                min-h-20
+            ">
+
+                        <?= nl2br(
+                            htmlspecialchars(
+                                $data['alasan_pembatalan']
+                            )
+                        ) ?>
+
+                    </div>
+
+                </div>
+            <?php endif; ?>
 
         </div>
-
     </div>
 
-
-    <form method="POST" class="
+    <?php if ($data['status'] == 'Pending'): ?>
+        <form method="POST" class="
         flex
         justify-end
         gap-7.5
@@ -455,7 +605,7 @@ if (!$data) {
         flex-wrap
     ">
 
-        <a href="?page=kelola_permohonan" class="
+            <a href="?page=<?= $from ?>" class="
                 px-10
                 py-3
                 rounded-full
@@ -465,12 +615,12 @@ if (!$data) {
                 hover:bg-[#FFD991]
             ">
 
-            Kembali
+                Kembali
 
-        </a>
+            </a>
 
 
-        <button type="submit" name="tolak" class="
+            <button type="submit" name="tolak" class="
                 px-10
                 py-3
                 rounded-full
@@ -480,12 +630,12 @@ if (!$data) {
                 hover:opacity-70
             ">
 
-            Tolak
+                Tolak
 
-        </button>
+            </button>
 
 
-        <button type="submit" name="terima" class="
+            <button type="submit" name="terima" class="
                 px-10
                 py-3
                 rounded-full
@@ -495,10 +645,33 @@ if (!$data) {
                 hover:opacity-70
             ">
 
-            Terima
+                Terima
 
-        </button>
+            </button>
 
-    </form>
+        </form>
+    <?php else: ?>
+        <div class="
+        flex
+        justify-end
+        mt-10
+    ">
+
+            <a href="?page=<?= $from ?>" class="
+                px-10
+                py-3
+                rounded-full
+                border
+                border-[#FFD991]
+                text-[#BF6A02]
+                hover:bg-[#FFD991]
+            ">
+
+                Kembali
+
+            </a>
+        </div>
+
+    <?php endif; ?>
 
 </section>

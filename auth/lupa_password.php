@@ -2,10 +2,7 @@
 
 include __DIR__ . "/../config/config.php";
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . "/../config/mailer.php";
 
 $error = "";
 
@@ -89,91 +86,60 @@ if (isset($_POST['kirim'])) {
 
             mysqli_stmt_execute($stmt);
 
-            try {
+            if (
 
-                // PHPMailer
-                $mail = new PHPMailer(true);
+                kirimEmail(
 
-                $mail->isSMTP();
+                    $email,
 
-                $mail->Host =
-                    'smtp.gmail.com';
+                    'Kode OTP Reset Password',
 
-                $mail->SMTPAuth = true;
+                    "
+                            <div
+                                style='
+                                    font-family:sans-serif;
+                                    padding:20px;
+                                '
+                            >
 
-                $mail->Username =
-                    $_ENV['MAIL_USERNAME'];
+                                <h2>
+                                    Reset Password LabHub
+                                </h2>
 
-                $mail->Password =
-                    $_ENV['MAIL_PASSWORD'];
+                                <p>
+                                    Berikut kode OTP Anda:
+                                </p>
 
-                $mail->SMTPSecure = 'tls';
+                                <h1
+                                    style='
+                                        letter-spacing:5px;
+                                        color:#FF925C;
+                                    '
+                                >
+                                    $otp
+                                </h1>
 
-                $mail->Port = 587;
+                                <p>
+                                    OTP berlaku selama
+                                    10 menit.
+                                </p>
 
-                // nama pengirim
-                $mail->setFrom(
-                    $_ENV['MAIL_USERNAME'],
-                    'LabHub'
+                            </div>
+                        "
+
+                )
+
+            ) {
+
+                header(
+                    "Location: index.php?page=verifikasi_otp&token=$token"
                 );
-
-                // penerima
-                $mail->addAddress($email);
-
-                // email html 
-                $mail->isHTML(true);
-
-                // isi subject
-                $mail->Subject =
-                    'Kode OTP Reset Password';
-
-                // isi email
-                $mail->Body = "
-                    <div
-                        style='
-                            font-family:sans-serif;
-                            padding:20px;
-                        '
-                    >
-
-                        <h2>
-                            Reset Password LabHub
-                        </h2>
-
-                        <p>
-                            Berikut kode OTP Anda:
-                        </p>
-
-                        <h1
-                            style='
-                                letter-spacing:5px;
-                                color:#FF925C;
-                            '
-                        >
-                            $otp
-                        </h1>
-
-                        <p>
-                            OTP berlaku selama
-                            10 menit.
-                        </p>
-
-                    </div>
-                ";
-
-                // kirim email
-                $mail->send();
-
-                header("Location: index.php?page=verifikasi_otp&token=$token");
 
                 exit;
 
-            } catch (Exception $e) {
-
-                $error =
-                    "Gagal mengirim OTP";
-
             }
+
+            $error = "Gagal mengirim OTP";
 
         }
 

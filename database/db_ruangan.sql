@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 29, 2026 at 06:58 PM
+-- Generation Time: May 31, 2026 at 02:05 PM
 -- Server version: 8.0.40
 -- PHP Version: 8.4.20
 
@@ -347,7 +347,88 @@ INSERT INTO `jadwal` (`id`, `lab_id`, `tanggal`, `sesi`, `jam_mulai`, `jam_seles
 (303, 5, '2026-06-12', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-28 17:00:16'),
 (304, 6, '2026-06-12', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-28 17:00:16'),
 (305, 6, '2026-06-12', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-28 17:00:16'),
-(306, 6, '2026-06-12', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-28 17:00:16');
+(306, 6, '2026-06-12', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-28 17:00:16'),
+(307, 1, '2026-06-13', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-30 11:56:30'),
+(308, 1, '2026-06-13', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-30 11:56:30'),
+(309, 1, '2026-06-13', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-30 11:56:30'),
+(310, 2, '2026-06-13', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-30 11:56:30'),
+(311, 2, '2026-06-13', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-30 11:56:30'),
+(312, 2, '2026-06-13', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-30 11:56:30'),
+(313, 3, '2026-06-13', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-30 11:56:30'),
+(314, 3, '2026-06-13', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-30 11:56:30'),
+(315, 3, '2026-06-13', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-30 11:56:30'),
+(316, 4, '2026-06-13', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-30 11:56:30'),
+(317, 4, '2026-06-13', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-30 11:56:30'),
+(318, 4, '2026-06-13', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-30 11:56:30'),
+(319, 5, '2026-06-13', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-30 11:56:30'),
+(320, 5, '2026-06-13', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-30 11:56:30'),
+(321, 5, '2026-06-13', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-30 11:56:30'),
+(322, 6, '2026-06-13', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-30 11:56:30'),
+(323, 6, '2026-06-13', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-30 11:56:30'),
+(324, 6, '2026-06-13', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-30 11:56:30'),
+(325, 1, '2026-06-14', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-30 17:33:05'),
+(326, 1, '2026-06-14', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-30 17:33:05'),
+(327, 1, '2026-06-14', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-30 17:33:05'),
+(328, 2, '2026-06-14', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-30 17:33:05'),
+(329, 2, '2026-06-14', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-30 17:33:05'),
+(330, 2, '2026-06-14', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-30 17:33:05'),
+(331, 3, '2026-06-14', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-30 17:33:05'),
+(332, 3, '2026-06-14', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-30 17:33:05'),
+(333, 3, '2026-06-14', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-30 17:33:05'),
+(334, 4, '2026-06-14', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-30 17:33:05'),
+(335, 4, '2026-06-14', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-30 17:33:05'),
+(336, 4, '2026-06-14', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-30 17:33:05'),
+(337, 5, '2026-06-14', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-30 17:33:05'),
+(338, 5, '2026-06-14', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-30 17:33:05'),
+(339, 5, '2026-06-14', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-30 17:33:05'),
+(340, 6, '2026-06-14', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-30 17:33:05'),
+(341, 6, '2026-06-14', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-30 17:33:05'),
+(342, 6, '2026-06-14', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-30 17:33:05'),
+(343, 8, '2026-05-31', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-31 12:20:38'),
+(344, 8, '2026-05-31', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-31 12:20:38'),
+(345, 8, '2026-05-31', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38'),
+(346, 8, '2026-06-01', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-31 12:20:38'),
+(347, 8, '2026-06-01', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-31 12:20:38'),
+(348, 8, '2026-06-01', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38'),
+(349, 8, '2026-06-02', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-31 12:20:38'),
+(350, 8, '2026-06-02', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-31 12:20:38'),
+(351, 8, '2026-06-02', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38'),
+(352, 8, '2026-06-03', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-31 12:20:38'),
+(353, 8, '2026-06-03', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-31 12:20:38'),
+(354, 8, '2026-06-03', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38'),
+(355, 8, '2026-06-04', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-31 12:20:38'),
+(356, 8, '2026-06-04', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-31 12:20:38'),
+(357, 8, '2026-06-04', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38'),
+(358, 8, '2026-06-05', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-31 12:20:38'),
+(359, 8, '2026-06-05', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-31 12:20:38'),
+(360, 8, '2026-06-05', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38'),
+(361, 8, '2026-06-06', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-31 12:20:38'),
+(362, 8, '2026-06-06', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-31 12:20:38'),
+(363, 8, '2026-06-06', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38'),
+(364, 8, '2026-06-07', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-31 12:20:38'),
+(365, 8, '2026-06-07', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-31 12:20:38'),
+(366, 8, '2026-06-07', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38'),
+(367, 8, '2026-06-08', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-31 12:20:38'),
+(368, 8, '2026-06-08', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-31 12:20:38'),
+(369, 8, '2026-06-08', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38'),
+(370, 8, '2026-06-09', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-31 12:20:38'),
+(371, 8, '2026-06-09', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-31 12:20:38'),
+(372, 8, '2026-06-09', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38'),
+(373, 8, '2026-06-10', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-31 12:20:38'),
+(374, 8, '2026-06-10', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-31 12:20:38'),
+(375, 8, '2026-06-10', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38'),
+(376, 8, '2026-06-11', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-31 12:20:38'),
+(377, 8, '2026-06-11', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-31 12:20:38'),
+(378, 8, '2026-06-11', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38'),
+(379, 8, '2026-06-12', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-31 12:20:38'),
+(380, 8, '2026-06-12', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-31 12:20:38'),
+(381, 8, '2026-06-12', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38'),
+(382, 8, '2026-06-13', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-31 12:20:38'),
+(383, 8, '2026-06-13', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-31 12:20:38'),
+(384, 8, '2026-06-13', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38'),
+(385, 8, '2026-06-14', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-31 12:20:38'),
+(386, 8, '2026-06-14', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-31 12:20:38'),
+(387, 8, '2026-06-14', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38');
 
 -- --------------------------------------------------------
 
@@ -397,7 +478,8 @@ INSERT INTO `labs` (`id`, `nama_lab`, `kode_lab`, `kategori`, `lokasi`, `luas`, 
 (3, 'Lab Solusi', 'SOLUSI', 'Lab Fasilkom', 'Gedung FIK II, Lantai 2 UPNVJT', 70, 35, '3 Wi-Fi, 35 Komputer,6 AC, 1 Proyektor', 'Laboratorium Solusi memiliki kapasitas hingga 35 orang dengan luas ruangan sebesar 70 m². Laboratorium ini dilengkapi fasilitas komputer, koneksi internet, AC, proyektor, dan speaker untuk menunjang kegiatan pembelajaran, presentasi, maupun workshop akademik. Lab ini berlokasi di Gedung FIK II, Lantai 2 dan beroperasi mulai pukul 07.00–15.30 WIB.', 'assets/images/uploads/labs/Lab-Solusi.png', '07:00:00', '15:30:00', 'Perbaikan', '2026-05-25 17:26:53', 'lab-solusi'),
 (4, 'Lab Rekayasa dan Bisnis Digital', 'RBD', 'Lab FASILKOM', 'Gedung FIK II, Lantai 3 UPNVJT', 65, 32, '2 Wi-Fi, 32 Komputer, 2 AC,  1 Proyektor, 2 Speaker', 'Laboratorium Rekayasa dan Bisnis Digital memiliki kapasitas hingga 32 orang dengan luas ruangan sebesar 65 m². Dilengkapi fasilitas komputer, koneksi internet, AC, proyektor, dan speaker untuk mendukung kegiatan pembelajaran, praktikum, serta pengembangan bisnis digital mahasiswa. Lab ini berlokasi di Gedung FIK II, Lantai 3 dan beroperasi mulai pukul 07.00–15.30 WIB.', 'assets/images/uploads/labs/Rekayasa-Data-dan-Bisnis-Digital.png', '07:00:00', '15:30:00', 'Tersedia', '2026-05-25 18:37:30', 'lab-rekayasa-dan-bisnis-digital'),
 (5, 'Lab MSI', 'MSI', 'Lab FASILKOM', 'Gedung FIK II, Lantai 2 UPNVJT', 55, 28, '2 WiFi, 28 Komputer, AC,  1 Proyektor', 'Laboratorium MSI memiliki kapasitas hingga 28 orang dengan luas ruangan sebesar 55 m². Laboratorium ini digunakan untuk menunjang kegiatan praktikum sistem informasi dan analisis data mahasiswa. Dilengkapi fasilitas komputer, Wi-Fi, AC, dan proyektor untuk mendukung kegiatan akademik secara optimal. Lab ini berlokasi di Gedung FIK II, Lantai 2 dan beroperasi mulai pukul 07.00–15.30 WIB.', 'assets/images/uploads/labs/Lab-MSI.png', '07:00:00', '15:30:00', 'Tersedia', '2026-05-25 18:37:30', 'lab-msi'),
-(6, 'Lab Sains Data', 'SD', 'Lab FASILKOM', 'Gedung FIK II, Lantai 2 UPNVJT', 70, 35, '3 Wi-Fi, 35 Komputer,2 AC, 2 Proyektor, 1 Smart TV', 'Laboratorium Sains Data memiliki kapasitas hingga 35 orang dengan luas ruangan sebesar 70 m². Laboratorium ini difokuskan untuk kegiatan pembelajaran data science, machine learning, dan analisis data mahasiswa. Dilengkapi fasilitas komputer, internet, AC, proyektor, dan Smart TV untuk menunjang kegiatan akademik dan workshop teknologi. Lab ini berlokasi di Gedung FIK II, Lantai 1 dan beroperasi mulai pukul 07.00–15.30 WIB.', 'assets/images/uploads/labs/Lab-Sain-Data.png', '07:00:00', '15:30:00', 'Non-aktif', '2026-05-25 18:37:30', 'lab-sains-data');
+(6, 'Lab Sains Data', 'LSD', 'Lab FASILKOM', 'Gedung FIK II, Lantai 2 UPNVJT', 70, 35, '3 Wi-Fi, 35 Komputer,2 AC, 2 Proyektor, 1 Smart TV', 'Laboratorium Sains Data memiliki kapasitas hingga 35 orang dengan luas ruangan sebesar 70 m². Laboratorium ini difokuskan untuk kegiatan pembelajaran data science, machine learning, dan analisis data mahasiswa. Dilengkapi fasilitas komputer, internet, AC, proyektor, dan Smart TV untuk menunjang kegiatan akademik dan workshop teknologi. Lab ini berlokasi di Gedung FIK II, Lantai 1 dan beroperasi mulai pukul 07.00–15.30 WIB.', 'assets/images/uploads/labs/Lab-Sain-Data.png', '07:00:00', '15:30:00', 'Non-aktif', '2026-05-25 18:37:30', 'lab-sains-data'),
+(8, 'Lab INSYIDE', 'INSYIDE', '', 'Gedung FIK II, Lantai 2 UPNVJT', 40, 25, '2 Wi-Fi, 25 Komputer,2 AC, 1 Proyektor, 1 Smart TV', 'Laboratorium PPSTI memiliki kapasitas hingga 25 orang dengan luas ruangan sebesar 40 m². Dilengkapi fasilitas seperti komputer, koneksi Wi-Fi, AC, serta lingkungan laboratorium yang nyaman untuk mendukung kegiatan pembelajaran, praktikum, maupun workshop akademik. Lab ini berlokasi di Gedung FIK II, Lantai 2 dan beroperasi mulai pukul 07.00–15.30 WIB.', 'assets/images/uploads/labs/Lab-INSYDE.png', '07:00:00', '15:30:00', 'Tersedia', '2026-05-31 11:27:07', 'lab-insyide');
 
 -- --------------------------------------------------------
 
@@ -437,7 +519,7 @@ CREATE TABLE `reservasi` (
   `kontak` varchar(30) NOT NULL,
   `keperluan` text NOT NULL,
   `berkas` varchar(255) DEFAULT NULL,
-  `status` enum('Pending','Disetujui','Ditolak','Dibatalkan','Belum Ambil Kunci','Sedang Berlangsung','Selesai') DEFAULT 'Pending',
+  `status` enum('Pending','Disetujui','Ditolak','Dibatalkan','Belum Ambil Kunci','Sedang Berlangsung','Selesai','Tidak Hadir') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Pending',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `alasan_pembatalan` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -449,9 +531,11 @@ CREATE TABLE `reservasi` (
 INSERT INTO `reservasi` (`id`, `user_id`, `jadwal_id`, `kode_reservasi`, `dosen_penanggung_jawab`, `kontak`, `keperluan`, `berkas`, `status`, `created_at`, `alasan_pembatalan`) VALUES
 (2, 1, 29, 'F80E74', 'assxasdxc', '021546896532', 'ascasxas', NULL, 'Dibatalkan', '2026-05-27 14:55:22', 'kepo'),
 (3, 1, 181, 'MSI-3', 'asasasa', '021546896532', 'asdfgh', NULL, 'Ditolak', '2026-05-27 15:38:04', NULL),
-(5, 1, 187, 'MSI-5', 'asasasa', '021546896532', 'wesrdtfgvhbjn', NULL, 'Disetujui', '2026-05-28 10:41:44', NULL),
-(6, 1, 146, 'RBD-6', 'dfghbj', '0851320520', 'aqwsexdcfgvhbjnkm', NULL, 'Disetujui', '2026-05-28 15:41:47', NULL),
-(7, 1, 188, 'MSI-7', 'dfghbj', '0851320520', 'aesxdfcgvhbjnkm', NULL, 'Pending', '2026-05-28 17:36:11', NULL);
+(5, 1, 187, 'MSI-5', 'asasasa', '021546896532', 'wesrdtfgvhbjn', NULL, 'Tidak Hadir', '2026-05-28 10:41:44', NULL),
+(6, 1, 146, 'RBD-6', 'dfghbj', '0851320520', 'aqwsexdcfgvhbjnkm', NULL, 'Tidak Hadir', '2026-05-28 15:41:47', NULL),
+(7, 1, 188, 'MSI-7', 'dfghbj', '0851320520', 'aesxdfcgvhbjnkm', NULL, 'Selesai', '2026-05-28 17:36:11', NULL),
+(8, 1, 190, 'MSI-8', 'dfghbj', '0851320520', 'asdxfcgvhbjnkm', '1780159786-6a1b152abcefe.pdf', 'Ditolak', '2026-05-30 16:49:46', NULL),
+(9, 1, 194, 'MSI-9', 'dfghbj', '0851320520', 'sdfcgvhbjnkml', '1780162379-6a1b1f4b64a27.docx', 'Selesai', '2026-05-30 17:32:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -480,7 +564,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nama`, `email`, `password`, `foto_profile`, `role`, `status`, `npm`, `program_studi_id`, `created_at`, `reset_otp`, `reset_otp_expired`, `reset_token`) VALUES
-(1, 'Lodi Galang Putra Sugianto', '24081010193@student.upnjatim.ac.id', '$2y$12$FZvxBQnmKPLsXhXTuxmeWuZleAkcFbKVUB3S1vEdfGGPgrn1nfOd2', NULL, 'user', 'mahasiswa', '24081010193', 1, '2026-05-24 08:13:41', NULL, NULL, NULL),
+(1, 'Lodi Galang Putra Sugianto', '24081010193@student.upnjatim.ac.id', '$2y$12$tM7oaYXrhP370XqqPb0.OOCx518GUjIHWhiBPUOeGiXUpgaXSVsji', NULL, 'user', 'mahasiswa', '24081010193', 1, '2026-05-24 08:13:41', NULL, NULL, NULL),
 (2, 'Admin', 'labhubupn@gmail.com', '$2y$12$LD2RgF3Eyn/7AU7rPVTYFu523bJ52F.yGbuS.BOj0tEWbcmtgrqM.', NULL, 'admin', 'dosen', NULL, NULL, '2026-05-28 16:12:19', NULL, NULL, NULL);
 
 --
@@ -542,7 +626,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=307;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=388;
 
 --
 -- AUTO_INCREMENT for table `jadwal_nonaktif`
@@ -554,7 +638,7 @@ ALTER TABLE `jadwal_nonaktif`
 -- AUTO_INCREMENT for table `labs`
 --
 ALTER TABLE `labs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `program_studi`
@@ -566,7 +650,7 @@ ALTER TABLE `program_studi`
 -- AUTO_INCREMENT for table `reservasi`
 --
 ALTER TABLE `reservasi`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`

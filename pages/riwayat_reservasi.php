@@ -71,6 +71,9 @@ if (
         $_SESSION['success'] =
             'Reservasi berhasil dibatalkan';
 
+        header("Location: index.php?page=riwayat_reservasi");
+        exit;
+
     } else {
 
         $_SESSION['error'] =
@@ -150,6 +153,9 @@ if (
 
             $_SESSION['success'] =
                 'Reservasi berhasil dibatalkan';
+
+            header("Location: index.php?page=riwayat_reservasi");
+            exit;
 
         } else {
 
@@ -281,7 +287,7 @@ $result =
             gap-3
         ">
 
-            <h1 class="
+            <h1 data-aos="fade-up" class="
                 text-3xl
                 sm:text-4xl
                 md:text-5xl
@@ -291,7 +297,7 @@ $result =
                 Riwayat Reservasi
             </h1>
 
-            <p class="
+            <p data-aos="fade-up" data-aos-delay="200" class="
                 text-gray-500
                 text-sm
                 sm:text-base
@@ -304,7 +310,7 @@ $result =
 
 
         <!-- tabel -->
-        <div class="
+        <div data-aos="fade-up" data-aos-delay="200" class="
             border
         border-gray-300
             rounded-[10px]
@@ -394,7 +400,7 @@ $result =
 
                             if (
                                 $item['status']
-                                == 'Pending'
+                                == 'Pending' || $item['status'] == 'Sedang Berlangsung' || $item['status'] == "Belum Ambil Kunci"
                             ) {
 
                                 $statusClass =
@@ -402,7 +408,7 @@ $result =
 
                             } elseif (
                                 $item['status']
-                                == 'Disetujui'
+                                == 'Disetujui' || $item['status'] == 'Selesai' || $item['status'] == 'Tidak Hadir'
                             ) {
 
                                 $statusClass =
@@ -512,23 +518,30 @@ $result =
                                     ">
 
                                         <span class="
-                                            px-4
-                                            py-2
-                                            rounded-full
-                                            font-medium
-                                            text-center
-                                            w-full
-                                            <?= $statusClass ?>
-                                        ">
-
-                                            <?= $item['status'] ?>
-
+                                                    px-2
+                                                    xl:px-4
+                                                    py-2
+                                                    rounded-full
+                                                    font-medium
+                                                    text-center
+                                                    w-full
+                                                    <?= $statusClass ?>
+                                                ">
+                                            <?php if ($item['status'] == 'Dibatalkan' || $item['status'] == 'Ditolak'): ?>
+                                                <?= $item['status'] ?>
+                                            <?php elseif ($item['status'] == 'Disetujui'): ?>
+                                                <?= $item['status'] ?>
+                                            <?php elseif ($item['status'] == 'Selesai' || $item['status'] == 'Tidak Hadir'): ?>
+                                                Selesai
+                                            <?php elseif ($item['status'] == 'Belum Ambil Kunci' || $item['status'] == 'Sedang Berlangsung'): ?>
+                                                Berlangsung
+                                            <?php else: ?>             <?= $item['status'] ?>
+                                            <?php endif; ?>
                                         </span>
 
                                     </div>
 
                                 </div>
-
 
                                 <!-- aksi -->
                                 <div class="
@@ -641,6 +654,42 @@ $result =
                                                 Dibatalkan
 
                                             </span>
+                                        <?php elseif (
+                                            $item['status'] == 'Sedang Berlangsung' || $item['status'] == 'Selesai'
+                                            || $item['status'] == 'Belum Ambil Kunci' || $item['status'] == 'Tidak Hadir'
+                                        ): ?>
+                                            <button data-code="<?= $item['kode_reservasi'] ?>" data-date="<?= date(
+                                                  'd F Y',
+                                                  strtotime($item['tanggal'])
+                                              ) ?>" data-time="<?= substr(
+                                                   $item['jam_mulai'],
+                                                   0,
+                                                   5
+                                               ) ?>
+
+-
+
+    <?= substr(
+                        $item['jam_selesai'],
+                        0,
+                        5
+                    ) ?>" onclick="
+        openCodeModal(this)
+    " class="
+                                                w-11
+                                                h-11
+                                                rounded-full
+                                                bg-[#D9F8DB]
+                                                flex
+                                                items-center
+                                                justify-center
+                                                hover:opacity-80
+                                                cursor-pointer
+                                            ">
+
+                                                <i data-lucide="file-text" class="text-[#14AE5C]"></i>
+
+                                            </button>
                                         <?php else: ?>
                                         <?php endif; ?>
 
@@ -704,9 +753,10 @@ $result =
                             $statusClass =
                                 'bg-[#FDD3D0] text-[#EC221F]';
 
+
                             if (
                                 $item['status']
-                                == 'Pending'
+                                == 'Pending' || $item['status'] == 'Sedang Berlangsung' || $item['status'] == "Belum Ambil Kunci"
                             ) {
 
                                 $statusClass =
@@ -714,7 +764,7 @@ $result =
 
                             } elseif (
                                 $item['status']
-                                == 'Disetujui'
+                                == 'Disetujui' || $item['status'] == 'Selesai' || $item['status'] == 'Tidak Hadir'
                             ) {
 
                                 $statusClass =
@@ -789,8 +839,16 @@ $result =
                                         <?= $statusClass ?>
                                     ">
 
-                                        <?= $item['status'] ?>
-
+                                        <?php if ($item['status'] == 'Dibatalkan' || $item['status'] == 'Ditolak'): ?>
+                                            <?= $item['status'] ?>
+                                        <?php elseif ($item['status'] == 'Disetujui'): ?>
+                                            <?= $item['status'] ?>
+                                        <?php elseif ($item['status'] == 'Selesai' || $item['status'] == 'Tidak Hadir'): ?>
+                                            Selesai
+                                        <?php elseif ($item['status'] == 'Belum Ambil Kunci' || $item['status'] == 'Sedang Berlangsung'): ?>
+                                            Berlangsung
+                                        <?php else: ?>             <?= $item['status'] ?>
+                                        <?php endif; ?>
                                     </span>
 
                                 </div>
@@ -920,6 +978,40 @@ $result =
                                             Dibatalkan
 
                                         </span>
+                                    <?php elseif (
+                                        $item['status'] == 'Sedang Berlangsung' || $item['status'] == 'Selesai'
+                                        || $item['status'] == 'Belum Ambil Kunci' || $item['status'] == 'Tidak Hadir'
+                                    ): ?>
+                                        <button data-code="<?= $item['kode_reservasi'] ?>" data-date="<?= date(
+                                              'd F Y',
+                                              strtotime($item['tanggal'])
+                                          ) ?>" data-time="<?= substr(
+                                               $item['jam_mulai'],
+                                               0,
+                                               5
+                                           ) ?>
+
+                                                    -
+
+                                                    <?= substr(
+                                                        $item['jam_selesai'],
+                                                        0,
+                                                        5
+                                                    ) ?>" onclick="
+                                                        openCodeModal(this)
+                                                    " class="
+                                            w-10
+                                            h-10
+                                            rounded-full
+                                            bg-[#CFF7D3]
+                                            flex
+                                            items-center
+                                            justify-center
+                                        ">
+
+                                            <i data-lucide="file-text" class="text-[#14AE5C]"></i>
+
+                                        </button>
                                     <?php else: ?>
                                     <?php endif; ?>
 
@@ -1226,7 +1318,7 @@ $result =
                         rounded-full
                         py-2
                         hover:opacity-80
-                        cursor-point
+                        cursor-pointer
                     ">
 
                     Konfirmasi

@@ -33,7 +33,8 @@ $qDisetujui =
             'Disetujui',
             'Selesai',
             'Belum Ambil Kunci',
-            'Sedang Berlangsung'
+            'Sedang Berlangsung',
+            'Tidak Hadir'
         )"
     );
 
@@ -241,22 +242,23 @@ $stats = [
             divide-gray-300
             text-center
         ">
-
-                <?php mysqli_data_seek($qReservasi, 0); ?>
-
-                <?php while (
-                    $row =
-                    mysqli_fetch_assoc(
-                        $qReservasi
-                    )
+                <?php if (
+                    mysqli_num_rows($qReservasi) > 0
                 ): ?>
+                    <?php mysqli_data_seek($qReservasi, 0); ?>
+                    <?php while (
+                        $row =
+                        mysqli_fetch_assoc(
+                            $qReservasi
+                        )
+                    ): ?>
 
-                    <div class="
+                        <div class="
                     grid
                     grid-cols-4
                 ">
 
-                        <div class="
+                            <div class="
                         py-5
                         px-4
                         border-r
@@ -265,10 +267,10 @@ $stats = [
                         items-center
                         justify-center
                     ">
-                            <?= htmlspecialchars($row['nama']) ?>
-                        </div>
+                                <?= htmlspecialchars($row['nama']) ?>
+                            </div>
 
-                        <div class="
+                            <div class="
                         py-5
                         px-4
                         border-r
@@ -277,13 +279,13 @@ $stats = [
                         items-center
                         justify-center
                     ">
-                            <?= date(
-                                'd F Y',
-                                strtotime($row['tanggal'])
-                            ) ?>
-                        </div>
+                                <?= date(
+                                    'd F Y',
+                                    strtotime($row['tanggal'])
+                                ) ?>
+                            </div>
 
-                        <div class="
+                            <div class="
                         py-5
                         px-4
                         border-r
@@ -292,17 +294,17 @@ $stats = [
                         items-center
                         justify-center
                     ">
-                            <?= htmlspecialchars(
-                                $row['nama_lab']
-                            ) ?>
-                        </div>
+                                <?= htmlspecialchars(
+                                    $row['nama_lab']
+                                ) ?>
+                            </div>
 
-                        <div class="
+                            <div class="
                         flex
                         items-center
                         justify-center
                     ">
-                            <span class="
+                                <span class="
                             px-5
                             py-2
                             rounded-full
@@ -310,13 +312,27 @@ $stats = [
                             text-[#D18B1F]
                             font-medium
                         ">
-                                <?= $row['status'] ?>
-                            </span>
+                                    <?= $row['status'] ?>
+                                </span>
+                            </div>
+
                         </div>
+
+                    <?php endwhile; ?>
+                <?php else: ?>
+
+                    <div class="
+            py-20
+            text-center
+            text-gray-500
+            text-lg
+        ">
+
+                        Tidak ada permohonan terbaru.
 
                     </div>
 
-                <?php endwhile; ?>
+                <?php endif; ?>
 
             </div>
 
@@ -330,66 +346,69 @@ $stats = [
         divide-gray-300
     ">
 
-            <?php mysqli_data_seek($qReservasi, 0); ?>
-
-            <?php while (
-                $row =
-                mysqli_fetch_assoc(
-                    $qReservasi
-                )
+            <?php if (
+                mysqli_num_rows($qReservasi) > 0
             ): ?>
+                <?php mysqli_data_seek($qReservasi, 0); ?>
 
-                <div class="
+                <?php while (
+                    $row =
+                    mysqli_fetch_assoc(
+                        $qReservasi
+                    )
+                ): ?>
+
+                    <div class="
                 p-5
                 flex
                 flex-col
                 gap-3
             ">
 
-                    <div>
-                        <p class="text-xs text-gray-500">
-                            Nama
-                        </p>
+                        <div>
+                            <p class="text-xs text-gray-500">
+                                Nama
+                            </p>
 
-                        <p class="font-medium">
-                            <?= htmlspecialchars(
-                                $row['nama']
-                            ) ?>
-                        </p>
-                    </div>
-
-
-                    <div>
-                        <p class="text-xs text-gray-500">
-                            Tanggal
-                        </p>
-
-                        <p>
-                            <?= date(
-                                'd F Y',
-                                strtotime(
-                                    $row['tanggal']
-                                )
-                            ) ?>
-                        </p>
-                    </div>
+                            <p class="font-medium">
+                                <?= htmlspecialchars(
+                                    $row['nama']
+                                ) ?>
+                            </p>
+                        </div>
 
 
-                    <div>
-                        <p class="text-xs text-gray-500">
-                            Laboratorium
-                        </p>
+                        <div>
+                            <p class="text-xs text-gray-500">
+                                Tanggal
+                            </p>
 
-                        <p>
-                            <?= htmlspecialchars(
-                                $row['nama_lab']
-                            ) ?>
-                        </p>
-                    </div>
+                            <p>
+                                <?= date(
+                                    'd F Y',
+                                    strtotime(
+                                        $row['tanggal']
+                                    )
+                                ) ?>
+                            </p>
+                        </div>
 
 
-                    <div>
-                        <span class="
+                        <div>
+                            <p class="text-xs text-gray-500">
+                                Laboratorium
+                            </p>
+
+                            <p>
+                                <?= htmlspecialchars(
+                                    $row['nama_lab']
+                                ) ?>
+                            </p>
+                        </div>
+
+
+                        <div>
+                            <span class="
                         px-4
                         py-2
                         rounded-full
@@ -398,14 +417,27 @@ $stats = [
                         text-sm
                         font-medium
                     ">
-                            <?= $row['status'] ?>
-                        </span>
+                                <?= $row['status'] ?>
+                            </span>
+                        </div>
+
                     </div>
+
+                <?php endwhile; ?>
+            <?php else: ?>
+
+                <div class="
+            py-20
+            text-center
+            text-gray-500
+            text-lg
+        ">
+
+                    Tidak ada permohonan terbaru.
 
                 </div>
 
-            <?php endwhile; ?>
-
+            <?php endif; ?>
         </div>
 
     </div>

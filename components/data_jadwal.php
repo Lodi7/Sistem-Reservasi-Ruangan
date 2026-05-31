@@ -209,7 +209,9 @@ foreach (
                             'Pending',
                             'Disetujui',
                             'Belum Ambil Kunci',
-                            'Sedang Berlangsung'
+                            'Sedang Berlangsung',
+                            'Selesai',
+                            'Tidak Hadir'
 
                         )"
 

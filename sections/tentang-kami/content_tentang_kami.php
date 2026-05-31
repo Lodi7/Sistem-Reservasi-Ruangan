@@ -16,8 +16,9 @@ $articles = [
 ?>
 
 <article class="mt-12.5 flex gap-12.25 flex-col px-5 sm:px-15 md:px-25">
-    <?php foreach ($articles as $article): ?>
-        <section class="px-10 sm:px-15.25 xl:px-40.25 ">
+    <?php foreach ($articles as $index => $article): ?>
+        <?php $delay = $index * 150; ?>
+        <section class="px-10 sm:px-15.25 xl:px-40.25 " data-aos="fade-up" data-aos-delay="<?= $delay ?>">
             <h1 class="text-4xl md:text-5xl xl:text-6xl font-bold ">
                 <?= $article['title'] ?>
             </h1>

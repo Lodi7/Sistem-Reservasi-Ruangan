@@ -4,6 +4,7 @@ ob_start();
 session_start();
 
 include __DIR__ . '/../middleware/admin.php';
+require_once __DIR__ . '/../scripts/update_status_otomatis.php';
 
 $page = $_GET['page'] ?? 'dashboard';
 
@@ -30,6 +31,10 @@ switch ($page) {
 
     case 'reservasi_hari_ini':
         include __DIR__ . '/pages/reservasi_hari_ini.php';
+        break;
+
+    case 'riwayat_reservasi':
+        include __DIR__ . '/pages/riwayat_reservasi.php';
         break;
 
     case 'manajemen_operasional':

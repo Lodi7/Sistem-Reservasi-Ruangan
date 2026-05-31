@@ -8,7 +8,9 @@ $statusClass = match ($status) {
 };
 
 ?>
-<div
+<div <?= ($useAOS ?? false)
+    ? 'data-aos="fade-up" data-aos-delay="' . ($delay ?? 0) . '"'
+    : '' ?>
     class="flex flex-col h-full justify-start items-start gap-5 p-4 md:p-5 w-full lg:max-w-98.25 shadow rounded-[28px] shadow-black/25 text-left hover:-translate-y-1 hover:shadow-[#FF925C] hover:shadow-xl transition duration-300">
 
     <!-- isi card -->

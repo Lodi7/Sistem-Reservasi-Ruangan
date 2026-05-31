@@ -20,16 +20,19 @@ $data = [
 
 <section class="px-5 sm:px-15 md:px-25 mt-30">
     <div class="flex flex-col items-center text-center justify-center">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold" data-aos="fade-up">
             Fasilitas Lab
         </h1>
-        <p class="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed mt-4 max-w-3xl">
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed mt-4 max-w-3xl" data-aos="fade-up"
+            data-aos-delay="200">
             LabHub menyediakan layanan sewa lab dengan fasilitas lengkap
             untuk mendukung kegiatan akademik Anda.
         </p>
         <div class="flex mt-7 xl:gap-6.5 gap-4 justify-center xl:flex-row flex-col">
-            <?php foreach ($data as $fasilitas): ?>
+            <?php foreach ($data as $index => $fasilitas): ?>
                 <?php
+                $delay = $index * 250;
+
                 $title = $fasilitas['title'];
                 $gambar = $fasilitas['gambar'];
                 $deskripsi = $fasilitas['deskripsi'];

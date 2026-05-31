@@ -14,7 +14,7 @@ include __DIR__ . '/../components/data_jadwal.php';
         <!-- judul -->
         <div class="flex flex-col gap-4">
 
-            <h1 class="
+            <h1 data-aos="fade-up" class="
                 text-4xl
                 md:text-5xl
                 xl:text-6xl
@@ -25,7 +25,8 @@ include __DIR__ . '/../components/data_jadwal.php';
 
             </h1>
 
-            <p class="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-3xl">
+            <p data-aos="fade-up" data-aos-delay="200"
+                class="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-3xl">
 
                 Pilih tanggal dan sesi untuk check ketersedian lab
 
@@ -35,7 +36,7 @@ include __DIR__ . '/../components/data_jadwal.php';
 
 
         <!-- filter -->
-        <div class="
+        <div data-aos="fade-up" data-aos-delay="200" class="
             flex
             gap-4
             flex-wrap
@@ -106,7 +107,7 @@ include __DIR__ . '/../components/data_jadwal.php';
         </div>
 
         <!-- arti warna -->
-        <div class="
+        <div data-aos="fade-up" data-aos-delay="200" class="
                 flex
                 flex-wrap
                 gap-5
@@ -187,7 +188,7 @@ include __DIR__ . '/../components/data_jadwal.php';
         </div>
 
         <!-- tabel -->
-        <div class="
+        <div data-aos="fade-up" data-aos-delay="200" class="
             border
             overflow-hidden
             bg-white

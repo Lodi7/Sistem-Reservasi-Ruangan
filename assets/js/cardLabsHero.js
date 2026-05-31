@@ -28,6 +28,8 @@ if (labsContainer) {
             labsContainer.innerHTML =
                 html;
 
+            AOS.refreshHard();    
+
             labsContainer.classList.remove(
                 'opacity-0'
             );
