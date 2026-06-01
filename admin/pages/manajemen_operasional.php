@@ -863,7 +863,7 @@ $resultLabs =
         <button id="btnTambahLab" class="text-center text-sm  bg-white rounded-[20px] border-2 shadow p-5 border-black flex justify-center
         lg:text-lg gap-2 items-center cursor-pointer hover:bg-gray-100">
             <i data-lucide="plus" class=""></i>
-            <p>Tambahh Lab Baru</p>
+            <p>Tambah Lab Baru</p>
         </button>
 
     </div>
