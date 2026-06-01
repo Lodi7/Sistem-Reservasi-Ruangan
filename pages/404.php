@@ -1,3 +1,16 @@
+<?php
+
+$home = '/index.php?page=beranda';
+
+if (
+    isset($_SESSION['user']) &&
+    ($_SESSION['user']['role'] ?? '') === 'admin'
+) {
+    $home = '/admin/index.php?page=dashboard';
+}
+
+?>
+
 <section class="
         min-h-screen
         flex
@@ -57,7 +70,7 @@
 
         </div>
 
-        <a href="index.php" class="
+        <a href="<?= $home ?>" class="
                 bg-[#FF925C]
                 text-white
                 px-10
