@@ -10,7 +10,6 @@ Website reservasi Lab Komputer berbasis PHP Native dengan fitur autentikasi, OTP
 
 - Registrasi Akun
 - Login & Logout
-- Lupa Password
 - Verifikasi OTP Email
 - Reset Password
 - Reservasi Lab
