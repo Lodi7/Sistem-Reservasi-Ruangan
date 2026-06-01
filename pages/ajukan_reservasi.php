@@ -163,7 +163,9 @@ if (
                         'Pending',
                         'Disetujui',
                         'Belum Ambil Kunci',
-                        'Sedang Berlangsung'
+                        'Sedang Berlangsung',
+                        'Selesai',
+                        'Tidak Hadir'
 
                     )"
 
@@ -205,94 +207,138 @@ if (
 
                 $nama_file = null;
 
-
-                // upload file
+                // upload berkas
                 if (
-
-                    isset($_FILES['berkas'])
-
-                    &&
-
-                    $_FILES['berkas']['error']
-                    == 0
-
+                    isset($_FILES['berkas']) &&
+                    $_FILES['berkas']['error'] !== UPLOAD_ERR_NO_FILE
                 ) {
 
-                    $tmp =
-                        $_FILES['berkas']['tmp_name'];
-
-                    $original =
-                        $_FILES['berkas']['name'];
-
-                    $ext =
-                        strtolower(
-
-                            pathinfo(
-
-                                $original,
-                                PATHINFO_EXTENSION
-
-                            )
-
-                        );
-
-
-                    // format file
-                    $allowed = [
-
-                        'pdf',
-                        'doc',
-                        'docx',
-                        'png',
-                        'jpg',
-                        'jpeg'
-
-                    ];
-
-                    if (
-
-                        !in_array(
-                            $ext,
-                            $allowed
-                        )
-
-                    ) {
+                    // cek error upload
+                    if ($_FILES['berkas']['error'] !== UPLOAD_ERR_OK) {
 
                         $_SESSION['error'] =
-                            'Format file tidak didukung';
+                            'Gagal mengupload file';
 
                     } else {
 
-                        // nama file
-                        $nama_file =
-                            time()
-                            .
-                            '-'
-                            .
-                            uniqid()
-                            .
-                            '.'
-                            .
-                            $ext;
+                        $tmpName =
+                            $_FILES['berkas']['tmp_name'];
 
+                        $fileSize =
+                            $_FILES['berkas']['size'];
 
-                        // upload 
-                        move_uploaded_file(
+                        // maksimal 10 MB
+                        $maxSize =
+                            10 * 1024 * 1024;
 
-                            $tmp,
+                        if ($fileSize > $maxSize) {
 
-                            __DIR__
-                            .
-                            '/../assets/files/uploads/'
-                            .
-                            $nama_file
+                            $_SESSION['error'] =
+                                'Ukuran file maksimal 10 MB';
 
-                        );
+                        } else {
 
+                            // cek mime type
+                            $mimeType =
+                                mime_content_type(
+                                    $tmpName
+                                );
+
+                            $allowedMime = [
+
+                                'application/pdf' =>
+                                    'pdf',
+
+                                'application/msword' =>
+                                    'doc',
+
+                                'application/vnd.openxmlformats-officedocument.wordprocessingml.document' =>
+                                    'docx',
+
+                                'image/jpeg' =>
+                                    'jpg',
+
+                                'image/png' =>
+                                    'png'
+
+                            ];
+
+                            if (
+                                !array_key_exists(
+                                    $mimeType,
+                                    $allowedMime
+                                )
+                            ) {
+
+                                $_SESSION['error'] =
+                                    'Format file tidak didukung';
+
+                            } else {
+
+                                $extension =
+                                    $allowedMime[$mimeType];
+
+                                // folder upload
+                                $uploadDir =
+                                    __DIR__ .
+                                    '/../assets/files/uploads/';
+
+                                // buat folder jika belum ada
+                                if (!is_dir($uploadDir)) {
+
+                                    mkdir(
+                                        $uploadDir,
+                                        0755,
+                                        true
+                                    );
+                                }
+
+                                // nama file random
+                                $fileName =
+                                    bin2hex(
+                                        random_bytes(16)
+                                    )
+                                    .
+                                    '.'
+                                    .
+                                    $extension;
+
+                                // path relatif (disimpan ke database)
+                                $relativePath =
+                                    'assets/files/uploads/'
+                                    .
+                                    $fileName;
+
+                                // path server
+                                $destination =
+                                    $uploadDir
+                                    .
+                                    $fileName;
+
+                                // upload file
+                                if (
+
+                                    move_uploaded_file(
+                                        $tmpName,
+                                        $destination
+                                    )
+
+                                ) {
+
+                                    // simpan path ke database
+                                    $nama_file =
+                                        $relativePath;
+
+                                } else {
+
+                                    $_SESSION['error'] =
+                                        'Gagal menyimpan file';
+
+                                }
+                            }
+                        }
                     }
-
                 }
-
                 if (
 
                     !isset($_SESSION['error'])

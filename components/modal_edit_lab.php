@@ -321,7 +321,9 @@
                 ">
 
                     </div>
-
+                    <p class="text-xs text-amber-600 mt-1">
+                        * Jam buka diperbolehkan 07:00-08:00 dan jam tutup 15:00-16:00.
+                    </p>
                 </div>
 
                 <div>

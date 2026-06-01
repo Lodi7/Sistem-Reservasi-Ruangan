@@ -1,28 +1,5 @@
 <?php
 
-// sesi
-$sesi = [
-
-    [
-        'nama' => 'Sesi 1',
-        'mulai' => '07:00:00',
-        'selesai' => '09:30:00'
-    ],
-
-    [
-        'nama' => 'Sesi 2',
-        'mulai' => '09:30:00',
-        'selesai' => '12:00:00'
-    ],
-
-    [
-        'nama' => 'Sesi 3',
-        'mulai' => '13:00:00',
-        'selesai' => '15:30:00'
-    ]
-
-];
-
 $targetTanggal =
     date(
         'Y-m-d',
@@ -49,8 +26,44 @@ while (
 
 ) {
 
-    $lab_id =
-        $lab['id'];
+    $lab_id = $lab['id'];
+
+    $jamBuka = strtotime($lab['jam_buka']);
+    $jamTutup = strtotime($lab['jam_tutup']);
+
+    $jamIstirahatMulai = strtotime('12:00:00');
+    $jamIstirahatSelesai = strtotime('13:00:00');
+
+    $durasiPagi =
+        $jamIstirahatMulai - $jamBuka;
+
+    $durasiSesiPagi =
+        floor($durasiPagi / 2);
+
+    $sesi1Selesai =
+        $jamBuka + $durasiSesiPagi;
+
+    $sesi = [
+
+        [
+            'nama' => 'Sesi 1',
+            'mulai' => date('H:i:s', $jamBuka),
+            'selesai' => date('H:i:s', $sesi1Selesai)
+        ],
+
+        [
+            'nama' => 'Sesi 2',
+            'mulai' => date('H:i:s', $sesi1Selesai),
+            'selesai' => '12:00:00'
+        ],
+
+        [
+            'nama' => 'Sesi 3',
+            'mulai' => '13:00:00',
+            'selesai' => date('H:i:s', $jamTutup)
+        ]
+
+    ];
 
 
     // ambil tanggal terakhir 
@@ -103,20 +116,6 @@ while (
         strtotime($targetTanggal)
 
     ) {
-
-        // hari sabtu dan minggu gk pakai
-        // $hari =
-        //     date(
-        //         'N',
-        //         strtotime($currentTanggal)
-        //     );
-
-        // if (
-
-        //     $hari != 6 &&
-        //     $hari != 7
-
-        // ) {
 
         // loop sesi
         foreach (

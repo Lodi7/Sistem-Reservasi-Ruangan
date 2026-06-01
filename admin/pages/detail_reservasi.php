@@ -545,8 +545,8 @@ if (!$data) {
 
                     ): ?>
 
-                        <a href="/assets/files/uploads/<?= urlencode($data['berkas']) ?>" target="_blank"
-                            rel="noopener noreferrer" class="
+                        <a href="../<?= htmlspecialchars($data['berkas']) ?>" target="_blank" rel="noopener noreferrer"
+                            class="
                             text-blue-600
                             underline
                         ">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 31, 2026 at 04:51 PM
+-- Generation Time: Jun 01, 2026 at 04:57 PM
 -- Server version: 8.0.40
 -- PHP Version: 8.4.20
 
@@ -428,7 +428,28 @@ INSERT INTO `jadwal` (`id`, `lab_id`, `tanggal`, `sesi`, `jam_mulai`, `jam_seles
 (384, 8, '2026-06-13', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38'),
 (385, 8, '2026-06-14', 'Sesi 1', '07:00:00', '09:30:00', '2026-05-31 12:20:38'),
 (386, 8, '2026-06-14', 'Sesi 2', '09:30:00', '12:00:00', '2026-05-31 12:20:38'),
-(387, 8, '2026-06-14', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38');
+(387, 8, '2026-06-14', 'Sesi 3', '13:00:00', '15:30:00', '2026-05-31 12:20:38'),
+(388, 1, '2026-06-15', 'Sesi 1', '07:00:00', '09:30:00', '2026-06-01 15:38:44'),
+(389, 1, '2026-06-15', 'Sesi 2', '09:30:00', '12:00:00', '2026-06-01 15:38:44'),
+(390, 1, '2026-06-15', 'Sesi 3', '13:00:00', '15:30:00', '2026-06-01 15:38:44'),
+(391, 2, '2026-06-15', 'Sesi 1', '07:00:00', '09:30:00', '2026-06-01 15:38:44'),
+(392, 2, '2026-06-15', 'Sesi 2', '09:30:00', '12:00:00', '2026-06-01 15:38:44'),
+(393, 2, '2026-06-15', 'Sesi 3', '13:00:00', '15:30:00', '2026-06-01 15:38:44'),
+(394, 3, '2026-06-15', 'Sesi 1', '07:00:00', '09:30:00', '2026-06-01 15:38:44'),
+(395, 3, '2026-06-15', 'Sesi 2', '09:30:00', '12:00:00', '2026-06-01 15:38:44'),
+(396, 3, '2026-06-15', 'Sesi 3', '13:00:00', '15:30:00', '2026-06-01 15:38:44'),
+(397, 4, '2026-06-15', 'Sesi 1', '07:00:00', '09:30:00', '2026-06-01 15:38:44'),
+(398, 4, '2026-06-15', 'Sesi 2', '09:30:00', '12:00:00', '2026-06-01 15:38:44'),
+(399, 4, '2026-06-15', 'Sesi 3', '13:00:00', '15:30:00', '2026-06-01 15:38:44'),
+(400, 5, '2026-06-15', 'Sesi 1', '07:00:00', '09:30:00', '2026-06-01 15:38:44'),
+(401, 5, '2026-06-15', 'Sesi 2', '09:30:00', '12:00:00', '2026-06-01 15:38:44'),
+(402, 5, '2026-06-15', 'Sesi 3', '13:00:00', '15:30:00', '2026-06-01 15:38:44'),
+(403, 6, '2026-06-15', 'Sesi 1', '07:00:00', '09:30:00', '2026-06-01 15:38:44'),
+(404, 6, '2026-06-15', 'Sesi 2', '09:30:00', '12:00:00', '2026-06-01 15:38:44'),
+(405, 6, '2026-06-15', 'Sesi 3', '13:00:00', '15:30:00', '2026-06-01 15:38:44'),
+(406, 8, '2026-06-15', 'Sesi 1', '07:00:00', '09:30:00', '2026-06-01 15:38:44'),
+(407, 8, '2026-06-15', 'Sesi 2', '09:30:00', '12:00:00', '2026-06-01 15:38:44'),
+(408, 8, '2026-06-15', 'Sesi 3', '13:00:00', '15:30:00', '2026-06-01 15:38:44');
 
 -- --------------------------------------------------------
 
@@ -542,9 +563,10 @@ INSERT INTO `reservasi` (`id`, `user_id`, `jadwal_id`, `kode_reservasi`, `dosen_
 (5, 1, 187, 'MSI-5', 'asasasa', '021546896532', 'wesrdtfgvhbjn', NULL, 'Tidak Hadir', '2026-05-28 10:41:44', NULL, NULL),
 (6, 1, 146, 'RBD-6', 'dfghbj', '0851320520', 'aqwsexdcfgvhbjnkm', NULL, 'Tidak Hadir', '2026-05-28 15:41:47', NULL, NULL),
 (7, 1, 188, 'MSI-7', 'dfghbj', '0851320520', 'aesxdfcgvhbjnkm', NULL, 'Selesai', '2026-05-28 17:36:11', NULL, NULL),
-(8, 1, 190, 'MSI-8', 'dfghbj', '0851320520', 'asdxfcgvhbjnkm', '1780159786-6a1b152abcefe.pdf', 'Ditolak', '2026-05-30 16:49:46', NULL, NULL),
-(9, 1, 194, 'MSI-9', 'dfghbj', '0851320520', 'sdfcgvhbjnkml', '1780162379-6a1b1f4b64a27.docx', 'Selesai', '2026-05-30 17:32:59', NULL, NULL),
-(11, 1, 346, 'INSYDE-11', 'dfghbj', '0851320520', 'sdxfcgvhbjnmk,', NULL, 'Disetujui', '2026-05-31 16:43:49', NULL, '2026-05-31 23:44:28');
+(8, 1, 190, 'MSI-8', 'dfghbj', '0851320520', 'asdxfcgvhbjnkm', 'assets/files/uploads/1780159786-6a1b152abcefe.pdf', 'Ditolak', '2026-05-30 16:49:46', NULL, NULL),
+(9, 1, 194, 'MSI-9', 'dfghbj', '0851320520', 'sdfcgvhbjnkml', 'assets/files/uploads/1780162379-6a1b1f4b64a27.docx', 'Selesai', '2026-05-30 17:32:59', NULL, NULL),
+(11, 1, 346, 'INSYDE-11', 'dfghbj', '0851320520', 'sdxfcgvhbjnmk,', NULL, 'Tidak Hadir', '2026-05-31 16:43:49', NULL, '2026-05-31 23:44:28'),
+(12, 1, 352, 'INSYDE-12', 'dfghbj', '0851320520', 'dcfgvhbjnkml', 'assets/files/uploads/40a81937483466d1dbc003520753de67.pdf', 'Pending', '2026-06-01 15:38:39', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -635,7 +657,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=388;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=499;
 
 --
 -- AUTO_INCREMENT for table `jadwal_nonaktif`
@@ -647,7 +669,7 @@ ALTER TABLE `jadwal_nonaktif`
 -- AUTO_INCREMENT for table `labs`
 --
 ALTER TABLE `labs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `program_studi`
@@ -659,7 +681,7 @@ ALTER TABLE `program_studi`
 -- AUTO_INCREMENT for table `reservasi`
 --
 ALTER TABLE `reservasi`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`

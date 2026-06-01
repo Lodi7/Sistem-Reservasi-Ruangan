@@ -169,7 +169,9 @@ while (
                         'Pending',
                         'Disetujui',
                         'Belum Ambil Kunci',
-                        'Sedang Berlangsung'
+                        'Sedang Berlangsung',
+                        'Selesai',
+                        'Tidak Hadir'
 
                     )"
 
@@ -284,7 +286,7 @@ while (
 
 ?>
 <section class="
-        mt-30 px-5 sm:px-15 xl:px-25
+        mt-30 px-5 sm:px-15 xl:px-25 overflow-hidden
     ">
     <div class="flex gap-10 flex-col">
         <div class=" flex xl:flex-row xl:items-end justify-between gap-4 flex-col">

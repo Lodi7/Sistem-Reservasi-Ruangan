@@ -300,7 +300,6 @@
                     </label>
 
                     <div class="grid md:grid-cols-2 gap-4 mt-2">
-
                         <input type="time" name="jam_buka" class="
                     border
                     border-[#D6D6D6]
@@ -318,7 +317,9 @@
                 ">
 
                     </div>
-
+                    <p class="text-xs text-amber-600 mt-1">
+                        * Jam buka diperbolehkan 07:00-08:00 dan jam tutup 15:00-16:00.
+                    </p>
                 </div>
 
                 <!-- Upload -->

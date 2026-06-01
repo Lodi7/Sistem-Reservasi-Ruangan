@@ -284,7 +284,7 @@ if (isset($_SESSION['is_login'])) {
                     : 'hover:bg-gray-100' ?>
             ">
 
-                                Ubah Profile
+                                Ubah Profil
 
                             </a>
 
@@ -395,7 +395,7 @@ if (isset($_SESSION['is_login'])) {
                     : 'hover:bg-gray-100' ?>
             ">
 
-                            Ubah Profile
+                            Ubah Profil
 
                         </a>
 

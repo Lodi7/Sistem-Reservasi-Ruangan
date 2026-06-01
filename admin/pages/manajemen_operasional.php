@@ -49,6 +49,43 @@ if (
     $jamTutup =
         $_POST['jam_tutup'];
 
+    if (
+        strtotime($jamBuka) < strtotime('07:00:00')
+        ||
+        strtotime($jamBuka) > strtotime('08:00:00')
+    ) {
+
+        $_SESSION['error'] =
+            'Jam buka harus antara 07:00 - 08:00 WIB';
+
+        header('Location: ?page=manajemen_operasional');
+        exit;
+    }
+
+    if (
+        strtotime($jamTutup) < strtotime('15:00:00')
+        ||
+        strtotime($jamTutup) > strtotime('16:00:00')
+    ) {
+
+        $_SESSION['error'] =
+            'Jam tutup harus antara 15:00 - 16:00 WIB';
+
+        header('Location: ?page=manajemen_operasional');
+        exit;
+    }
+
+    if (
+        strtotime($jamBuka) >= strtotime($jamTutup)
+    ) {
+
+        $_SESSION['error'] =
+            'Jam buka harus lebih kecil dari jam tutup';
+
+        header('Location: ?page=manajemen_operasional');
+        exit;
+    }
+
     // Generate Kode Lab
     $kata =
         preg_split(
@@ -225,6 +262,8 @@ if (
 
     if (mysqli_stmt_execute($stmtTambah)) {
 
+        require_once __DIR__ . '/../../scripts/generate_jadwal.php';
+
         $_SESSION['success'] =
             'Lab berhasil ditambahkan';
 
@@ -287,10 +326,143 @@ if (isset($_POST['edit_lab'])) {
         $_POST['jam_tutup'];
 
 
+    if (
+        strtotime($jamBuka) < strtotime('07:00:00')
+        ||
+        strtotime($jamBuka) > strtotime('08:00:00')
+    ) {
 
+        $_SESSION['error'] =
+            'Jam buka harus antara 07:00 - 08:00 WIB';
+
+        header('Location: ?page=manajemen_operasional');
+        exit;
+    }
+
+    if (
+        strtotime($jamTutup) < strtotime('15:00:00')
+        ||
+        strtotime($jamTutup) > strtotime('16:00:00')
+    ) {
+
+        $_SESSION['error'] =
+            'Jam tutup harus antara 15:00 - 16:00 WIB';
+
+        header('Location: ?page=manajemen_operasional');
+        exit;
+    }
+
+    if (
+        strtotime($jamBuka) >= strtotime($jamTutup)
+    ) {
+
+        $_SESSION['error'] =
+            'Jam buka harus lebih kecil dari jam tutup';
+
+        header('Location: ?page=manajemen_operasional');
+        exit;
+    }
+
+    $stmt = mysqli_prepare(
+
+        $conn,
+
+        "SELECT
+        jam_buka,
+        jam_tutup
+
+    FROM labs
+
+    WHERE id = ?"
+
+    );
+
+    mysqli_stmt_bind_param(
+
+        $stmt,
+
+        "i",
+
+        $id
+
+    );
+
+    mysqli_stmt_execute($stmt);
+
+    $labLama =
+        mysqli_fetch_assoc(
+            mysqli_stmt_get_result($stmt)
+        );
+
+    $jamBerubah =
+
+        $labLama['jam_buka'] !== $jamBuka
+
+        ||
+
+        $labLama['jam_tutup'] !== $jamTutup;
+
+    if ($jamBerubah) {
+
+        $stmt = mysqli_prepare(
+
+            $conn,
+
+            "SELECT COUNT(*) total
+
+        FROM reservasi r
+
+        INNER JOIN jadwal j
+            ON r.jadwal_id = j.id
+
+        WHERE
+
+        j.lab_id = ?
+
+        AND j.tanggal >= CURDATE()
+
+        AND r.status IN (
+
+            'Pending',
+            'Disetujui',
+            'Belum Ambil Kunci',
+            'Sedang Berlangsung'
+
+        )"
+
+        );
+
+        mysqli_stmt_bind_param(
+
+            $stmt,
+
+            "i",
+
+            $id
+
+        );
+
+        mysqli_stmt_execute($stmt);
+
+        $total =
+            mysqli_fetch_assoc(
+                mysqli_stmt_get_result($stmt)
+            )['total'];
+
+        if ($total > 0) {
+
+            $_SESSION['error'] =
+                'Jam operasional tidak dapat diubah karena masih ada reservasi aktif.';
+
+            header(
+                'Location: ?page=manajemen_operasional'
+            );
+
+            exit;
+        }
+    }
 
     // Generate Kode Lab
-
 
     $kata =
         preg_split(
@@ -495,14 +667,45 @@ if (isset($_POST['edit_lab'])) {
 
     if (mysqli_stmt_execute($stmtUpdate)) {
 
-        $_SESSION['success'] =
-            'Lab berhasil diperbarui';
+        if ($jamBerubah) {
+
+            $stmt = mysqli_prepare(
+
+                $conn,
+
+                "DELETE
+        FROM jadwal
+
+        WHERE
+
+        lab_id = ?
+
+        AND tanggal >= CURDATE()"
+
+            );
+
+            mysqli_stmt_bind_param(
+
+                $stmt,
+
+                "i",
+
+                $id
+
+            );
+
+            mysqli_stmt_execute($stmt);
+
+            unset($_SESSION['generate_checked']);
+
+            require_once __DIR__ . '/../../scripts/generate_jadwal.php';
+        }
+
+        $_SESSION['success'] = 'Lab berhasil diperbarui';
 
     } else {
 
-        $_SESSION['error'] =
-            'Gagal memperbarui lab: ' .
-            mysqli_stmt_error($stmtUpdate);
+        $_SESSION['error'] = 'Gagal memperbarui lab: ' . mysqli_stmt_error($stmtUpdate);
     }
 
     header('Location: ?page=manajemen_operasional');

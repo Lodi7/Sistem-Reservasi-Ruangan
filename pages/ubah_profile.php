@@ -226,7 +226,7 @@ if (isset($_POST['upload_foto'])) {
 
         <h1 class="text-5xl font-bold text-center">
 
-            Ubah Profile
+            Ubah Profil
 
         </h1>
 

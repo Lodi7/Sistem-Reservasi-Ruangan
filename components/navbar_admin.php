@@ -346,7 +346,7 @@ if ($page === 'detail_reservasi' && isset($_GET['from'])) {
                     : 'hover:bg-gray-100' ?>
             ">
 
-                                Ubah Profile
+                                Ubah Profil
 
                             </a>
 
@@ -457,7 +457,7 @@ if ($page === 'detail_reservasi' && isset($_GET['from'])) {
                     : 'hover:bg-gray-100' ?>
             ">
 
-                            Ubah Profile
+                            Ubah Profil
 
                         </a>
 
