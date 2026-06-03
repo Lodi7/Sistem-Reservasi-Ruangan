@@ -167,7 +167,7 @@ if (
                     ||
 
                     item.status ==
-                    'Nonaktif Hari Ini'
+                    'Non-aktif'
 
                 ) {
 

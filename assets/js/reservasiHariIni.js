@@ -15,15 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
             e.stopPropagation();
 
-            document
-                .querySelectorAll('.dropdown-menu')
-                .forEach(otherMenu => {
+            // reset semua dropdown
+            document.querySelectorAll('.status-dropdown').forEach(d => {
+                d.style.zIndex = '1';
+            });
 
-                    if (otherMenu !== menu) {
-                        otherMenu.classList.add('hidden');
-                    }
+            document.querySelectorAll('.dropdown-menu').forEach(otherMenu => {
 
-                });
+                if (otherMenu !== menu) {
+                    otherMenu.classList.add('hidden');
+                }
+
+            });
+
+            // dropdown yang aktif jadi paling depan
+            dropdown.style.position = 'relative';
+            dropdown.style.zIndex = '99999';
 
             menu.classList.toggle('hidden');
 
@@ -55,13 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('click', () => {
 
-        document
-            .querySelectorAll('.dropdown-menu')
-            .forEach(menu => {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+            menu.classList.add('hidden');
+        });
 
-                menu.classList.add('hidden');
-
-            });
+        document.querySelectorAll('.status-dropdown').forEach(d => {
+            d.style.zIndex = '1';
+        });
 
     });
 

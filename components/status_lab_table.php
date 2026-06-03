@@ -33,7 +33,7 @@
         == 'Non-aktif'
         ||
         $item['status']
-        == 'Nonaktif Hari Ini'
+        == 'Non-aktif'
 
     ) {
 

@@ -148,7 +148,7 @@ while (
         ) {
 
             $status =
-                'Nonaktif Hari Ini';
+                'Non-aktif';
 
         } else {
 
