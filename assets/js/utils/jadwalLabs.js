@@ -16,32 +16,32 @@ function getJadwal(
 }
 
 
-function getSesiTersedia(
-    labId,
-    tanggal
-) {
+// function getSesiTersedia(
+//     labId,
+//     tanggal
+// ) {
 
-    const data =
-        getJadwal(
-            labId,
-            tanggal
-        );
-
-
-    if (!data) {
-
-        return [];
-
-    }
+//     const data =
+//         getJadwal(
+//             labId,
+//             tanggal
+//         );
 
 
-    return data.jadwal.filter(
+//     if (!data) {
 
-        item =>
+//         return [];
 
-            item.status ==
-            'Tersedia'
+//     }
 
-    );
 
-}
+//     return data.jadwal.filter(
+
+//         item =>
+
+//             item.status ==
+//             'Tersedia'
+
+//     );
+
+// }

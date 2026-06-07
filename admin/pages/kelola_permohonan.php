@@ -927,5 +927,24 @@ $result =
         </div>
 
     </div>
+    <?php if ($totalPages > 1): ?>
+
+        <div class="flex justify-center gap-2 mt-8">
+
+            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+
+                <a href="?page=kelola_permohonan&p=<?= $i ?>" class="
+                px-4 py-2 rounded-lg border border-gray-300
+                <?= $i == $pageNumber
+                    ? 'bg-[#FF925C] text-white'
+                    : 'bg-white' ?>
+            ">
+                    <?= $i ?>
+                </a>
+
+            <?php endfor; ?>
+
+        </div>
+    <?php endif; ?>
 
 </section>
